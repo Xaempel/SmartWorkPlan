@@ -1,3 +1,6 @@
+# Garbage that occurs during project compilation
+build
+
 # Prerequisites
 *.d
 
