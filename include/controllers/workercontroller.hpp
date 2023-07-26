@@ -27,18 +27,17 @@
 ******************************************************************************/
 #pragma once
 
-#include "./frontend/ui_mainwindow.h"
-#include "controllers/workercontroller.hpp"
+#include "../models/workerdatamodel.hpp"
+#include "../models/workermodel.hpp"
+#include "../widgets/workersremovaldialog.hpp"
+#include "../widgets/workerwizard.hpp"
 
-#include <QMainWindow>
+#include <QVBoxLayout>
 
-class MainWindow : public QMainWindow, private Ui::MainWindow {
-   Q_OBJECT
-   public:
-   MainWindow(QWidget* parent = nullptr);
-   ~MainWindow();
-
-   private slots:
-   void CallAddWorker();
-   void CallDeleteWorker();
+class WorkerController {
+   public slots:
+   WorkerController();
+   static void runLoadWorker(QVBoxLayout* loadWorkerLayoutPtr);
+   static void runAddWorker(QVBoxLayout* workerLayoutPtr);
+   static void runDeleteWorker();
 };

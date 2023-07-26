@@ -27,18 +27,22 @@
 ******************************************************************************/
 #pragma once
 
-#include "./frontend/ui_mainwindow.h"
-#include "controllers/workercontroller.hpp"
+#include "./frontend/ui_workersremovaldialog.h"
 
-#include <QMainWindow>
+#include <QDialog>
+#include <QStringList>
 
-class MainWindow : public QMainWindow, private Ui::MainWindow {
+class WorkersRemovalDialog : public QDialog, private Ui::WorkersRemovalDialog {
    Q_OBJECT
    public:
-   MainWindow(QWidget* parent = nullptr);
-   ~MainWindow();
+   WorkersRemovalDialog(QWidget* parent = nullptr, QStringList WorkerNameSurNameLists = {});
+   ~WorkersRemovalDialog();
+   bool getDeletedWorkerNumber(int& WorkerNumber);
+
+   private:
+   int workerNumber_ {0};
+   bool AcceptedDialog {false};
 
    private slots:
-   void CallAddWorker();
-   void CallDeleteWorker();
+   void UpdateNumberDeletedWorker();
 };

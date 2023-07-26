@@ -27,18 +27,16 @@
 ******************************************************************************/
 #pragma once
 
-#include "./frontend/ui_mainwindow.h"
-#include "controllers/workercontroller.hpp"
+#include "./frontend/ui_workerwizard.h"
 
-#include <QMainWindow>
+#include <QMessageBox>
+#include <QString>
+#include <QWizard>
 
-class MainWindow : public QMainWindow, private Ui::MainWindow {
+class WorkerWizard : public QWizard, private Ui::WorkerWizard {
    Q_OBJECT
    public:
-   MainWindow(QWidget* parent = nullptr);
-   ~MainWindow();
-
-   private slots:
-   void CallAddWorker();
-   void CallDeleteWorker();
+   WorkerWizard(QWidget* parent = nullptr);
+   ~WorkerWizard();
+   bool getDataFromWizard(QString& Name, QString& SurName);
 };

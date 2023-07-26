@@ -25,20 +25,21 @@
 **  https://www.qt.io/.                                                       **
 **                                                                            **
 ******************************************************************************/
+
 #pragma once
 
-#include "./frontend/ui_mainwindow.h"
-#include "controllers/workercontroller.hpp"
+#include <QHBoxLayout>
+#include <QList>
 
-#include <QMainWindow>
+// Unfortunately, this violates the VMC rule, but honestly I don't know how else to do it
+#include "../widgets/workerwidget.hpp"
 
-class MainWindow : public QMainWindow, private Ui::MainWindow {
-   Q_OBJECT
+class WorkerModel {
    public:
-   MainWindow(QWidget* parent = nullptr);
-   ~MainWindow();
+   void addWorker(QVBoxLayout* LayoutToAddWorker, QString Name, QString SurName);
+   void deleteWorker(int NumberWorkerToRemoved);
 
-   private slots:
-   void CallAddWorker();
-   void CallDeleteWorker();
+   private:
+   static QList<WorkerWidget*> WorkerWidgetList;
+   static int WorkerNum;
 };

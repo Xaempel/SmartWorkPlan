@@ -25,20 +25,16 @@
 **  https://www.qt.io/.                                                       **
 **                                                                            **
 ******************************************************************************/
+
 #pragma once
 
-#include "./frontend/ui_mainwindow.h"
-#include "controllers/workercontroller.hpp"
+#include "./frontend/ui_workerwidget.h"
 
-#include <QMainWindow>
+#include <QFrame>
 
-class MainWindow : public QMainWindow, private Ui::MainWindow {
-   Q_OBJECT
+class WorkerWidget : public QFrame, private Ui::WorkerWidget {
    public:
-   MainWindow(QWidget* parent = nullptr);
-   ~MainWindow();
-
-   private slots:
-   void CallAddWorker();
-   void CallDeleteWorker();
+   WorkerWidget(QWidget* parent = nullptr);
+   WorkerWidget(QWidget* parent = nullptr, QString Name = "", QString SurName = "");
+   void setNameandSurName(QString Name, QString SurName);
 };

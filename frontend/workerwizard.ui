@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>WorkerWizard</class>
+ <widget class="QWizard" name="WorkerWizard">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>304</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>WorkerWizard</string>
+  </property>
+  <widget class="QWizardPage" name="WizardMainPage">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QLabel" name="WorkerNameLabel">
+      <property name="text">
+       <string>Name</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="WorkerSurNameLabel">
+      <property name="text">
+       <string>SurName</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLineEdit" name="WorkerNameLineEdit"/>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="WorkerSurNameLineEdit"/>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+ <slots>
+  <slot>WizardisAccepted()</slot>
+ </slots>
+</ui>

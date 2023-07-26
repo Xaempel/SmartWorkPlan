@@ -27,18 +27,20 @@
 ******************************************************************************/
 #pragma once
 
-#include "./frontend/ui_mainwindow.h"
-#include "controllers/workercontroller.hpp"
+#include <QByteArray>
+#include <QFile>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QStringList>
 
-#include <QMainWindow>
-
-class MainWindow : public QMainWindow, private Ui::MainWindow {
-   Q_OBJECT
+class WorkerDataModel {
    public:
-   MainWindow(QWidget* parent = nullptr);
-   ~MainWindow();
+   bool saveWorkerLists(QString Name, QString SurName);
+   QStringList loadWorkerLists();
+   void removeWorkerFromLists(int workerNumberToDeleted);
 
-   private slots:
-   void CallAddWorker();
-   void CallDeleteWorker();
+   private:
+   QFile dataFile {QFile("data.json")};
+   QStringList nameSurnameList {};
 };
