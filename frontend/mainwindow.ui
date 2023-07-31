@@ -43,7 +43,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>773</width>
+         <width>382</width>
          <height>531</height>
         </rect>
        </property>
@@ -61,6 +61,9 @@
        </layout>
       </widget>
      </widget>
+    </item>
+    <item row="0" column="2">
+     <layout class="QVBoxLayout" name="CalendarLayout"/>
     </item>
    </layout>
   </widget>
@@ -80,7 +83,14 @@
     <addaction name="ActionAddWorker"/>
     <addaction name="ActionDeleteWorker"/>
    </widget>
+   <widget class="QMenu" name="MenuShift">
+    <property name="title">
+     <string>Shift</string>
+    </property>
+    <addaction name="ActionAddShift"/>
+   </widget>
    <addaction name="MenuWorker"/>
+   <addaction name="MenuShift"/>
   </widget>
   <widget class="QStatusBar" name="StatusBar"/>
   <action name="ActionAddWorker">
@@ -89,6 +99,16 @@
    </property>
   </action>
   <action name="ActionDeleteWorker">
+   <property name="text">
+    <string>Delete</string>
+   </property>
+  </action>
+  <action name="ActionAddShift">
+   <property name="text">
+    <string>Add</string>
+   </property>
+  </action>
+  <action name="action">
    <property name="text">
     <string>Delete</string>
    </property>
@@ -128,9 +148,27 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>ActionAddShift</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>CallAddShift()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>394</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>CallAddWorker()</slot>
   <slot>CallDeleteWorker()</slot>
+  <slot>CallAddShift()</slot>
+  <slot>CallDeleteShift()</slot>
  </slots>
 </ui>

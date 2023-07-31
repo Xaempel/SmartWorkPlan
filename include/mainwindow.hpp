@@ -28,6 +28,7 @@
 #pragma once
 
 #include "./frontend/ui_mainwindow.h"
+#include "controllers/shiftcontroller.hpp"
 #include "controllers/workercontroller.hpp"
 
 #include <QMainWindow>
@@ -41,4 +42,10 @@ class MainWindow : public QMainWindow, private Ui::MainWindow {
    private slots:
    void CallAddWorker();
    void CallDeleteWorker();
+   
+   void CallAddShift();
+
+   private:
+   WorkerController *workerController {new WorkerController};
+   ShiftController *shiftController {new ShiftController};
 };

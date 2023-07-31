@@ -27,18 +27,14 @@
 ******************************************************************************/
 #pragma once
 
-#include "../models/workerdatamodel.hpp"
-#include "../models/workermodel.hpp"
-#include "../widgets/workersremovaldialog.hpp"
-#include "../widgets/workerwizard.hpp"
+#include "../frontend/ui_calendarwidget.h"
 
-#include <QObject>
-#include <QVBoxLayout>
+#include <QFrame>
+#include <QVector>
 
-class WorkerController : public QObject {
-   Q_OBJECT
-   public slots:
-   static void runLoadWorker(QVBoxLayout* loadWorkerLayoutPtr);
-   void runAddWorker(QVBoxLayout* workerLayoutPtr);
-   void runDeleteWorker();
+class CalendarWidget : public QFrame, private Ui::CalendarWidget {
+   public:
+   explicit CalendarWidget(QWidget *parent = nullptr);
+   ~CalendarWidget();
+   void getCalendarFieldWidgetLayoutPtr(QGridLayout *&LayoutPtr);
 };

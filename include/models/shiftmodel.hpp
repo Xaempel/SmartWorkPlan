@@ -25,20 +25,14 @@
 **  https://www.qt.io/.                                                       **
 **                                                                            **
 ******************************************************************************/
+
 #pragma once
 
-#include "../models/workerdatamodel.hpp"
-#include "../models/workermodel.hpp"
-#include "../widgets/workersremovaldialog.hpp"
-#include "../widgets/workerwizard.hpp"
-
-#include <QObject>
+#include <QLabel>
 #include <QVBoxLayout>
+#include <QWidget>
 
-class WorkerController : public QObject {
-   Q_OBJECT
-   public slots:
-   static void runLoadWorker(QVBoxLayout* loadWorkerLayoutPtr);
-   void runAddWorker(QVBoxLayout* workerLayoutPtr);
-   void runDeleteWorker();
+class ShiftModel {
+   public:
+   void addShift(QVBoxLayout* PtrLayout, QString workerName);
 };

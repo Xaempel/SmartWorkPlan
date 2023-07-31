@@ -27,18 +27,19 @@
 ******************************************************************************/
 #pragma once
 
-#include "../models/workerdatamodel.hpp"
-#include "../models/workermodel.hpp"
-#include "../widgets/workersremovaldialog.hpp"
-#include "../widgets/workerwizard.hpp"
+#include <QByteArray>
+#include <QFile>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QPair>
+#include <QVector>
 
-#include <QObject>
-#include <QVBoxLayout>
+class ShiftDataModel {
+   public:
+   void saveShift(QString nameSurNameStr, int DateofShift);
+   QVector<QPair<QString, int>> loadShift(); // Recommended used auto type for get data
 
-class WorkerController : public QObject {
-   Q_OBJECT
-   public slots:
-   static void runLoadWorker(QVBoxLayout* loadWorkerLayoutPtr);
-   void runAddWorker(QVBoxLayout* workerLayoutPtr);
-   void runDeleteWorker();
+   private:
+   QFile dateFile {QFile("data.json")};
 };

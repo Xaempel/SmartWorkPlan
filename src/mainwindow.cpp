@@ -4,16 +4,25 @@ MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
 {
    setupUi(this);
+   ShiftController::SetCalendarWidgetinLayout(CalendarLayout);
+   ShiftController::runLoadShift(CalendarLayout);
+
    WorkerController::runLoadWorker(WorkerLayout);
 }
 
-MainWindow::~MainWindow() {}
+MainWindow::~MainWindow() { }
 
 void MainWindow::CallAddWorker()
 {
-   WorkerController::runAddWorker(WorkerLayout);
+   workerController->runAddWorker(WorkerLayout);
 }
 
-void MainWindow::CallDeleteWorker(){
-   WorkerController::runDeleteWorker();
+void MainWindow::CallDeleteWorker()
+{
+   workerController->runDeleteWorker();
+}
+
+void MainWindow::CallAddShift()
+{
+   shiftController->runAddShift();
 }

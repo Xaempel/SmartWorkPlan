@@ -27,18 +27,24 @@
 ******************************************************************************/
 #pragma once
 
+#include "../models/shiftdatamodel.hpp"
+#include "../models/shiftmodel.hpp"
 #include "../models/workerdatamodel.hpp"
-#include "../models/workermodel.hpp"
-#include "../widgets/workersremovaldialog.hpp"
-#include "../widgets/workerwizard.hpp"
+#include "../widgets/calendarfieldwidget.hpp"
+#include "../widgets/calendarwidget.hpp"
+#include "../widgets/shiftwizard.hpp"
 
+#include <QGridLayout>
 #include <QObject>
 #include <QVBoxLayout>
+#include <QVector>
 
-class WorkerController : public QObject {
-   Q_OBJECT
-   public slots:
-   static void runLoadWorker(QVBoxLayout* loadWorkerLayoutPtr);
-   void runAddWorker(QVBoxLayout* workerLayoutPtr);
-   void runDeleteWorker();
+class ShiftController : public QObject {
+   public:
+   static void SetCalendarWidgetinLayout(QVBoxLayout* LayoutPtr);
+   static void runLoadShift(QVBoxLayout* LayoutPtr);
+   void runAddShift();
+
+   private:
+   static QVector<CalendarFieldWidget*> calendarFieldWidgetVec;
 };

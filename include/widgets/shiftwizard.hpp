@@ -27,18 +27,15 @@
 ******************************************************************************/
 #pragma once
 
-#include "../models/workerdatamodel.hpp"
-#include "../models/workermodel.hpp"
-#include "../widgets/workersremovaldialog.hpp"
-#include "../widgets/workerwizard.hpp"
+#include "../frontend/ui_shiftwizard.h"
 
-#include <QObject>
-#include <QVBoxLayout>
+#include <QStringList>
+#include <QWizard>
 
-class WorkerController : public QObject {
+class ShiftWizard : public QWizard, private Ui::ShiftWizard {
    Q_OBJECT
-   public slots:
-   static void runLoadWorker(QVBoxLayout* loadWorkerLayoutPtr);
-   void runAddWorker(QVBoxLayout* workerLayoutPtr);
-   void runDeleteWorker();
+   public:
+   explicit ShiftWizard(QWidget* parent = nullptr, QStringList workerStringLists = {});
+   ~ShiftWizard();
+   void getDataFromWizard(QString& nameSurname, int& selectedDayNumber);
 };
