@@ -27,29 +27,10 @@
 ******************************************************************************/
 #pragma once
 
-#include "./frontend/ui_mainwindow.h"
-#include "controllers/printcontroller.hpp"
-#include "controllers/shiftcontroller.hpp"
-#include "controllers/workercontroller.hpp"
+#include "../models/printmodel.hpp"
+#include "../models/workerdatamodel.hpp"
 
-#include <QMainWindow>
-
-class MainWindow : public QMainWindow, private Ui::MainWindow {
-   Q_OBJECT
-   public:
-   MainWindow(QWidget* parent = nullptr);
-   ~MainWindow();
-
-   private slots:
-   void CallAddWorker();
-   void CallDeleteWorker();
-
-   void CallAddShift();
-
-   void CallPrintWorkPlan();
-
-   private:
-   WorkerController* workerController {new WorkerController};
-   ShiftController* shiftController {new ShiftController};
-   PrintController* printController {new PrintController};
+class PrintController { 
+    public:
+    void runStartPrint();
 };

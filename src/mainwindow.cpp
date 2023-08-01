@@ -26,3 +26,7 @@ void MainWindow::CallAddShift()
 {
    shiftController->runAddShift();
 }
+
+void MainWindow::CallPrintWorkPlan(){
+   printController->runStartPrint();
+}

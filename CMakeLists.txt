@@ -10,7 +10,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Widgets PrintSupport)
 
 set(APP_SOURCES
     src/mainwindow.cpp
@@ -23,11 +23,13 @@ set(APP_SOURCES
     src/widgets/shiftwizard.cpp
 
     src/controllers/workercontroller.cpp
+    src/controllers/printcontroller.cpp
     src/controllers/shiftcontroller.cpp
 
     src/models/workerdatamodel.cpp
     src/models/shiftdatamodel.cpp
     src/models/workermodel.cpp
+    src/models/printmodel.cpp
     src/models/shiftmodel.cpp
 )
 
@@ -42,11 +44,13 @@ set(APP_HEADERS
     include/widgets/shiftwizard.hpp
 
     include/controllers/workercontroller.hpp
+    include/controllers/printcontroller.hpp
     include/controllers/shiftcontroller.hpp
 
     include/models/workerdatamodel.hpp
     include/models/shiftdatamodel.hpp
     include/models/workermodel.hpp
+    include/models/printmodel.hpp
     include/models/shiftmodel.hpp
 
 )
@@ -58,4 +62,4 @@ add_executable(app
 )
 
 set_target_properties(app PROPERTIES AUTOUIC_SEARCH_PATHS "./frontend")
-target_link_libraries(app PUBLIC Qt6::Widgets)
+target_link_libraries(app PUBLIC Qt6::Widgets Qt6::PrintSupport)
