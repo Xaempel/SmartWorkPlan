@@ -12,54 +12,44 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 REQUIRED COMPONENTS Widgets PrintSupport)
 
-set(APP_SOURCES
-    src/mainwindow.cpp
+include(cmake/path.cmake)
 
-    src/widgets/workersremovaldialog.cpp
-    src/widgets/calendarfieldwidget.cpp
-    src/widgets/calendarwidget.cpp
-    src/widgets/workerwidget.cpp
-    src/widgets/workerwizard.cpp
-    src/widgets/shiftwizard.cpp
+function(setup_target TARGET_NAME)
+    target_link_libraries(${TARGET_NAME} PUBLIC Qt6::Widgets Qt6::PrintSupport)
+    set_target_properties(${TARGET_NAME} PROPERTIES AUTOUIC_SEARCH_PATHS "./frontend")
+endfunction()
 
-    src/controllers/workercontroller.cpp
-    src/controllers/printcontroller.cpp
-    src/controllers/shiftcontroller.cpp
-
-    src/models/workerdatamodel.cpp
-    src/models/shiftdatamodel.cpp
-    src/models/workermodel.cpp
-    src/models/printmodel.cpp
-    src/models/shiftmodel.cpp
-)
-
-set(APP_HEADERS
-    include/mainwindow.hpp    
-
-    include/widgets/workersremovaldialog.hpp
-    include/widgets/calendarfieldwidget.hpp
-    include/widgets/calendarwidget.hpp
-    include/widgets/workerwidget.hpp
-    include/widgets/workerwizard.hpp
-    include/widgets/shiftwizard.hpp
-
-    include/controllers/workercontroller.hpp
-    include/controllers/printcontroller.hpp
-    include/controllers/shiftcontroller.hpp
-
-    include/models/workerdatamodel.hpp
-    include/models/shiftdatamodel.hpp
-    include/models/workermodel.hpp
-    include/models/printmodel.hpp
-    include/models/shiftmodel.hpp
-
-)
-
-add_executable(app
-    src/main.cpp
+set(COMMON_SOURCES
     ${APP_SOURCES}
     ${APP_HEADERS}
 )
 
-set_target_properties(app PROPERTIES AUTOUIC_SEARCH_PATHS "./frontend")
-target_link_libraries(app PUBLIC Qt6::Widgets Qt6::PrintSupport)
+add_executable(app
+    src/main.cpp
+    ${COMMON_SOURCES}
+)
+
+set(CATCH2_DIR ${CMAKE_BINARY_DIR}/external/catch2)
+include(FetchContent)
+
+FetchContent_Declare(
+  catch2
+  GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+  GIT_TAG        v2.13.7  
+)
+
+FetchContent_GetProperties(catch2)
+if(NOT catch2_POPULATED)
+  FetchContent_Populate(catch2)
+  add_subdirectory(${catch2_SOURCE_DIR} ${catch2_BINARY_DIR})
+endif()
+
+add_executable(app-t 
+  test/test_main.cc
+  ${APP_SOURCES_TEST}
+  ${COMMON_SOURCES}
+)
+
+setup_target(app) 
+setup_target(app-t)
+target_link_libraries(app-t PRIVATE Catch2::Catch2)
