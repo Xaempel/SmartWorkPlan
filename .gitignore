@@ -1,6 +1,9 @@
 # Garbage that occurs during project compilation
 build
 
+# Ide Folder
+.vscode  
+
 # Prerequisites
 *.d
 

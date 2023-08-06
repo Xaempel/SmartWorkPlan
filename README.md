@@ -1,21 +1,60 @@
-SmartWorkPlan
-==================
+# SmartWorkPlan
 
-Description
-------------
+[![License](https://img.shields.io/badge/License-GPLv2-blue.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
+![Language](https://img.shields.io/badge/Language-C%2B%2B-blue)
+[![Catch2](https://img.shields.io/badge/Tested_with-Catch2-2f2f2f.svg)](https://github.com/catchorg/Catch2)
+[![Qt](https://img.shields.io/badge/Framework-Qt-41CD52.svg)](https://www.qt.io/)
+
+
+
+## Description
+[Readme Reference](#readmemd-reference)
+
+[Project Reference](#project-reference)
+
 SmartWorkPlan is intended to be an intelligent aid in creating a work plan for employees.
+
+### Project Reference
+
+* [Documentation](docs/ReadMe.md)
+
+* [Contributing](.github/CONTRIBUTING.md)
+
+* [RoadMap](docs/RoadMap.md)
+
+### README.md Reference
+
+* [License](#license)
+
+* [System Requirements](#system-requirements)
+
+* [Installation](#installation)
+
+* [Building and Running](#building-and-running)
+
+* [Tools and Dependencies](#tools-and-dependencies)
+
+* [Code Formatting](#code-formatting)
+
+* [Authors](#authors)
+
+* [Acknowledgements](#acknowledgements)
+
+* [Contact](#contact)
 
 Code SmartWorkPlan is available on GitHub site 
 [Link](https://github.com/Xaempel/SmartWorkPlan)
 
-License
--------
+## License
+[Return](#readmemd-reference)
+
 This project is licensed under the GNU General Public License version 2. You can find the full text of the license in the LICENSE file.
 
 The project also uses the catch2 library which uses the Boost software license 1.0 [Link for license](https://github.com/catchorg/Catch2/blob/devel/LICENSE.txt).
 
-System Requirements
--------------------
+## System Requirements
+[Return](#readmemd-reference)
+
 To run SmartWorkPlan, your system should meet the following requirements:
 
 - Compiler: C++20 compatible compiler (GCC 13.1.1 or later)
@@ -26,14 +65,15 @@ To run SmartWorkPlan, your system should meet the following requirements:
   - Clang-format: Version 16.0.5 or later
   - Catch2 Version 2.13.7 or later  
 
-Installation
-------------
+## Installation
+[Return](#readmemd-reference)
+
 1. Clone this project to your device with the git command:
 2. Navigate to the project folder:
 3. Install the dependencies:
 
-Building and Running 
------------
+## Building and Running 
+[Return](#readmemd-reference)
 
 Creat build dir
 
@@ -56,8 +96,9 @@ Enter app
 
 **or enter gui e.g windows or ubuntu and enter build folders and click on application icon to start app in gui**
 
-Tools and Dependencies
------------
+## Tools and Dependencies
+[Return](#readmemd-reference)
+
 This project uses the following tools and dependencies:
 
 * [CMake](https://cmake.org/): Cross-platform build system.
@@ -80,18 +121,34 @@ This project uses the following tools and dependencies:
   or in build/_deps/catch2-src/LICENSE.txt 
   (this directory will be available after building the project because cmake downloads catch2 from the internet) path or similar
 
-Code Formatting
------------
+## Code Formatting
+[Return](#readmemd-reference)
+
 To maintain code consistency, use [clang-format](https://clang.llvm.org/docs/ClangFormat.html) tool. Please make sure to format your code accordingly before submitting a contribution.
 
-Authors
--------
+## Authors
+[Return](#readmemd-reference)
+
 * [Xaempel]
 
-Acknowledgements
--------------
-Thanks very much to all the people and organizations who contributed to the creation of the tools used in the project you are all great :>
+## Acknowledgements
+[Return](#readmemd-reference)
 
-Contact
--------
+thanks to the following people or organization
+
+-- [Qt Company](https://www.qt.io/) for Qt framework
+
+-- [Catch2 community ](https://github.com/catchorg/Catch2) for Catch2 test library
+
+-- [Kitware and cmake community](https://github.com/Kitware/CMake) for cmake tools
+
+-- [LLVM community](https://github.com/llvm/llvm-project) for llvm tools
+
+-- [Git community and linus torvalds](https://github.com/git/git) for creating Git and other good tools 
+
+and other people on contributing projects for used for this project you are all great :> 
+
+## Contact
+[Return](#readmemd-reference) 
+
 If you have any questions or feedback, feel free to contact us at: [xaempelfeedback@gmail.com]
