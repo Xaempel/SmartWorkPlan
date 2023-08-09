@@ -30,6 +30,7 @@
 #include "../models/workerdatamodel.hpp"
 #include "../models/workermodel.hpp"
 #include "../widgets/workersremovaldialog.hpp"
+#include "../widgets/workerwidget.hpp"
 #include "../widgets/workerwizard.hpp"
 
 #include <QObject>
@@ -41,4 +42,7 @@ class WorkerController : public QObject {
    static void runLoadWorker(QVBoxLayout* loadWorkerLayoutPtr);
    void runAddWorker(QVBoxLayout* workerLayoutPtr);
    void runDeleteWorker();
+
+   private:
+   WorkerWidget* workerWidgetPtr {nullptr};
 };

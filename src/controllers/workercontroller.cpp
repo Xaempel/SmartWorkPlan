@@ -11,7 +11,8 @@ void WorkerController::runAddWorker(QVBoxLayout* workerLayoutPtr)
    WorkerDataModel DataModelObject {};
    if (WorkerWizardObj->getDataFromWizard(WorkerName, WorkerSurName) == true) {
       WorkerModel WorkerModelObject {};
-      WorkerModelObject.addWorker(workerLayoutPtr, WorkerName, WorkerSurName);
+      workerWidgetPtr = new WorkerWidget(nullptr,WorkerName,WorkerSurName);
+      WorkerModelObject.addWorker(workerLayoutPtr, workerWidgetPtr);
       DataModelObject.saveWorkerLists(WorkerName, WorkerSurName);
    }
    else {
@@ -43,19 +44,22 @@ void WorkerController::runLoadWorker(QVBoxLayout* loadWorkerLayoutPtr)
       return;
    }
    else {
-      QStringList WorkerNameList {};
+      QStringList workerNameList {};
       WorkerDataModel DataModelObject;
-      WorkerModel WorkerModelObject {};
-      WorkerNameList = DataModelObject.loadWorkerLists();
+      WorkerModel WorkerModel {};
+      workerNameList = DataModelObject.loadWorkerLists();
 
-      if (WorkerNameList.isEmpty()) {
+      if (workerNameList.isEmpty()) {
          return;
       }
       else {
          QString workerNameSurName {""};
-         for (int i = 0; i < WorkerNameList.size(); i++) {
-            workerNameSurName = WorkerNameList.at(i);
-            WorkerModelObject.addWorker(loadWorkerLayoutPtr, workerNameSurName, "");
+         int loopCounter {0};
+         for (const QString& loopIterator : workerNameList) {
+            workerNameSurName = workerNameList.at(loopCounter);
+            WorkerWidget *workerWidget {new WorkerWidget(nullptr,workerNameSurName)};
+            WorkerModel.addWorker(loadWorkerLayoutPtr, workerWidget);
+            loopCounter++;
          }
          runFunctionCounter++;
       }

@@ -30,16 +30,14 @@
 
 #include <QHBoxLayout>
 #include <QList>
-
-// Unfortunately, this violates the VMC rule, but honestly I don't know how else to do it
-#include "../widgets/workerwidget.hpp"
+#include <QWidget>
 
 class WorkerModel {
    public:
-   void addWorker(QVBoxLayout* LayoutToAddWorker, QString Name, QString SurName);
+   void addWorker(QVBoxLayout* LayoutToAddWorker, QWidget* WidgetoLayout);
    void deleteWorker(int NumberWorkerToRemoved);
 
    private:
-   static QList<WorkerWidget*> WorkerWidgetList;
+   static QList<QWidget*> WorkerWidgetList;
    static int WorkerNum;
 };

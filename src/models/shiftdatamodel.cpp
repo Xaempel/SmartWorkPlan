@@ -32,7 +32,7 @@ QVector<QPair<QString, int>> ShiftDataModel::loadShift()
 
    QFile dateFile("data.json");
 
-   if (!dateFile.open(QIODevice::ReadOnly)) {
+   if (!dateFile.open(QIODevice::ReadWrite)) {
       qWarning() << "Cannot open data.json for reading.";
       return shiftDataVec;
    }

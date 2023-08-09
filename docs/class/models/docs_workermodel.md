@@ -11,14 +11,13 @@ this class does not inherit
 
     QHBoxLayout
     QList
-
-    widgets/workerwidget.hpp
+    QWidget
 
 ## Class methods 
 
-### void addWorker(QVBoxLayout* LayoutToAddWorker, QString Name,QString SurName);
+### void addWorker(QVBoxLayout* LayoutToAddWorker, QWidget* WidgetoLayout);
 
-this method create worker and put in layout from argument
+method puts widget from argument to layout from argument
 
 ### void deleteWorker(int NumberWorkerToRemoved);
 

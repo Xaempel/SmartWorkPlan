@@ -1,12 +1,11 @@
 #include "./include/models/workermodel.hpp"
 
-QList<WorkerWidget*> WorkerModel::WorkerWidgetList {};
+QList<QWidget*> WorkerModel::WorkerWidgetList {};
 int WorkerModel::WorkerNum {0};
 
-void WorkerModel::addWorker(QVBoxLayout* LayoutToAddWorker, QString Name,
-                            QString SurName)
+void WorkerModel::addWorker(QVBoxLayout* LayoutToAddWorker, QWidget* WidgetoLayout)
 {
-   WorkerWidgetList.emplace_back(new WorkerWidget(nullptr, Name, SurName));
+   WorkerWidgetList.emplace_back(WidgetoLayout);
    auto CurrentListsObject {WorkerWidgetList.at(WorkerNum)};
 
    CurrentListsObject->setFixedSize(200, 100);

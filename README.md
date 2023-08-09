@@ -105,6 +105,8 @@ This project uses the following tools and dependencies:
   [CMake Source](https://github.com/Kitware/CMake)
 
 * [Qt](https://www.qt.io/): Cross-platform application framework.
+  * Project uses the following modules Qt Widgets, PrintSupport and Test source code for these modules can be found in the links below
+
   [Qt Source Archives any version](https://download.qt.io/archive/qt/)
   [Qt Source Archive version 6.0.0](https://download.qt.io/archive/qt/6.0/6.0.0/)
 

@@ -34,7 +34,7 @@
 
 class WorkerWidget : public QFrame, private Ui::WorkerWidget {
    public:
-   WorkerWidget(QWidget* parent = nullptr);
-   WorkerWidget(QWidget* parent = nullptr, QString Name = "", QString SurName = "");
+   explicit WorkerWidget(QWidget* parent = nullptr);
+   explicit WorkerWidget(QWidget* parent = nullptr, QString Name = "", QString SurName = "");
    void setNameandSurName(QString Name, QString SurName);
 };
