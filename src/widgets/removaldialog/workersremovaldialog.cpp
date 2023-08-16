@@ -1,4 +1,4 @@
-#include "./include/widgets/workersremovaldialog.hpp"
+#include "./include/widgets/removaldialog/workersremovaldialog.hpp"
 
 WorkersRemovalDialog::WorkersRemovalDialog(QWidget* parent, QStringList WorkerNameSurNameLists)
 {

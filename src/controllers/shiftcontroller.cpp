@@ -1,8 +1,6 @@
 #include "../include/controllers/shiftcontroller.hpp"
 
-QVector<CalendarFieldWidget*> ShiftController::calendarFieldWidgetVec {};
-
-void ShiftController::SetCalendarWidgetinLayout(QVBoxLayout* LayoutPtr)
+void ShiftController::setCalendarWidgetinLayout(QVBoxLayout* LayoutPtr)
 {
    CalendarWidget* calendarWidget {new CalendarWidget(nullptr)};
    QGridLayout* calendarFieldWidgetPtr {nullptr};
@@ -23,9 +21,6 @@ void ShiftController::SetCalendarWidgetinLayout(QVBoxLayout* LayoutPtr)
 
 void ShiftController::runLoadShift(QVBoxLayout* LayoutPtr)
 {
-   ShiftDataModel shiftDataModel;
-   ShiftModel shiftModel;
-
    auto getShiftData = shiftDataModel.loadShift();
    QVBoxLayout* workerShiftLayoutPtr;
 
@@ -34,7 +29,7 @@ void ShiftController::runLoadShift(QVBoxLayout* LayoutPtr)
       int currentShiftDate           = getShiftData.at(i).second;
 
       calendarFieldWidgetVec.at(currentShiftDate)->getPointertoWorkerShiftPlace(workerShiftLayoutPtr);
-      shiftModel.addShift(workerShiftLayoutPtr, currentWorkerShiftName);
+      shiftModel->addShift(workerShiftLayoutPtr, currentWorkerShiftName);
    }
 }
 
@@ -49,17 +44,35 @@ void ShiftController::runAddShift()
    int result = shiftWizard->exec();
 
    if (result == QDialog::Accepted) {
-      QVBoxLayout* workerShiftLayoutPtr;
+      QVBoxLayout* workerShiftLayoutPtr {nullptr};
       shiftWizard->getDataFromWizard(workerNameSurName, dayNumber);
       dayNumber--;
       calendarFieldWidgetVec.at(dayNumber)->getPointertoWorkerShiftPlace(workerShiftLayoutPtr);
-      ShiftModel shiftModel {};
-      shiftModel.addShift(workerShiftLayoutPtr, workerNameSurName);
-
-      ShiftDataModel shiftDataModel {};
+      workerShiftLayoutPtr_ = workerShiftLayoutPtr;
+      shiftModel->addShift(workerShiftLayoutPtr, workerNameSurName);
       shiftDataModel.saveShift(workerNameSurName, dayNumber);
    }
    else {
       return;
    }
 }
+
+void ShiftController::runDeleteShift()
+{
+   ShiftRemovalDialog* shiftRemovalDialog {new ShiftRemovalDialog(nullptr, shiftDataModel.loadShift())};
+   int shiftIndex {0};
+
+   int result = shiftRemovalDialog->exec();
+   if (result == QDialog::Accepted) {
+      shiftRemovalDialog->getDataFromWizard(shiftIndex);
+
+      shiftModel->deleteShift(shiftIndex);
+      shiftDataModel.removeShiftFromLists(shiftIndex);
+   }
+   else {
+      return;
+   }
+}
+
+QVector<CalendarFieldWidget*> ShiftController::calendarFieldWidgetVec {};
+QVector<QLabel*> ShiftController::workerWidgetVec {};

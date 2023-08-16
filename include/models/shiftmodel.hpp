@@ -34,5 +34,11 @@
 
 class ShiftModel {
    public:
-   void addShift(QVBoxLayout* PtrLayout, QString workerName);
+   ShiftModel(QVector<QLabel*>& workerWidgetVector);
+   void addShift(QVBoxLayout* layouttoAddShift, QString workerName);
+   void deleteShift(int shiftNumbertoDelete);
+
+   private:
+   QVector<QLabel*>* workerWidgetVectorPtr {nullptr}; 
+   static int workerWidgetNumber;
 };

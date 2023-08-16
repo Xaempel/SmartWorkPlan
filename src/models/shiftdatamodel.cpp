@@ -2,11 +2,11 @@
 
 void ShiftDataModel::saveShift(QString nameSurNameStr, int DateofShift)
 {
-   if (!dateFile.open(QIODevice::ReadWrite)) {
+   if (!dataFile.open(QIODevice::ReadWrite)) {
       qWarning() << "Cannot open data.json for reading and writing.";
    }
 
-   QByteArray jsonData {dateFile.readAll()};
+   QByteArray jsonData {dataFile.readAll()};
    QJsonDocument jsonDocument {QJsonDocument::fromJson(jsonData)};
    QJsonObject jsonObj {jsonDocument.object()};
 
@@ -20,24 +20,22 @@ void ShiftDataModel::saveShift(QString nameSurNameStr, int DateofShift)
 
    jsonObj["Shift"] = ShiftArray;
 
-   dateFile.resize(0);
-   dateFile.seek(0);
-   dateFile.write(QJsonDocument(jsonObj).toJson());
-   dateFile.close();
+   dataFile.resize(0);
+   dataFile.seek(0);
+   dataFile.write(QJsonDocument(jsonObj).toJson());
+   dataFile.close();
 }
 
 QVector<QPair<QString, int>> ShiftDataModel::loadShift()
 {
    QVector<QPair<QString, int>> shiftDataVec;
 
-   QFile dateFile("data.json");
-
-   if (!dateFile.open(QIODevice::ReadWrite)) {
+   if (!dataFile.open(QIODevice::ReadWrite)) {
       qWarning() << "Cannot open data.json for reading.";
       return shiftDataVec;
    }
 
-   QByteArray jsonData {dateFile.readAll()};
+   QByteArray jsonData {dataFile.readAll()};
    QJsonDocument jsonDocument {QJsonDocument::fromJson(jsonData)};
    QJsonObject jsonObj {jsonDocument.object()};
 
@@ -54,6 +52,29 @@ QVector<QPair<QString, int>> ShiftDataModel::loadShift()
       }
    }
 
-   dateFile.close();
+   dataFile.close();
    return shiftDataVec;
+}
+
+void ShiftDataModel::removeShiftFromLists(int shiftNumberToDeleted)
+{
+   if (!dataFile.open(QIODevice::ReadWrite)) {
+      qWarning() << "Cannot open data.json for reading and writing.";
+      return;
+   }
+
+   QByteArray jsonData {dataFile.readAll()};
+   QJsonDocument jsonDocument {QJsonDocument::fromJson(jsonData)};
+   QJsonObject jsonObj {jsonDocument.object()};
+
+   QJsonArray ShiftArray = jsonObj["Shift"].toArray();
+
+   ShiftArray.removeAt(shiftNumberToDeleted);
+
+   jsonObj["Shift"] = ShiftArray;
+
+   dataFile.resize(0);
+   dataFile.seek(0);
+   dataFile.write(QJsonDocument(jsonObj).toJson());
+   dataFile.close();
 }

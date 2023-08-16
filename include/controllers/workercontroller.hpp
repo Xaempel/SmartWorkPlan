@@ -29,7 +29,7 @@
 
 #include "../models/workerdatamodel.hpp"
 #include "../models/workermodel.hpp"
-#include "../widgets/workersremovaldialog.hpp"
+#include "../widgets/removaldialog/workersremovaldialog.hpp"
 #include "../widgets/workerwidget.hpp"
 #include "../widgets/workerwizard.hpp"
 

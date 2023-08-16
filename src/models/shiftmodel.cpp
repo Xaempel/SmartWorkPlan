@@ -1,8 +1,23 @@
 #include "../include/models/shiftmodel.hpp"
 
-void ShiftModel::addShift(QVBoxLayout* PtrLayout, QString workerName)
+ShiftModel::ShiftModel(QVector<QLabel*>& workerWidgetVector)
 {
-   QLabel *workerLabel {new QLabel};
-   workerLabel->setText(workerName);
-   PtrLayout->addWidget(workerLabel);
+   workerWidgetVectorPtr = &workerWidgetVector;
 }
+
+void ShiftModel::addShift(QVBoxLayout* layouttoAddShift, QString workerName)
+{
+   workerWidgetVectorPtr->emplace_back(new QLabel);
+   workerWidgetVectorPtr->at(workerWidgetNumber)->setText(workerName);
+   layouttoAddShift->addWidget(workerWidgetVectorPtr->at(workerWidgetNumber));
+   workerWidgetNumber++;
+}
+
+void ShiftModel::deleteShift(int shiftNumbertoDelete)
+{
+   workerWidgetVectorPtr->at(shiftNumbertoDelete)->deleteLater();
+   workerWidgetVectorPtr->removeAt(shiftNumbertoDelete);
+   workerWidgetNumber--;
+}
+
+int ShiftModel::workerWidgetNumber {0};

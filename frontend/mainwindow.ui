@@ -88,6 +88,7 @@
      <string>Shift</string>
     </property>
     <addaction name="ActionAddShift"/>
+    <addaction name="ActionDeleteShift"/>
    </widget>
    <widget class="QMenu" name="MenuPrint">
     <property name="title">
@@ -123,6 +124,11 @@
   <action name="ActionPrintWorkPlan">
    <property name="text">
     <string>Print: WorkPlan</string>
+   </property>
+  </action>
+  <action name="ActionDeleteShift">
+   <property name="text">
+    <string>Delete</string>
    </property>
   </action>
  </widget>
@@ -181,6 +187,22 @@
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>CallPrintWorkPlan()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>394</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ActionDeleteShift</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>CallDeleteShift()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>

@@ -27,20 +27,19 @@
 ******************************************************************************/
 #pragma once
 
-#include <QByteArray>
-#include <QFile>
-#include <QJsonArray>
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QPair>
-#include <QVector>
+#include "../frontend/ui_shiftremovaldialog.h"
 
-class ShiftDataModel {
+#include <QDialog>
+
+class ShiftRemovalDialog : public QDialog, private Ui::ShiftRemovalDialog {
+   Q_OBJECT
    public:
-   void saveShift(QString nameSurNameStr, int DateofShift);
-   QVector<QPair<QString, int>> loadShift(); // Recommended used auto type for get data
-   void removeShiftFromLists(int shiftNumberToDeleted);
+   ShiftRemovalDialog(QWidget* parent = nullptr, QVector<QPair<QString, int>> shiftDataVec = {});
+   void getDataFromWizard(int& shiftData);
 
    private:
-   QFile dataFile {QFile("data.json")};
+   int shiftData_ {0};
+
+   private slots:
+   void updateWizardData();
 };

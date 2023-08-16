@@ -45,6 +45,7 @@ class MainWindow : public QMainWindow, private Ui::MainWindow {
    void CallDeleteWorker();
 
    void CallAddShift();
+   void CallDeleteShift();
 
    void CallPrintWorkPlan();
 

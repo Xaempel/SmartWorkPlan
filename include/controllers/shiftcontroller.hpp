@@ -32,19 +32,26 @@
 #include "../models/workerdatamodel.hpp"
 #include "../widgets/calendarfieldwidget.hpp"
 #include "../widgets/calendarwidget.hpp"
+#include "../widgets/removaldialog/shiftremovaldialog.hpp"
 #include "../widgets/shiftwizard.hpp"
 
 #include <QGridLayout>
 #include <QObject>
 #include <QVBoxLayout>
 #include <QVector>
+#include <memory>
 
 class ShiftController : public QObject {
    public:
-   static void SetCalendarWidgetinLayout(QVBoxLayout* LayoutPtr);
-   static void runLoadShift(QVBoxLayout* LayoutPtr);
+   void setCalendarWidgetinLayout(QVBoxLayout* LayoutPtr);
+   void runLoadShift(QVBoxLayout* LayoutPtr);
    void runAddShift();
+   void runDeleteShift();
 
    private:
    static QVector<CalendarFieldWidget*> calendarFieldWidgetVec;
+   QVBoxLayout* workerShiftLayoutPtr_;
+   ShiftDataModel shiftDataModel {};
+   static QVector<QLabel*> workerWidgetVec;
+   std::unique_ptr<ShiftModel> shiftModel = std::make_unique<ShiftModel>(workerWidgetVec);
 };

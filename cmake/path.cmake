@@ -1,7 +1,9 @@
 set(APP_HEADERS
     ../include/mainwindow.hpp    
 
-    ../include/widgets/workersremovaldialog.hpp
+    ../include/widgets/removaldialog/workersremovaldialog.hpp
+    ../include/widgets/removaldialog/shiftremovaldialog.hpp
+
     ../include/widgets/calendarfieldwidget.hpp
     ../include/widgets/calendarwidget.hpp
     ../include/widgets/workerwidget.hpp
@@ -22,7 +24,9 @@ set(APP_HEADERS
 set(APP_SOURCES
     ../src/mainwindow.cpp
 
-    ../src/widgets/workersremovaldialog.cpp
+    ../src/widgets/removaldialog/workersremovaldialog.cpp
+    ../src/widgets/removaldialog/shiftremovaldialog.cpp
+
     ../src/widgets/calendarfieldwidget.cpp
     ../src/widgets/calendarwidget.cpp
     ../src/widgets/workerwidget.cpp
@@ -47,4 +51,5 @@ set(COMMON_SOURCES
 
 set(APP_SOURCES_TEST 
   ../test/test_workerdatamodel.cc 
+  ../test/test_shiftmodel.cc
 )
