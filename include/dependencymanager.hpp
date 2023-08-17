@@ -27,25 +27,28 @@
 ******************************************************************************/
 #pragma once
 
-#include "./frontend/ui_mainwindow.h"
+#include "controllers/printcontroller.hpp"
+#include "depmanagerhelpers/dependencyshiftmanager.hpp"
+#include "depmanagerhelpers/dependencyworkermanager.hpp"
+#include "mainwindow.hpp"
 
-#include <QMainWindow>
+#include <memory>
 
-class MainWindow : public QMainWindow, private Ui::MainWindow {
+class DependencyManager : public QObject {
    Q_OBJECT
    public:
-   MainWindow(QWidget* parent = nullptr);
-   ~MainWindow();
+   DependencyManager();
+   void showMainWindow();
 
-   QVBoxLayout* getCalendarLayout();
-   QVBoxLayout* getWorkerLayout();
+   private slots:
 
-   signals:
-   void emitAddShift();
-   void emitDeleteShift();
+   void callPrintWorkPlan();
 
-   void emitAddWorker();
-   void emitDeleteWorker();
+   private:
+   std::unique_ptr<MainWindow> mainWindow = std::make_unique<MainWindow>(nullptr);
+   QVBoxLayout* calendarLayout {};
 
-   void emitPrintWorkPlan();
+   std::unique_ptr<DependencyShiftManager> dependencyShiftManager  = std::make_unique<DependencyShiftManager>(mainWindow->getCalendarLayout());
+   std::unique_ptr<DependencyWorkerManager> depedencyWorkerManager = std::make_unique<DependencyWorkerManager>(mainWindow->getWorkerLayout());
+   PrintController printController;
 };

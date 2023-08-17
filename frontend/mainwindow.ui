@@ -133,89 +133,9 @@
   </action>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>ActionAddWorker</sender>
-   <signal>triggered()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>CallAddWorker()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>394</x>
-     <y>299</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>ActionDeleteWorker</sender>
-   <signal>triggered()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>CallDeleteWorker()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>394</x>
-     <y>299</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>ActionAddShift</sender>
-   <signal>triggered()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>CallAddShift()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>394</x>
-     <y>299</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>ActionPrintWorkPlan</sender>
-   <signal>triggered()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>CallPrintWorkPlan()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>394</x>
-     <y>299</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>ActionDeleteShift</sender>
-   <signal>triggered()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>CallDeleteShift()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>394</x>
-     <y>299</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
  <slots>
+  <signal>emitAddShift()</signal>
   <slot>CallAddWorker()</slot>
   <slot>CallDeleteWorker()</slot>
   <slot>CallAddShift()</slot>

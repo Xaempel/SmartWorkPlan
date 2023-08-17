@@ -1,5 +1,8 @@
 set(APP_HEADERS
-    ../include/mainwindow.hpp    
+    ../include/mainwindow.hpp  
+    ../include/dependencymanager.hpp
+    ../include/depmanagerhelpers/dependencyshiftmanager.hpp  
+    ../include/depmanagerhelpers/dependencyworkermanager.hpp
 
     ../include/widgets/removaldialog/workersremovaldialog.hpp
     ../include/widgets/removaldialog/shiftremovaldialog.hpp
@@ -23,6 +26,9 @@ set(APP_HEADERS
 
 set(APP_SOURCES
     ../src/mainwindow.cpp
+    ../src/dependencymanager.cpp
+    ../src/depmanagerhelpers/dependencyshiftmanager.cpp
+    ../src/depmanagerhelpers/dependencyworkermanager.cpp
 
     ../src/widgets/removaldialog/workersremovaldialog.cpp
     ../src/widgets/removaldialog/shiftremovaldialog.cpp

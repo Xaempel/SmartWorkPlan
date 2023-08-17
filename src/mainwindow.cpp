@@ -4,20 +4,16 @@ MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
 {
    setupUi(this);
-   shiftController->setCalendarWidgetinLayout(CalendarLayout);
-   shiftController->runLoadShift(CalendarLayout);
+   QObject::connect(ActionAddShift, &QAction::triggered, this, &MainWindow::emitAddShift);
+   QObject::connect(ActionDeleteShift, &QAction::triggered, this, &MainWindow::emitDeleteShift);
 
-   WorkerController::runLoadWorker(WorkerLayout);
+   QObject::connect(ActionAddWorker, &QAction::triggered, this, &MainWindow::emitAddWorker);
+   QObject::connect(ActionDeleteWorker, &QAction::triggered, this, &MainWindow::emitDeleteWorker);
+
+   QObject::connect(ActionPrintWorkPlan, &QAction::triggered, this, &MainWindow::emitPrintWorkPlan);
 }
 
 MainWindow::~MainWindow() { }
 
-void MainWindow::CallAddWorker() { workerController->runAddWorker(WorkerLayout); }
-
-void MainWindow::CallDeleteWorker() { workerController->runDeleteWorker(); }
-
-void MainWindow::CallAddShift() { shiftController->runAddShift(); }
-
-void MainWindow::CallDeleteShift() { shiftController->runDeleteShift(); }
-
-void MainWindow::CallPrintWorkPlan() { printController->runStartPrint(); }
+QVBoxLayout* MainWindow::getCalendarLayout() { return CalendarLayout; }
+QVBoxLayout* MainWindow::getWorkerLayout() { return WorkerLayout; }

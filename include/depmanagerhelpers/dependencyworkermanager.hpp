@@ -27,25 +27,17 @@
 ******************************************************************************/
 #pragma once
 
-#include "./frontend/ui_mainwindow.h"
+#include "../controllers/workercontroller.hpp"
 
-#include <QMainWindow>
-
-class MainWindow : public QMainWindow, private Ui::MainWindow {
+class DependencyWorkerManager : public QObject {
    Q_OBJECT
    public:
-   MainWindow(QWidget* parent = nullptr);
-   ~MainWindow();
+   DependencyWorkerManager(QVBoxLayout* workerLayout);
+   public slots:
+   void callAddWorker();
+   void callDeleteWorker();
 
-   QVBoxLayout* getCalendarLayout();
-   QVBoxLayout* getWorkerLayout();
-
-   signals:
-   void emitAddShift();
-   void emitDeleteShift();
-
-   void emitAddWorker();
-   void emitDeleteWorker();
-
-   void emitPrintWorkPlan();
+   private:
+   WorkerController workerController {};
+   QVBoxLayout* workerLayoutPtr {nullptr};
 };

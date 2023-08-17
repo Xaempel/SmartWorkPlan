@@ -27,25 +27,17 @@
 ******************************************************************************/
 #pragma once
 
-#include "./frontend/ui_mainwindow.h"
+#include "../controllers/shiftcontroller.hpp"
 
-#include <QMainWindow>
-
-class MainWindow : public QMainWindow, private Ui::MainWindow {
+class DependencyShiftManager : public QObject {
    Q_OBJECT
    public:
-   MainWindow(QWidget* parent = nullptr);
-   ~MainWindow();
+   explicit DependencyShiftManager(QVBoxLayout* calendarLayout);
 
-   QVBoxLayout* getCalendarLayout();
-   QVBoxLayout* getWorkerLayout();
+   public slots:
+   void callAddShift();
+   void callDeleteShift();
 
-   signals:
-   void emitAddShift();
-   void emitDeleteShift();
-
-   void emitAddWorker();
-   void emitDeleteWorker();
-
-   void emitPrintWorkPlan();
+   private:
+   ShiftController shiftController;
 };
