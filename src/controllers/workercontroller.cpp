@@ -11,7 +11,7 @@ void WorkerController::runAddWorker(QVBoxLayout* workerLayoutPtr)
    WorkerDataModel DataModelObject {};
    if (WorkerWizardObj->getDataFromWizard(WorkerName, WorkerSurName) == true) {
       WorkerModel WorkerModelObject {};
-      workerWidgetPtr = new WorkerWidget(nullptr,WorkerName,WorkerSurName);
+      workerWidgetPtr = new WorkerWidget(nullptr, WorkerName, WorkerSurName);
       WorkerModelObject.addWorker(workerLayoutPtr, workerWidgetPtr);
       DataModelObject.saveWorkerLists(WorkerName, WorkerSurName);
    }
@@ -29,6 +29,7 @@ void WorkerController::runDeleteWorker()
 
    int selectedWorkerNumberToDeleted {0};
    if (DialogObject->getDeletedWorkerNumber(selectedWorkerNumberToDeleted) == true) {
+      nameDeletedWorker_ = DataModelObject.loadWorkerLists().at(selectedWorkerNumberToDeleted);
       WorkerModelObject.deleteWorker(selectedWorkerNumberToDeleted);
       DataModelObject.removeWorkerFromLists(selectedWorkerNumberToDeleted);
    }
@@ -57,7 +58,7 @@ void WorkerController::runLoadWorker(QVBoxLayout* loadWorkerLayoutPtr)
          int loopCounter {0};
          for (const QString& loopIterator : workerNameList) {
             workerNameSurName = workerNameList.at(loopCounter);
-            WorkerWidget *workerWidget {new WorkerWidget(nullptr,workerNameSurName)};
+            WorkerWidget* workerWidget {new WorkerWidget(nullptr, workerNameSurName)};
             WorkerModel.addWorker(loadWorkerLayoutPtr, workerWidget);
             loopCounter++;
          }
@@ -65,3 +66,5 @@ void WorkerController::runLoadWorker(QVBoxLayout* loadWorkerLayoutPtr)
       }
    }
 }
+
+QString WorkerController::getDeletedWorkerName() { return nameDeletedWorker_; }

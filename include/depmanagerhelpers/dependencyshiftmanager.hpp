@@ -39,6 +39,7 @@ class DependencyShiftManager : public QObject {
    public slots:
    void callAddShift();
    void callDeleteShift();
+   void handleWorkerDeleted(QString workerName);
 
    private:
    void refreshPointer();

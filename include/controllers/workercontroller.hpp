@@ -43,6 +43,12 @@ class WorkerController : public QObject {
    void runAddWorker(QVBoxLayout* workerLayoutPtr);
    void runDeleteWorker();
 
+   protected:
+   QString getDeletedWorkerName();
+
    private:
    WorkerWidget* workerWidgetPtr {nullptr};
+   QString nameDeletedWorker_ {""};
+
+   friend class DependencyWorkerManager;
 };

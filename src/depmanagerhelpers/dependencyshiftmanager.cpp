@@ -18,6 +18,19 @@ void DependencyShiftManager::callDeleteShift()
    refreshPointer();
 }
 
+void DependencyShiftManager::handleWorkerDeleted(QString workerName)
+{
+   refreshPointer();
+   auto shiftVector = shiftDataModel.get()->loadShift();
+   int loopCounter {0};
+   for (int i = shiftVector.size() - 1; i >= 0; --i) {
+      if (shiftVector.at(i).first == workerName) {
+         shiftModel->deleteShift(i);
+         shiftDataModel->removeShiftFromLists(i);
+      }
+   }
+}
+
 void DependencyShiftManager::refreshPointer()
 {
    shiftController = nullptr;

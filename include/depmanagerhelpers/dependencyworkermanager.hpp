@@ -37,6 +37,9 @@ class DependencyWorkerManager : public QObject {
    void callAddWorker();
    void callDeleteWorker();
 
+   signals:
+   void emittedWorkerDeleted(QString workerName);
+
    private:
    WorkerController workerController {};
    QVBoxLayout* workerLayoutPtr {nullptr};

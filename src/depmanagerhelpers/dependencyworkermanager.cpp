@@ -7,4 +7,9 @@ DependencyWorkerManager::DependencyWorkerManager(QVBoxLayout* workerLayout)
 }
 
 void DependencyWorkerManager::callAddWorker() { workerController.runAddWorker(workerLayoutPtr); }
-void DependencyWorkerManager::callDeleteWorker() { workerController.runDeleteWorker(); }
+
+void DependencyWorkerManager::callDeleteWorker()
+{
+   workerController.runDeleteWorker();
+   emittedWorkerDeleted(workerController.getDeletedWorkerName());
+}
