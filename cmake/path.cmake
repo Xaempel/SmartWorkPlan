@@ -4,6 +4,10 @@ set(APP_HEADERS
     ../include/depmanagerhelpers/dependencyshiftmanager.hpp  
     ../include/depmanagerhelpers/dependencyworkermanager.hpp
 
+    ../include/models/modelsinteface/ishiftdatamodel.hpp
+    ../include/models/modelsinteface/ishiftmodel.hpp
+    ../include/models/modelsinteface/iworkerdatamodel.hpp
+
     ../include/widgets/removaldialog/workersremovaldialog.hpp
     ../include/widgets/removaldialog/shiftremovaldialog.hpp
 

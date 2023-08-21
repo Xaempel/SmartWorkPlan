@@ -27,6 +27,8 @@
 ******************************************************************************/
 #pragma once
 
+#include "modelsinteface/ishiftdatamodel.hpp"
+
 #include <QByteArray>
 #include <QFile>
 #include <QJsonArray>
@@ -35,11 +37,11 @@
 #include <QPair>
 #include <QVector>
 
-class ShiftDataModel {
+class ShiftDataModel : public InterFace::IShiftDataModel {
    public:
-   void saveShift(QString nameSurNameStr, int DateofShift);
-   QVector<QPair<QString, int>> loadShift(); // Recommended used auto type for get data
-   void removeShiftFromLists(int shiftNumberToDeleted);
+   void saveShift(QString nameSurNameStr, int DateofShift) override;
+   void removeShiftFromLists(int shiftNumberToDeleted) override;
+   QVector<QPair<QString, int>> loadShift() override; // Recommended used auto type for get data
 
    private:
    QFile dataFile {QFile("data.json")};

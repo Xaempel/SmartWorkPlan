@@ -28,17 +28,19 @@
 
 #pragma once
 
+#include "modelsinteface/ishiftmodel.hpp"
+
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QWidget>
 
-class ShiftModel {
+class ShiftModel : public InterFace::IShiftModel {
    public:
    ShiftModel(QVector<QLabel*>& workerWidgetVector);
-   void addShift(QVBoxLayout* layouttoAddShift, QString workerName);
-   void deleteShift(int shiftNumbertoDelete);
+   void addShift(QVBoxLayout* layouttoAddShift, QString workerName) override;
+   void deleteShift(int shiftNumbertoDelete) override;
 
    private:
-   QVector<QLabel*>* workerWidgetVectorPtr {nullptr}; 
+   QVector<QLabel*>* workerWidgetVectorPtr {nullptr};
    static int workerWidgetNumber;
 };

@@ -27,25 +27,16 @@
 ******************************************************************************/
 #pragma once
 
-#include "../controllers/shiftcontroller.hpp"
-#include "../models/shiftdatamodel.hpp"
-#include "../models/shiftmodel.hpp"
-#include "../models/workerdatamodel.hpp"
+#include <QVector>
 
-class DependencyShiftManager : public QObject {
-   Q_OBJECT
-   public:
-   explicit DependencyShiftManager(QVBoxLayout* calendarLayout);
-   public slots:
-   void callAddShift();
-   void callDeleteShift();
+namespace InterFace {
 
-   private:
-   void refreshPointer();
+   class IShiftDataModel {
+      public:
+      virtual ~IShiftDataModel() { }
+      virtual void saveShift(QString nameSurNameStr, int DateofShift) = 0;
+      virtual void removeShiftFromLists(int shiftNumberToDeleted)     = 0;
+      virtual QVector<QPair<QString, int>> loadShift()                = 0;
+   };
 
-   static QVector<QLabel*> workerWidgetVec;
-   std::unique_ptr<ShiftDataModel> shiftDataModel   = std::make_unique<ShiftDataModel>();
-   std::unique_ptr<WorkerDataModel> workerDataModel = std::make_unique<WorkerDataModel>();
-   std::unique_ptr<ShiftModel> shiftModel           = std::make_unique<ShiftModel>(workerWidgetVec);
-   std::unique_ptr<ShiftController> shiftController = std::make_unique<ShiftController>(shiftDataModel.get(), workerDataModel.get(), shiftModel.get());
-};
+}

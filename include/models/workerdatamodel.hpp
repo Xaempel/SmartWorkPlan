@@ -27,6 +27,8 @@
 ******************************************************************************/
 #pragma once
 
+#include "modelsinteface/iworkerdatamodel.hpp"
+
 #include <QByteArray>
 #include <QFile>
 #include <QJsonArray>
@@ -34,11 +36,11 @@
 #include <QJsonObject>
 #include <QStringList>
 
-class WorkerDataModel {
+class WorkerDataModel : public InterFace::IWorkerDataModel {
    public:
-   bool saveWorkerLists(QString Name, QString SurName);
-   QStringList loadWorkerLists();
-   void removeWorkerFromLists(int workerNumberToDeleted);
+   bool saveWorkerLists(QString Name, QString SurName) override;
+   QStringList loadWorkerLists() override;
+   void removeWorkerFromLists(int workerNumberToDeleted) override;
 
    private:
    QFile dataFile {QFile("data.json")};

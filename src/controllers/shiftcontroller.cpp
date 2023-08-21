@@ -1,5 +1,12 @@
 #include "../include/controllers/shiftcontroller.hpp"
 
+ShiftController::ShiftController(IShiftDataModel* shiftDataModel, IWorkerDataModel* workerDataModel, IShiftModel* shiftModel)
+    : shiftDataModelPtr(shiftDataModel)
+    , workerDataModelPtr(workerDataModel)
+    , shiftModelPtr(shiftModel)
+{
+}
+
 void ShiftController::setCalendarWidgetinLayout(QVBoxLayout* LayoutPtr)
 {
    CalendarWidget* calendarWidget {new CalendarWidget(nullptr)};
@@ -21,7 +28,7 @@ void ShiftController::setCalendarWidgetinLayout(QVBoxLayout* LayoutPtr)
 
 void ShiftController::runLoadShift(QVBoxLayout* LayoutPtr)
 {
-   auto getShiftData = shiftDataModel.loadShift();
+   auto getShiftData = shiftDataModelPtr->loadShift();
    QVBoxLayout* workerShiftLayoutPtr;
 
    for (int i = 0; i < getShiftData.size(); i++) {
@@ -29,7 +36,7 @@ void ShiftController::runLoadShift(QVBoxLayout* LayoutPtr)
       int currentShiftDate           = getShiftData.at(i).second;
 
       calendarFieldWidgetVec.at(currentShiftDate)->getPointertoWorkerShiftPlace(workerShiftLayoutPtr);
-      shiftModel->addShift(workerShiftLayoutPtr, currentWorkerShiftName);
+      shiftModelPtr->addShift(workerShiftLayoutPtr, currentWorkerShiftName);
    }
 }
 
@@ -38,8 +45,7 @@ void ShiftController::runAddShift()
    QString workerNameSurName {""};
    int dayNumber {0};
 
-   WorkerDataModel workerDataModel;
-   ShiftWizard* shiftWizard {new ShiftWizard(nullptr, workerDataModel.loadWorkerLists())};
+   ShiftWizard* shiftWizard {new ShiftWizard(nullptr, workerDataModelPtr->loadWorkerLists())};
 
    int result = shiftWizard->exec();
 
@@ -49,8 +55,8 @@ void ShiftController::runAddShift()
       dayNumber--;
       calendarFieldWidgetVec.at(dayNumber)->getPointertoWorkerShiftPlace(workerShiftLayoutPtr);
       workerShiftLayoutPtr_ = workerShiftLayoutPtr;
-      shiftModel->addShift(workerShiftLayoutPtr, workerNameSurName);
-      shiftDataModel.saveShift(workerNameSurName, dayNumber);
+      shiftModelPtr->addShift(workerShiftLayoutPtr, workerNameSurName);
+      shiftDataModelPtr->saveShift(workerNameSurName, dayNumber);
    }
    else {
       return;
@@ -59,15 +65,15 @@ void ShiftController::runAddShift()
 
 void ShiftController::runDeleteShift()
 {
-   ShiftRemovalDialog* shiftRemovalDialog {new ShiftRemovalDialog(nullptr, shiftDataModel.loadShift())};
+   ShiftRemovalDialog* shiftRemovalDialog {new ShiftRemovalDialog(nullptr, shiftDataModelPtr->loadShift())};
    int shiftIndex {0};
 
    int result = shiftRemovalDialog->exec();
    if (result == QDialog::Accepted) {
       shiftRemovalDialog->getDataFromWizard(shiftIndex);
 
-      shiftModel->deleteShift(shiftIndex);
-      shiftDataModel.removeShiftFromLists(shiftIndex);
+      shiftModelPtr->deleteShift(shiftIndex);
+      shiftDataModelPtr->removeShiftFromLists(shiftIndex);
    }
    else {
       return;
@@ -75,4 +81,3 @@ void ShiftController::runDeleteShift()
 }
 
 QVector<CalendarFieldWidget*> ShiftController::calendarFieldWidgetVec {};
-QVector<QLabel*> ShiftController::workerWidgetVec {};
