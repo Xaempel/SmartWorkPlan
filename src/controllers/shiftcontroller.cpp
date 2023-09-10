@@ -1,9 +1,13 @@
 #include "../include/controllers/shiftcontroller.hpp"
 
-ShiftController::ShiftController(IShiftDataModel* shiftDataModel, IWorkerDataModel* workerDataModel, IShiftModel* shiftModel)
-    : shiftDataModelPtr(shiftDataModel)
-    , workerDataModelPtr(workerDataModel)
-    , shiftModelPtr(shiftModel)
+const QString workerDataSectionName {"worker section"};
+
+const QString shiftDataSectionName {"shift section name"};
+const QString shiftDataSectionDate {"shift section date"};
+
+ShiftController::ShiftController(IShiftModel* shiftModel, DataModel* dataModel)
+    : shiftModelPtr(shiftModel)
+    , dataModelPtr(dataModel)
 {
 }
 
@@ -28,12 +32,23 @@ void ShiftController::setCalendarWidgetinLayout(QVBoxLayout* LayoutPtr)
 
 void ShiftController::runLoadShift(QVBoxLayout* LayoutPtr)
 {
-   auto getShiftData = shiftDataModelPtr->loadShift();
+   QVariantList dataList {};
+   dataModelPtr->load("data.json", shiftDataSectionName, dataList);
+
+   QStringList workerNameList {};
+   workerNameList = HelpfulDatamodelThing::convertVariantToRequiredType<QString>(dataList);
+
+   dataList.clear();
+   dataModelPtr->load("data.json", shiftDataSectionDate, dataList);
+
+   QList<int> dayList {};
+   dayList = HelpfulDatamodelThing::convertVariantToRequiredType<int>(dataList);
+
    QVBoxLayout* workerShiftLayoutPtr;
 
-   for (int i = 0; i < getShiftData.size(); i++) {
-      QString currentWorkerShiftName = getShiftData.at(i).first;
-      int currentShiftDate           = getShiftData.at(i).second;
+   for (int i = 0; i < dataList.size(); i++) {
+      QString currentWorkerShiftName = workerNameList.at(i);
+      int currentShiftDate           = dayList.at(i);
 
       calendarFieldWidgetVec.at(currentShiftDate)->getPointertoWorkerShiftPlace(workerShiftLayoutPtr);
       shiftModelPtr->addShift(workerShiftLayoutPtr, currentWorkerShiftName);
@@ -42,21 +57,33 @@ void ShiftController::runLoadShift(QVBoxLayout* LayoutPtr)
 
 void ShiftController::runAddShift()
 {
-   QString workerNameSurName {""};
-   int dayNumber {0};
+   QVariantList dataList {};
+   dataModelPtr->load("data.json", workerDataSectionName, dataList);
 
-   ShiftWizard* shiftWizard {new ShiftWizard(nullptr, workerDataModelPtr->loadWorkerLists())};
+   QStringList workerList {};
 
+   int workerNameConvertLoopCounter {0};
+   for (auto& i : dataList) {
+      workerList.emplace_back(dataList.at(workerNameConvertLoopCounter).toString());
+      workerNameConvertLoopCounter++;
+   }
+
+   ShiftWizard* shiftWizard {new ShiftWizard(nullptr, workerList)};
    int result = shiftWizard->exec();
 
    if (result == QDialog::Accepted) {
       QVBoxLayout* workerShiftLayoutPtr {nullptr};
+      QString workerNameSurName {""};
+      int dayNumber {0};
+
       shiftWizard->getDataFromWizard(workerNameSurName, dayNumber);
       dayNumber--;
       calendarFieldWidgetVec.at(dayNumber)->getPointertoWorkerShiftPlace(workerShiftLayoutPtr);
       workerShiftLayoutPtr_ = workerShiftLayoutPtr;
       shiftModelPtr->addShift(workerShiftLayoutPtr, workerNameSurName);
-      shiftDataModelPtr->saveShift(workerNameSurName, dayNumber);
+
+      dataModelPtr->save(std::nullopt, shiftDataSectionName, workerNameSurName);
+      dataModelPtr->save(std::nullopt, shiftDataSectionDate, dayNumber);
    }
    else {
       return;
@@ -65,7 +92,31 @@ void ShiftController::runAddShift()
 
 void ShiftController::runDeleteShift()
 {
-   ShiftRemovalDialog* shiftRemovalDialog {new ShiftRemovalDialog(nullptr, shiftDataModelPtr->loadShift())};
+   QVariantList dataList {};
+
+   QVector<QString> workerNameVec {};
+   QVector<int> shiftDateVec {};
+   QVector<QPair<QString, int>> shiftVector;
+
+   dataModelPtr->load("data.json", shiftDataSectionName, dataList);
+   for (const auto& i : dataList) {
+      workerNameVec.append(i.toString());
+   }
+
+   dataList.clear();
+   dataModelPtr->load("data.json", shiftDataSectionDate, dataList);
+
+   for (const auto& i : dataList) {
+      shiftDateVec.append(i.toInt());
+   }
+
+   short shiftLoopCounter {0};
+   for (const auto& i : dataList) {
+      shiftVector.append(QPair<QString, int>(workerNameVec.at(shiftLoopCounter), shiftDateVec.at(shiftLoopCounter)));
+      shiftLoopCounter++;
+   }
+
+   ShiftRemovalDialog* shiftRemovalDialog {new ShiftRemovalDialog(nullptr, shiftVector)};
    int shiftIndex {0};
 
    int result = shiftRemovalDialog->exec();
@@ -73,7 +124,8 @@ void ShiftController::runDeleteShift()
       shiftRemovalDialog->getDataFromWizard(shiftIndex);
 
       shiftModelPtr->deleteShift(shiftIndex);
-      shiftDataModelPtr->removeShiftFromLists(shiftIndex);
+      dataModelPtr->deleteDatafromFile("data.json", shiftDataSectionDate, shiftIndex);
+      dataModelPtr->deleteDatafromFile("data.json", shiftDataSectionName, shiftIndex);
    }
    else {
       return;

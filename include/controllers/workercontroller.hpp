@@ -27,7 +27,7 @@
 ******************************************************************************/
 #pragma once
 
-#include "../models/workerdatamodel.hpp"
+#include "../models/datamodel.hpp"
 #include "../models/workermodel.hpp"
 #include "../widgets/removaldialog/workersremovaldialog.hpp"
 #include "../widgets/workerwidget.hpp"
@@ -38,8 +38,11 @@
 
 class WorkerController : public QObject {
    Q_OBJECT
+   public:
+   WorkerController(DataModel& dataModelObj);
+
    public slots:
-   static void runLoadWorker(QVBoxLayout* loadWorkerLayoutPtr);
+   void runLoadWorker(QVBoxLayout* loadWorkerLayoutPtr);
    void runAddWorker(QVBoxLayout* workerLayoutPtr);
    void runDeleteWorker();
 
@@ -49,6 +52,8 @@ class WorkerController : public QObject {
    private:
    WorkerWidget* workerWidgetPtr {nullptr};
    QString nameDeletedWorker_ {""};
+
+   DataModel* dataModelPtr {nullptr};
 
    friend class DependencyWorkerManager;
 };

@@ -21,24 +21,25 @@ void DependencyShiftManager::callDeleteShift()
 void DependencyShiftManager::handleWorkerDeleted(QString workerName)
 {
    refreshPointer();
-   auto shiftVector = shiftDataModel.get()->loadShift();
-   int loopCounter {0};
-   for (int i = shiftVector.size() - 1; i >= 0; --i) {
-      if (shiftVector.at(i).first == workerName) {
+   QVariantList shiftDataList {};
+   dataModel->load("data.json", "shift section name", shiftDataList);
+
+   for (int i = shiftDataList.size() - 1; i >= 0; --i) {
+      if (shiftDataList.at(i).toString() == workerName) {
          shiftModel->deleteShift(i);
-         shiftDataModel->removeShiftFromLists(i);
+
+         dataModel->deleteDatafromFile("data.json", "shift section name", i);
+         dataModel->deleteDatafromFile("data.json", "shift section date", i);
       }
    }
 }
 
 void DependencyShiftManager::refreshPointer()
 {
+   dataModel       = nullptr;
    shiftController = nullptr;
-   workerDataModel = nullptr;
-   shiftDataModel  = nullptr;
-   shiftDataModel  = std::make_unique<ShiftDataModel>();
-   workerDataModel = std::make_unique<WorkerDataModel>();
-   shiftController = std::make_unique<ShiftController>(shiftDataModel.get(), workerDataModel.get(), shiftModel.get());
+   dataModel       = std::make_unique<DataModel>();
+   shiftController = std::make_unique<ShiftController>(shiftModel.get(), dataModel.get());
 }
 
 QVector<QLabel*> DependencyShiftManager::workerWidgetVec {};

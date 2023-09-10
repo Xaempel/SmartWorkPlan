@@ -28,6 +28,7 @@
 #pragma once
 
 #include "../controllers/workercontroller.hpp"
+#include "../models/datamodel.hpp"
 
 class DependencyWorkerManager : public QObject {
    Q_OBJECT
@@ -41,6 +42,7 @@ class DependencyWorkerManager : public QObject {
    void emittedWorkerDeleted(QString workerName);
 
    private:
-   WorkerController workerController {};
+   DataModel dataModel;
+   std::unique_ptr<WorkerController> workerController = std::make_unique<WorkerController>(dataModel);
    QVBoxLayout* workerLayoutPtr {nullptr};
 };

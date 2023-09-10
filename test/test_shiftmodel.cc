@@ -32,12 +32,8 @@
 
 #include "../include/models/shiftmodel.hpp"
 
-#include <QApplication>
 #include <catch2/catch.hpp>
 #include <memory>
-
-int argc {0};
-QApplication testApp(argc, nullptr);
 
 struct ShiftModelTestData {
    QVBoxLayout layoutforTest {};

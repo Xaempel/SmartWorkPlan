@@ -27,9 +27,8 @@
 ******************************************************************************/
 #pragma once
 
-#include "../models/modelsinteface/ishiftdatamodel.hpp"
+#include "../models/datamodel.hpp"
 #include "../models/modelsinteface/ishiftmodel.hpp"
-#include "../models/modelsinteface/iworkerdatamodel.hpp"
 #include "../widgets/calendarfieldwidget.hpp"
 #include "../widgets/calendarwidget.hpp"
 #include "../widgets/removaldialog/shiftremovaldialog.hpp"
@@ -42,12 +41,10 @@
 #include <memory>
 
 class ShiftController : public QObject {
-   using IShiftDataModel  = InterFace::IShiftDataModel;
-   using IShiftModel      = InterFace::IShiftModel;
-   using IWorkerDataModel = InterFace::IWorkerDataModel;
+   using IShiftModel = InterFace::IShiftModel;
 
    public:
-   explicit ShiftController(IShiftDataModel* shiftDataModel, IWorkerDataModel* workerDataModel, IShiftModel* shiftModel);
+   explicit ShiftController(IShiftModel* shiftModel, DataModel* dataModel);
    void setCalendarWidgetinLayout(QVBoxLayout* LayoutPtr);
    void runLoadShift(QVBoxLayout* LayoutPtr);
    void runAddShift();
@@ -57,7 +54,7 @@ class ShiftController : public QObject {
    static QVector<CalendarFieldWidget*> calendarFieldWidgetVec;
 
    IShiftModel* shiftModelPtr {nullptr};
-   IShiftDataModel* shiftDataModelPtr {nullptr};
-   IWorkerDataModel* workerDataModelPtr {nullptr};
+   DataModel* dataModelPtr {nullptr};
+
    QVBoxLayout* workerShiftLayoutPtr_ {nullptr};
 };

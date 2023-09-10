@@ -35,11 +35,7 @@ this file is start point on project docs
 
 [Print Model](class/models/docs_printmodel.md)
 
-[Shift Data Model](class/models/docs_shiftdatamodel.md)
-
 [Shift Mode](class/models/docs_shiftmodel.md)
-
-[Worker Data Model](class/models/docs_workerdatamodel.md)
 
 [Worker Model](class/models/docs_workermodel.md)
 

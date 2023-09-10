@@ -1,5 +1,12 @@
 #include "../include/controllers/workercontroller.hpp"
 
+const QString workerDataSectionName {"worker section"};
+
+WorkerController::WorkerController(DataModel& dataModelObj)
+    : dataModelPtr(&dataModelObj)
+{
+}
+
 void WorkerController::runAddWorker(QVBoxLayout* workerLayoutPtr)
 {
    QString WorkerName {""};
@@ -8,12 +15,11 @@ void WorkerController::runAddWorker(QVBoxLayout* workerLayoutPtr)
    WorkerWizard* WorkerWizardObj {new WorkerWizard};
    WorkerWizardObj->exec();
 
-   WorkerDataModel DataModelObject {};
    if (WorkerWizardObj->getDataFromWizard(WorkerName, WorkerSurName) == true) {
       WorkerModel WorkerModelObject {};
       workerWidgetPtr = new WorkerWidget(nullptr, WorkerName, WorkerSurName);
       WorkerModelObject.addWorker(workerLayoutPtr, workerWidgetPtr);
-      DataModelObject.saveWorkerLists(WorkerName, WorkerSurName);
+      dataModelPtr->save(std::nullopt, workerDataSectionName, WorkerName + " " + WorkerSurName);
    }
    else {
       return;
@@ -22,16 +28,23 @@ void WorkerController::runAddWorker(QVBoxLayout* workerLayoutPtr)
 
 void WorkerController::runDeleteWorker()
 {
-   WorkerDataModel DataModelObject {};
    WorkerModel WorkerModelObject {};
-   WorkersRemovalDialog* DialogObject {new WorkersRemovalDialog(nullptr, DataModelObject.loadWorkerLists())};
+   QVariantList dataList {};
+
+   QStringList workerNameList {};
+
+   dataModelPtr->load("data.json", workerDataSectionName, dataList);
+
+   workerNameList = HelpfulDatamodelThing::convertVariantToRequiredType<QString>(dataList);
+
+   WorkersRemovalDialog* DialogObject {new WorkersRemovalDialog(nullptr, workerNameList)};
    DialogObject->exec();
 
    int selectedWorkerNumberToDeleted {0};
    if (DialogObject->getDeletedWorkerNumber(selectedWorkerNumberToDeleted) == true) {
-      nameDeletedWorker_ = DataModelObject.loadWorkerLists().at(selectedWorkerNumberToDeleted);
+      nameDeletedWorker_ = workerNameList.at(selectedWorkerNumberToDeleted);
       WorkerModelObject.deleteWorker(selectedWorkerNumberToDeleted);
-      DataModelObject.removeWorkerFromLists(selectedWorkerNumberToDeleted);
+      dataModelPtr->deleteDatafromFile("data.json", workerDataSectionName, selectedWorkerNumberToDeleted);
    }
    else {
       return;
@@ -41,23 +54,23 @@ void WorkerController::runDeleteWorker()
 void WorkerController::runLoadWorker(QVBoxLayout* loadWorkerLayoutPtr)
 {
    static int runFunctionCounter {0};
+   QVariantList dataList {};
    if (runFunctionCounter == 1) {
       return;
    }
    else {
-      QStringList workerNameList {};
-      WorkerDataModel DataModelObject;
       WorkerModel WorkerModel {};
-      workerNameList = DataModelObject.loadWorkerLists();
+      dataModelPtr->load("data.json", workerDataSectionName, dataList);
 
-      if (workerNameList.isEmpty()) {
+      if (dataList.isEmpty()) {
          return;
       }
       else {
-         QString workerNameSurName {""};
+         QStringList workerNameList {};
+         workerNameList = HelpfulDatamodelThing::convertVariantToRequiredType<QString>(dataList);
          int loopCounter {0};
-         for (const QString& loopIterator : workerNameList) {
-            workerNameSurName = workerNameList.at(loopCounter);
+         for (const auto& loopIterator : workerNameList) {
+            QString workerNameSurName = workerNameList.at(loopCounter);
             WorkerWidget* workerWidget {new WorkerWidget(nullptr, workerNameSurName)};
             WorkerModel.addWorker(loadWorkerLayoutPtr, workerWidget);
             loopCounter++;

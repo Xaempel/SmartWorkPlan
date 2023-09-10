@@ -32,5 +32,9 @@
 #define CATCH_CONFIG_MAIN
 
 #include <catch2/catch.hpp>
+#include <QApplication>
+
+int argc {0};
+QApplication testApp(argc, nullptr);
 
 // This is the main test file in the project, it shouldn't contain tests, it exists only to call main

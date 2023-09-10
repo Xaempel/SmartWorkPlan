@@ -28,9 +28,8 @@
 #pragma once
 
 #include "../controllers/shiftcontroller.hpp"
-#include "../models/shiftdatamodel.hpp"
+#include "../models/datamodel.hpp"
 #include "../models/shiftmodel.hpp"
-#include "../models/workerdatamodel.hpp"
 
 class DependencyShiftManager : public QObject {
    Q_OBJECT
@@ -45,8 +44,8 @@ class DependencyShiftManager : public QObject {
    void refreshPointer();
 
    static QVector<QLabel*> workerWidgetVec;
-   std::unique_ptr<ShiftDataModel> shiftDataModel   = std::make_unique<ShiftDataModel>();
-   std::unique_ptr<WorkerDataModel> workerDataModel = std::make_unique<WorkerDataModel>();
+
+   std::unique_ptr<DataModel> dataModel             = std::make_unique<DataModel>();
    std::unique_ptr<ShiftModel> shiftModel           = std::make_unique<ShiftModel>(workerWidgetVec);
-   std::unique_ptr<ShiftController> shiftController = std::make_unique<ShiftController>(shiftDataModel.get(), workerDataModel.get(), shiftModel.get());
+   std::unique_ptr<ShiftController> shiftController = std::make_unique<ShiftController>(shiftModel.get(), dataModel.get());
 };

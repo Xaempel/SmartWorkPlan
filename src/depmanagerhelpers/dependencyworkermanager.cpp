@@ -3,13 +3,13 @@
 DependencyWorkerManager::DependencyWorkerManager(QVBoxLayout* workerLayout)
     : workerLayoutPtr(workerLayout)
 {
-   WorkerController::runLoadWorker(workerLayout);
+   workerController->runLoadWorker(workerLayout);
 }
 
-void DependencyWorkerManager::callAddWorker() { workerController.runAddWorker(workerLayoutPtr); }
+void DependencyWorkerManager::callAddWorker() { workerController->runAddWorker(workerLayoutPtr); }
 
 void DependencyWorkerManager::callDeleteWorker()
 {
-   workerController.runDeleteWorker();
-   emittedWorkerDeleted(workerController.getDeletedWorkerName());
+   workerController->runDeleteWorker();
+   emittedWorkerDeleted(workerController->getDeletedWorkerName());
 }

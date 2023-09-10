@@ -27,10 +27,10 @@
 ******************************************************************************/
 #pragma once
 
+#include "../models/datamodel.hpp"
 #include "../models/printmodel.hpp"
-#include "../models/workerdatamodel.hpp"
 
-class PrintController { 
-    public:
-    void runStartPrint();
+class PrintController {
+   public:
+   void runStartPrint();
 };
