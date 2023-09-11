@@ -74,9 +74,6 @@ class DataModel {
    void load(const QString fileName, const QString dataSectionName, QVariantList& vectorforLoadData)
    {
       try {
-         if (!QFile::exists(fileName)) {
-            throw std::runtime_error("there is no file with the given argument DataModel::load()");
-         }
          filetoSave = std::make_unique<QFile>(fileName);
          if (!filetoSave->open(QIODevice::ReadWrite | QIODevice::Text)) {
             throw std::runtime_error("file " + fileName.toStdString() + " is not open");
