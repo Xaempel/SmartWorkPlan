@@ -21,8 +21,6 @@ add_executable(app
 
 setup_target(app) 
 
-find_package(Qt6 REQUIRED COMPONENTS Test)
-
 add_executable(app-t 
   test/test_main.cc
   ${APP_SOURCES_TEST}
@@ -30,5 +28,4 @@ add_executable(app-t
 )
 
 target_link_libraries(app-t PRIVATE Catch2::Catch2)
-target_link_libraries(app-t PRIVATE Qt6::Test)
 setup_target(app-t)

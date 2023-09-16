@@ -5,14 +5,10 @@
 [![Catch2](https://img.shields.io/badge/Tested_with-Catch2-2f2f2f.svg)](https://github.com/catchorg/Catch2)
 [![Qt](https://img.shields.io/badge/Framework-Qt-41CD52.svg)](https://www.qt.io/)
 
-
-
 ## Description
-[Readme Reference](#readmemd-reference)
-
-[Project Reference](#project-reference)
-
 SmartWorkPlan is intended to be an intelligent aid in creating a work plan for employees.
+Source for SmartWorkPlan is available on github
+[Link](https://github.com/Xaempel/SmartWorkPlan)
 
 ### Project Reference
 
@@ -20,7 +16,7 @@ SmartWorkPlan is intended to be an intelligent aid in creating a work plan for e
 
 * [Contributing](.github/CONTRIBUTING.md)
 
-* [RoadMap](docs/RoadMap.md)
+  --> [Code Formatting for this project](.github/CONTRIBUTING.md#1-using-clang-format)
 
 ### README.md Reference
 
@@ -34,26 +30,20 @@ SmartWorkPlan is intended to be an intelligent aid in creating a work plan for e
 
 * [Tools and Dependencies](#tools-and-dependencies)
 
-* [Code Formatting](#code-formatting)
-
 * [Authors](#authors)
 
 * [Acknowledgements](#acknowledgements)
 
 * [Contact](#contact)
 
-Code SmartWorkPlan is available on GitHub site 
-[Link](https://github.com/Xaempel/SmartWorkPlan)
-
 ## License
-[Return](#readmemd-reference)
 
 This project is licensed under the GNU General Public License version 2. You can find the full text of the license in the LICENSE file.
 
 The project also uses the catch2 library which uses the Boost software license 1.0 [Link for license](https://github.com/catchorg/Catch2/blob/devel/LICENSE.txt).
 
-## System Requirements
 [Return](#readmemd-reference)
+## System Requirements
 
 To run SmartWorkPlan, your system should meet the following requirements:
 
@@ -65,15 +55,15 @@ To run SmartWorkPlan, your system should meet the following requirements:
   - Clang-format: Version 16.0.5 or later
   - Catch2 Version 2.13.7 or later  
 
-## Installation
 [Return](#readmemd-reference)
+## Installation
 
 1. Clone this project to your device with the git command:
 2. Navigate to the project folder:
 3. Install the dependencies:
 
-## Building and Running 
 [Return](#readmemd-reference)
+## Building and Running 
 
 Creat build dir
 
@@ -96,8 +86,8 @@ Enter app
 
 **or enter gui e.g windows or ubuntu and enter build folders and click on application icon to start app in gui**
 
-## Tools and Dependencies
 [Return](#readmemd-reference)
+## Tools and Dependencies
 
 This project uses the following tools and dependencies:
 
@@ -105,7 +95,7 @@ This project uses the following tools and dependencies:
   [CMake Source](https://github.com/Kitware/CMake)
 
 * [Qt](https://www.qt.io/): Cross-platform application framework.
-  * Project uses the following modules Qt Widgets, PrintSupport and Test source code for these modules can be found in the links below
+  * Project uses the following modules Qt Widgets, PrintSupport code for these modules can be found in the links below
 
   [Qt Source Archives any version](https://download.qt.io/archive/qt/)
   [Qt Source Archive version 6.0.0](https://download.qt.io/archive/qt/6.0/6.0.0/)
@@ -115,6 +105,7 @@ This project uses the following tools and dependencies:
 
 * [Clang-format](https://llvm.org/): A tool supplied with the Clang compiler,
   [Clang-format Source](https://github.com/llvm/llvm-project/tree/main/clang/tools/clang-format)
+  [Clang-format reference](https://clang.llvm.org/docs/ClangFormat.html)
 
 * [Catch2 Readme File on GitHub](https://github.com/catchorg/Catch2/blob/devel/README.md): Catch2 is a unit testing framework for C++.
   [Catch2 Source](https://github.com/catchorg/Catch2) 
@@ -123,18 +114,14 @@ This project uses the following tools and dependencies:
   or in build/_deps/catch2-src/LICENSE.txt 
   (this directory will be available after building the project because cmake downloads catch2 from the internet) path or similar
 
-## Code Formatting
 [Return](#readmemd-reference)
-
-To maintain code consistency, use [clang-format](https://clang.llvm.org/docs/ClangFormat.html) tool. Please make sure to format your code accordingly before submitting a contribution.
 
 ## Authors
-[Return](#readmemd-reference)
 
 * [Xaempel]
 
-## Acknowledgements
 [Return](#readmemd-reference)
+## Acknowledgements
 
 thanks to the following people or organization
 
@@ -150,7 +137,9 @@ thanks to the following people or organization
 
 and other people on contributing projects for used for this project you are all great :> 
 
-## Contact
-[Return](#readmemd-reference) 
+[Return](#readmemd-reference)
+## Contact 
 
 If you have any questions or feedback, feel free to contact us at: [xaempelfeedback@gmail.com]
+
+[Return](#readmemd-reference)

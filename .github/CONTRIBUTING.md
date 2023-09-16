@@ -11,7 +11,6 @@
 [License information](#license-information)
 
 ## How to contributing
-[Return](#reference)
 
 Hey, if you would like to contribute to the development of SmartWorkPlan, we encourage you to use the methods below, thank you for any support
 
@@ -24,8 +23,8 @@ Hey, if you would like to contribute to the development of SmartWorkPlan, we enc
 ### Send feedBack for SmartWorkPlan
 * if you have any interesting comments or a proposal for a new feature, you can send it to gmail address xaempelfeedback@gmail.com for every email thank you
 
-## Code Style Guidelines
 [Return](#reference)
+## Code Style Guidelines
 
 Welcome to the "Code Style Guidelines" section, where we outline the conventions and best practices for the SmartWorkPlan project. Consistent code style is crucial for creating a maintainable and collaborative codebase, and following these guidelines will help us achieve a uniform and readable code.
 
@@ -46,8 +45,9 @@ These guidelines aim to foster a collaborative environment where everyone's cont
 If you have any questions or need clarifications on these guidelines, feel free to reach out to us on our communication channels.
 
 Happy coding, and thank you for being part of the SmartWorkPlan project!
-## License information
+
 [Return](#reference)
+## License information
 
 This section contains information about the license used in the project
 
@@ -93,3 +93,5 @@ The GPL license version 2 provides several benefits and rights to both users and
 * 6.Protection of Openness: By requiring derivative works to be released under the same GPL license, the software remains open-source, preventing its conversion into a proprietary solution.
 
 By embracing the GPL license version 2, you join a community of developers and users committed to the principles of open collaboration, transparency, and freedom in software development.
+
+[Return](#reference)

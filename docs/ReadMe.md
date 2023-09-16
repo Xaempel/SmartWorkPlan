@@ -1,14 +1,24 @@
-[Home](../README.md)
-
 # Documentation
 
-this file is start point on project docs 
+this file is start point on project docs
 
+[Home](../README.md)
 
-### ReadMe.md Sections
+## Docs reference
+[RoadMap](RoadMap.md)
+
+[Version](VERSION.md)
+
+## ReadMe Sections
 
 [Start](#how-to-start-read-docs)
 
+## How to start read docs
+
+very good start point is a [class sections](#class-sections) on you learn a used class for 
+this project my especially favorite a [Controllers sections](#controllers) this good for one reasons  controllers class is a tape for this project controllers connect a widgets and models
+
+[Return](#documentation)
 ### Tools Sections
 
 #### Git
@@ -19,38 +29,34 @@ this file is start point on project docs
 
 #### Widgets
 
-[Calendar Field Widget](class/widgets/docs_calendarfieldwidget.md)
+[Calendar Field Widget](docs_class/docs_widgets/docs_calendarfieldwidget.md)
 
-[Calendar Widget](class/widgets/docs_calendarwidget.md)
+[Calendar Widget](docs_class/docs_widgets/docs_calendarwidget.md)
 
-[Shift Wizard](class/widgets/docs_shiftwizard.md)
+[Shift Wizard](docs_class/docs_widgets/docs_shiftwizard.md)
 
-[Worker Removal dialog](class/widgets/docs_workersremovaldialog.md)
+[Worker Removal dialog](docs_class/docs_widgets/docs_removaldialog/docs_workersremovaldialog.md)
 
-[Worker Widget](class/widgets/docs_workerwidget.md)
+[Shift Removal dialog](docs_class/docs_widgets/docs_removaldialog/docs_shiftremovaldialog.md)
 
-[Worker Wizard](class/widgets/docs_workerwizard.md)
+[Worker Widget](docs_class/docs_widgets/docs_workerwidget.md)
+
+[Worker Wizard](docs_class/docs_widgets/docs_workerwizard.md)
 
 #### Models
 
-[Print Model](class/models/docs_printmodel.md)
+[Data Model](docs_class/docs_models/docs_datamodel.md)
 
-[Shift Mode](class/models/docs_shiftmodel.md)
+[Print Model](docs_class/docs_models/docs_printmodel.md)
 
-[Worker Model](class/models/docs_workermodel.md)
+[Shift Model](docs_class/docs_models/docs_shiftmodel.md)
+
+[Worker Model](docs_class/docs_models/docs_workermodel.md)
 
 #### Controllers
 
-[Print Controller](class/controllers/docs_printcontroller.md)
+[Print Controller](docs_class/docs_controller/docs_printcontroller.md)
 
-[Shift Controller](class/controllers/docs_shiftcontroller.md)
+[Shift Controller](docs_class/docs_controller/docs_shiftcontroller.md)
 
-[Worker Controller](class/controllers/docs_workercontroller.md)
-
-## How to start read docs
-
-[Return](#documentation)
-
-very good start point is a [class sections](#class-sections) on you learn a used class for this project my especially favorite a 
-[Controllers sections](#controllers) this good for one reasons  controllers class is a tape for this project controllers connect a widgets and 
-models
+[Worker Controller](docs_class/docs_controller/docs_workercontroller.md)
