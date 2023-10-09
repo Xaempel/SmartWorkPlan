@@ -28,6 +28,9 @@ this standard accepts the use of different flags in one commit if needed example
     <Cmake>
     -- Configured cmake for new button file
 
+    <Ui>
+    -- A new style has been created for the button in menu
+
 ## Commit flags
 
 what is the commit flag
@@ -56,5 +59,8 @@ commit flags are responsible for present the content of the commit e.g. you have
     <CritBugFix>
     Fixed a critical bug
 
+    <Ui>
+    Ui related changes
+
     <Other>
-    this flag is used when something is not included in the flags or change is a special event e.x change in clang-format file
+    This flag is used when something is not included in the flags or change is a special event e.x change in clang-format file

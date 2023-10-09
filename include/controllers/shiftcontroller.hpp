@@ -38,7 +38,7 @@
 #include <QObject>
 #include <QVBoxLayout>
 #include <QVector>
-#include <memory>
+#include <random>
 
 class ShiftController : public QObject {
    using IShiftModel = InterFace::IShiftModel;
@@ -51,10 +51,11 @@ class ShiftController : public QObject {
    void runDeleteShift();
 
    private:
+   void addSinglePlaceShift(ShiftWizard* shiftWizard);
+   void addAutomaticPlaceShift();
+
    static QVector<CalendarFieldWidget*> calendarFieldWidgetVec;
 
    IShiftModel* shiftModelPtr {nullptr};
    DataModel* dataModelPtr {nullptr};
-
-   QVBoxLayout* workerShiftLayoutPtr_ {nullptr};
 };

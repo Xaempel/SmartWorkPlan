@@ -1,33 +1,32 @@
-current software version: 0.7.1
+# Current Software Version: 0.7.1
 
-date of release version: 13/09/2023
+**Date of Release Version:** 13/09/2023
 
-what's new for this version:
+## What's New for This Version:
 
--- Main Feature:
+### Main Feature:
 
-1. Added basic system   
+- **Added Basic System:**
+  - Shift System:
+    - Added Shift Creation
+    - Added Shift Deletion
+  - Worker System:
+    - Added Worker Addition
+    - Added Worker Deletion
+  - Basic Function for Printing Schedule (This feature is still in a very early stage of development)
 
-    -- Shift system 
-        -- add delete shift
+### Refactoring and Patches to Fix Minor Bugs:
 
-    -- worker system
-        -- add delete worker
+- **Refactor Data Manager System:**
+  - Added Implementation for a Better Data Manager Class
+  - Deleted Old Data Manager System
 
-    -- basic function for print schedule: this feature is still in a very early stage of development
+### Critical Bug Fix:
 
+- This Release Does Not Fix Any Critical Bugs
 
--- Refactoring and patches to fix minor bugs:
+## How Project Versioning Takes Place:
 
-1. Refactor data manager system
+Versions are released approximately when five features are completed, and these features are predefined in the [RoadMap File](RoadMap.md).
 
-    -- added implementation for a better class for manager data 
-
-    -- delete old data manager system
-
--- Critical Bug Fix: This release does not fix any critical bugs
-
-
-If you want to see what else is planned, see the file [RoadMap File](docs/RoadMap.md)  
-
-[Return to main docs file](ReadMe.md)
+[Return to Main Docs File](ReadMe.md)

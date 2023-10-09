@@ -38,4 +38,12 @@ class ShiftWizard : public QWizard, private Ui::ShiftWizard {
    explicit ShiftWizard(QWidget* parent = nullptr, QStringList workerStringLists = {});
    ~ShiftWizard();
    void getDataFromWizard(QString& nameSurname, int& selectedDayNumber);
+   bool getAutoPlacementChoice();
+
+   private slots:
+   void OffAutoPlacement();
+   void OnAutoPlacement();
+
+   private:
+   bool userAutoPlacementChoice_ {false};
 };

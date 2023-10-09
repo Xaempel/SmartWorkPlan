@@ -1,38 +1,45 @@
-[Home](ReadMe.md)
 # RoadMap
-## Reference 
 
-[Coming Feature](#coming-feature)
+## Overview
+This roadmap outlines planned features and development status for project.
 
-## Legend for RoadMap
+[Return to main docs file](ReadMe.md)
 
-    X means that the function has not been implemented yet
-    # means that the function has been implemented
+## Table of Contents
+- [Upcoming Features](#upcoming-features)
+- [Legend for RoadMap](#legend-for-roadmap)
 
-## Coming Feature
+## Upcoming Features
 
 ### Shift Feature
 
-| Goal      |Description| Status    |
-| --------- | --------- | --------- |
-|  Create a calendar widget         | integrates the calendar widget with the mainwindow class | # |
-|  Create a basic function for adding employees to a shift system | create a function that will add the employee to the day and then save the relevant data | # |
-| Create a delete function for shift system | create a function that will delete the employee and then delete the data related to the employee | # |
-| Create a function that will respond to the removal of a given employee and calls the removal function | the function is must to react to the removal of a given worker and adapt the calendar to this action | # |
+| Goal                       | Description                                            | Status |
+| -------------------------- | ------------------------------------------------------ | ------ |
+| Create a Calendar Widget    | Integrate a calendar widget with the main window class | ✅ |
+| Implement Employee Addition | Develop basic functionality for adding employees to the shift system | ✅ |
+| Implement Shift Deletion    | Create a function to delete employees and their data from the shift system | ✅ |
+| Handle Employee Removal     | Develop a function to respond to employee removal and update the calendar accordingly | ✅ |
+| Create a function that automatically assigns employees to shifts | The feature should automatically assign employees to shifts. the function must prevent employees from repeating themselves every day; the function should also randomly select employees based on a randomly generated seed | ✅ |
+| Add the ability to select a month for the shift calendar | After selection, it should dynamically adjust the number of days for the chosen month | ❌ |
 
 ### Worker Feature
 
-| Goal      |Description| Status    |
-| --------- | --------- | --------- |
-| Create add worker system          | system must add worker to layout and add information on worker for file           | # | 
-| Create delete worker system       | system must delete worker on  mainwindow layout and delete information on worker in file           | # |  
+| Goal                   | Description                                            | Status |
+| ---------------------- | ------------------------------------------------------ | ------ |
+| Implement Worker Addition | Develop a system for adding workers to the layout and storing their information in a file | ✅ |
+| Implement Worker Deletion | Create a system for removing workers from the main window layout and deleting their information from the file | ✅ |
+| Create a widget for modifying worker information (e.g., name, surname, and work hours) | The widget should be triggered by clicking on a specific worker in the employee section | ❌ |
 
-### Other things
+### Other Tasks
 
-| Goal      |Description| Status    |
-| --------- | --------- | --------- |
-| Create a better and smoother ui   | I don't have any big ideas yet, I'll add them in future commits | X | 
-| Divide the main window into pages | See Qt creator menu style not 100% but it's a good starting point | X |  
-| Create a App Icon | the icon must be a strawberry this is not a raspberry pi reference this my preferention i love strawberries  | X |
+| Goal                            | Description                                         | Status |
+| ------------------------------- | --------------------------------------------------- | ------ |
+| Enhance UI for a Better Look    | Continuously improve the user interface with future commits | ❌ |
+| Implement Page Division         | Divide the main window into pages | ❌ |
+| Create an App Icon              | Design an app icon | ❌ |
 
-[Return](#reference)
+## Legend for RoadMap
+- ✅ indicates that the feature has been implemented
+- ❌ indicates that the feature is yet to be implemented
+
+[Return to Reference](#overview)

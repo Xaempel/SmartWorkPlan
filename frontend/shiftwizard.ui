@@ -7,14 +7,45 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>300</height>
+    <height>295</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>ShiftWizard</string>
+   <string>Creator for Worker Shifts</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">*
+{
+ background-color:  #70706e;
+ color: #d1cdcd;
+}
+
+QPushButton {
+    background-color: gray;
+    border: 2px solid darkgray;
+    border-radius: 5px;
+	color: #d1cdcd;
+}
+
+QComboBox {
+    background-color: gray;
+    border: 2px solid gray;
+    border-radius: 5px;
+}
+</string>
+  </property>
+  <property name="wizardStyle">
+   <enum>QWizard::ModernStyle</enum>
   </property>
   <widget class="QWizardPage" name="MainWizardPage">
    <layout class="QGridLayout" name="gridLayout">
+    <item row="2" column="0">
+     <widget class="QLabel" name="AutomaticWorkerPlacementLabel">
+      <property name="text">
+       <string>Automatic Worker Placement</string>
+      </property>
+     </widget>
+    </item>
     <item row="0" column="0">
      <widget class="QLabel" name="DayLabel">
       <property name="text">
@@ -45,12 +76,87 @@
       </property>
      </widget>
     </item>
+    <item row="3" column="0">
+     <widget class="QCheckBox" name="OFFAutomaticWorkerPlacementCheckBox">
+      <property name="text">
+       <string>OFF</string>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+      <property name="autoRepeat">
+       <bool>false</bool>
+      </property>
+      <property name="autoExclusive">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
     <item row="1" column="1">
      <widget class="QComboBox" name="WorkerComboBox"/>
+    </item>
+    <item row="4" column="0">
+     <widget class="QCheckBox" name="ONAutomaticWorkerPlacementCheckBox">
+      <property name="text">
+       <string>ON</string>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
+      </property>
+      <property name="autoRepeat">
+       <bool>false</bool>
+      </property>
+      <property name="autoExclusive">
+       <bool>true</bool>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>OFFAutomaticWorkerPlacementCheckBox</sender>
+   <signal>clicked()</signal>
+   <receiver>ShiftWizard</receiver>
+   <slot>OffAutoPlacement()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>115</x>
+     <y>140</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ONAutomaticWorkerPlacementCheckBox</sender>
+   <signal>clicked()</signal>
+   <receiver>ShiftWizard</receiver>
+   <slot>OnAutoPlacement()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>115</x>
+     <y>171</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>OffAutoPlacement()</slot>
+  <slot>OnAutoPlacement()</slot>
+ </slots>
 </ui>
