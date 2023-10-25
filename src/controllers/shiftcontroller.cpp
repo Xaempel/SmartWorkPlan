@@ -5,54 +5,11 @@ const QString workerDataSectionName {"worker section"};
 const QString shiftDataSectionName {"shift section name"};
 const QString shiftDataSectionDate {"shift section date"};
 
-ShiftController::ShiftController(IShiftModel* shiftModel, DataModel* dataModel)
+ShiftController::ShiftController(IShiftModel* shiftModel, DataModel* dataModel, QVector<CalendarFieldWidget*>* calendarFieldWidgetVec)
     : shiftModelPtr(shiftModel)
     , dataModelPtr(dataModel)
+    , calendarFieldWidgetVecPtr(calendarFieldWidgetVec)
 {
-}
-
-void ShiftController::setCalendarWidgetinLayout(QVBoxLayout* LayoutPtr)
-{
-   CalendarWidget* calendarWidget {new CalendarWidget(nullptr)};
-   QGridLayout* calendarFieldWidgetPtr {nullptr};
-
-   calendarWidget->getCalendarFieldWidgetLayoutPtr(calendarFieldWidgetPtr);
-
-   int DayCounter {1};
-   for (int i = 0; i < 30; i++) {
-      calendarFieldWidgetVec.emplace_back(new CalendarFieldWidget(nullptr, DayCounter));
-      calendarFieldWidgetVec.at(i)->setFixedSize(160, 160);
-
-      calendarFieldWidgetPtr->addWidget(calendarFieldWidgetVec.at(i), i / 7, i % 7);
-      DayCounter++;
-   }
-
-   LayoutPtr->addWidget(calendarWidget);
-}
-
-void ShiftController::runLoadShift(QVBoxLayout* LayoutPtr)
-{
-   QVariantList dataList {};
-   dataModelPtr->load("data.json", shiftDataSectionName, dataList);
-
-   QStringList workerNameList {};
-   workerNameList = HelpfulDatamodelThing::convertVariantToRequiredType<QString>(dataList);
-
-   dataList.clear();
-   dataModelPtr->load("data.json", shiftDataSectionDate, dataList);
-
-   QList<int> dayList {};
-   dayList = HelpfulDatamodelThing::convertVariantToRequiredType<int>(dataList);
-
-   QVBoxLayout* workerShiftLayoutPtr;
-
-   for (int i = 0; i < dataList.size(); i++) {
-      QString currentWorkerShiftName = workerNameList.at(i);
-      int currentShiftDate           = dayList.at(i);
-
-      calendarFieldWidgetVec.at(currentShiftDate)->getPointertoWorkerShiftPlace(workerShiftLayoutPtr);
-      shiftModelPtr->addShift(workerShiftLayoutPtr, currentWorkerShiftName);
-   }
 }
 
 void ShiftController::runAddShift()
@@ -134,7 +91,7 @@ void ShiftController::addSinglePlaceShift(ShiftWizard* shiftWizard)
 
    shiftWizard->getDataFromWizard(workerNameSurName, dayNumber);
    dayNumber--;
-   calendarFieldWidgetVec.at(dayNumber)->getPointertoWorkerShiftPlace(workerShiftLayoutPtr);
+   calendarFieldWidgetVecPtr->at(dayNumber)->getPointertoWorkerShiftPlace(workerShiftLayoutPtr);
    shiftModelPtr->addShift(workerShiftLayoutPtr, workerNameSurName);
 
    dataModelPtr->save(std::nullopt, shiftDataSectionName, workerNameSurName);
@@ -177,7 +134,7 @@ void ShiftController::addAutomaticPlaceShift()
 
       QVBoxLayout* workerLayoutPtr {new QVBoxLayout};
 
-      calendarFieldWidgetVec.at(i)->getPointertoWorkerShiftPlace(workerLayoutPtr);
+      calendarFieldWidgetVecPtr->at(i)->getPointertoWorkerShiftPlace(workerLayoutPtr);
       shiftModelPtr->addShift(workerLayoutPtr, listofWorker.at(seed));
       lastChoiceName = listofWorker.at(seed);
 
@@ -186,5 +143,3 @@ void ShiftController::addAutomaticPlaceShift()
       seed++;
    }
 }
-
-QVector<CalendarFieldWidget*> ShiftController::calendarFieldWidgetVec {};

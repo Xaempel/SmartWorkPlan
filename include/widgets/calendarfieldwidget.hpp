@@ -27,14 +27,21 @@
 ******************************************************************************/
 #pragma once
 
-#include "../frontend/ui_calendarfieldwidget.h"
-
 #include <QFrame>
 #include <QVBoxLayout>
 
-class CalendarFieldWidget : public QFrame, Ui::CalendarFieldWidget {
+QT_BEGIN_NAMESPACE
+namespace Ui {
+   class CalendarFieldWidget;
+}
+QT_END_NAMESPACE
+
+class CalendarFieldWidget : public QFrame {
    public:
    explicit CalendarFieldWidget(QWidget* parent = nullptr, int DayCounter = 0);
    ~CalendarFieldWidget();
    void getPointertoWorkerShiftPlace(QVBoxLayout*& Ptr);
+
+   private:
+   Ui::CalendarFieldWidget* ui {nullptr};
 };

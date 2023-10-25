@@ -44,9 +44,7 @@ class ShiftController : public QObject {
    using IShiftModel = InterFace::IShiftModel;
 
    public:
-   explicit ShiftController(IShiftModel* shiftModel, DataModel* dataModel);
-   void setCalendarWidgetinLayout(QVBoxLayout* LayoutPtr);
-   void runLoadShift(QVBoxLayout* LayoutPtr);
+   explicit ShiftController(IShiftModel* shiftModel, DataModel* dataModel, QVector<CalendarFieldWidget*>* calendarFieldWidgetVec);
    void runAddShift();
    void runDeleteShift();
 
@@ -54,7 +52,7 @@ class ShiftController : public QObject {
    void addSinglePlaceShift(ShiftWizard* shiftWizard);
    void addAutomaticPlaceShift();
 
-   static QVector<CalendarFieldWidget*> calendarFieldWidgetVec;
+   QVector<CalendarFieldWidget*>* calendarFieldWidgetVecPtr;
 
    IShiftModel* shiftModelPtr {nullptr};
    DataModel* dataModelPtr {nullptr};

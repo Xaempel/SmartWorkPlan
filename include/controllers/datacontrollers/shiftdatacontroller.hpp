@@ -27,29 +27,27 @@
 ******************************************************************************/
 #pragma once
 
-#include "../controllers/datacontrollers/shiftdatacontroller.hpp"
-#include "../controllers/shiftcontroller.hpp"
-#include "../models/datamodel.hpp"
-#include "../models/modelsinteface/ishiftmodel.hpp"
+#include "../include/models/datamodel.hpp"
+#include "../include/models/modelsinteface/ishiftmodel.hpp"
+#include "../include/widgets/calendarfieldwidget.hpp"
+#include "../include/widgets/calendarwidget.hpp"
 
-class DependencyShiftManager : public QObject {
-   using ShiftDataController = DataControllers::ShiftDataController;
+#include <QVBoxLayout>
 
-   Q_OBJECT
-   public:
-   explicit DependencyShiftManager(QVBoxLayout* calendarLayout, InterFace::IShiftModel* ishiftModel, QVector<CalendarFieldWidget*>*);
-   public slots:
-   void callAddShift();
-   void callDeleteShift();
-   void handleWorkerDeleted(QString workerName);
+namespace DataControllers {
 
-   private:
-   void refreshPointer();
+   class ShiftDataController {
+      using IShiftModel = InterFace::IShiftModel;
 
-   InterFace::IShiftModel* ishiftModelPtr {nullptr};
-   QVector<CalendarFieldWidget*>* calendarFieldWidgetVecPtr;
-   std::unique_ptr<DataModel> dataModel = std::make_unique<DataModel>();
+      public:
+      explicit ShiftDataController(IShiftModel* shiftModel, DataModel* dataModel, QVector<CalendarFieldWidget*>* calendarFieldWidgetVec);
+      void setCalendarWidgetinLayout(QVBoxLayout* LayoutPtr);
+      void runLoadShift(QVBoxLayout* LayoutPtr);
 
-   std::unique_ptr<ShiftDataController> shiftDataController {nullptr};
-   std::unique_ptr<ShiftController> shiftController {nullptr};
-};
+      private:
+      IShiftModel* shiftModelPtr {nullptr};
+      DataModel* dataModelPtr {nullptr};
+      QVector<CalendarFieldWidget*>* calendarFieldWidgetVecPtr {nullptr};
+   };
+
+}

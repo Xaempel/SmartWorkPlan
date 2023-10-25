@@ -5,7 +5,7 @@ set(APP_HEADERS
     ../include/depmanagerhelpers/dependencyworkermanager.hpp
 
     ../include/models/modelsinteface/ishiftmodel.hpp
-    
+
     ../include/widgets/removaldialog/workersremovaldialog.hpp
     ../include/widgets/removaldialog/shiftremovaldialog.hpp
 
@@ -15,6 +15,7 @@ set(APP_HEADERS
     ../include/widgets/workerwizard.hpp
     ../include/widgets/shiftwizard.hpp
 
+    ../include/controllers/datacontrollers/shiftdatacontroller.hpp
     ../include/controllers/workercontroller.hpp
     ../include/controllers/printcontroller.hpp
     ../include/controllers/shiftcontroller.hpp
@@ -40,6 +41,7 @@ set(APP_SOURCES
     ../src/widgets/workerwizard.cpp
     ../src/widgets/shiftwizard.cpp
 
+    ../src/controllers/datacontrollers/shiftdatacontroller.cpp
     ../src/controllers/workercontroller.cpp
     ../src/controllers/printcontroller.cpp
     ../src/controllers/shiftcontroller.cpp

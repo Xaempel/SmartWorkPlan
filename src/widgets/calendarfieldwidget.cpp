@@ -1,15 +1,18 @@
 #include "../include/widgets/calendarfieldwidget.hpp"
 
+#include "../frontend/ui_calendarfieldwidget.h"
+
 CalendarFieldWidget::CalendarFieldWidget(QWidget* parent, int DayCounter)
     : QFrame(parent)
+    , ui(new Ui::CalendarFieldWidget)
 {
-   setupUi(this);
-   DateLabel->setText(QString::number(DayCounter));
+   ui->setupUi(this);
+   ui->DateLabel->setText(QString::number(DayCounter));
 }
 
 CalendarFieldWidget::~CalendarFieldWidget() { }
 
 void CalendarFieldWidget::getPointertoWorkerShiftPlace(QVBoxLayout*& Ptr)
 {
-   Ptr = WorkerNameandSurNameLayout;
+   Ptr = ui->WorkerNameandSurNameLayout;
 }

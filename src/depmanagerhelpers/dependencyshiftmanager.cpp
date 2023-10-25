@@ -1,9 +1,13 @@
 #include "../include/depmanagerhelpers/dependencyshiftmanager.hpp"
 
-DependencyShiftManager::DependencyShiftManager(QVBoxLayout* calendarLayout)
+DependencyShiftManager::DependencyShiftManager(QVBoxLayout* calendarLayout, InterFace::IShiftModel* ishiftModel, QVector<CalendarFieldWidget*>* calendarFieldWidgetVec)
+    : ishiftModelPtr(ishiftModel)
+    , calendarFieldWidgetVecPtr(calendarFieldWidgetVec)
 {
-   shiftController->setCalendarWidgetinLayout(calendarLayout);
-   shiftController->runLoadShift(calendarLayout);
+   shiftDataController = std::make_unique<ShiftDataController>(ishiftModelPtr, dataModel.get(), calendarFieldWidgetVecPtr);
+   shiftController     = std::make_unique<ShiftController>(ishiftModelPtr, dataModel.get(), calendarFieldWidgetVecPtr);
+   shiftDataController->setCalendarWidgetinLayout(calendarLayout);
+   shiftDataController->runLoadShift(calendarLayout);
 }
 
 void DependencyShiftManager::callAddShift()
@@ -26,7 +30,7 @@ void DependencyShiftManager::handleWorkerDeleted(QString workerName)
 
    for (int i = shiftDataList.size() - 1; i >= 0; --i) {
       if (shiftDataList.at(i).toString() == workerName) {
-         shiftModel->deleteShift(i);
+         ishiftModelPtr->deleteShift(i);
 
          dataModel->deleteDatafromFile("data.json", "shift section name", i);
          dataModel->deleteDatafromFile("data.json", "shift section date", i);
@@ -36,10 +40,10 @@ void DependencyShiftManager::handleWorkerDeleted(QString workerName)
 
 void DependencyShiftManager::refreshPointer()
 {
-   dataModel       = nullptr;
-   shiftController = nullptr;
-   dataModel       = std::make_unique<DataModel>();
-   shiftController = std::make_unique<ShiftController>(shiftModel.get(), dataModel.get());
+   dataModel           = nullptr;
+   shiftController     = nullptr;
+   shiftDataController = nullptr;
+   dataModel           = std::make_unique<DataModel>();
+   shiftDataController = std::make_unique<ShiftDataController>(ishiftModelPtr, dataModel.get(), calendarFieldWidgetVecPtr);
+   shiftController     = std::make_unique<ShiftController>(ishiftModelPtr, dataModel.get(), calendarFieldWidgetVecPtr);
 }
-
-QVector<QLabel*> DependencyShiftManager::workerWidgetVec {};

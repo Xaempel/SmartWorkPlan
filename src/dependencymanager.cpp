@@ -15,3 +15,6 @@ DependencyManager::DependencyManager()
 void DependencyManager::showMainWindow() { mainWindow->showMaximized(); }
 
 void DependencyManager::callPrintWorkPlan() { printController.runStartPrint(); }
+
+QVector<QLabel*> DependencyManager::workerWidgetVec;
+QVector<CalendarFieldWidget*> DependencyManager::calendarFieldWidgetVec;

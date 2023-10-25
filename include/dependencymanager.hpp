@@ -31,6 +31,7 @@
 #include "depmanagerhelpers/dependencyshiftmanager.hpp"
 #include "depmanagerhelpers/dependencyworkermanager.hpp"
 #include "mainwindow.hpp"
+#include "models/shiftmodel.hpp"
 
 #include <memory>
 
@@ -48,7 +49,11 @@ class DependencyManager : public QObject {
    std::unique_ptr<MainWindow> mainWindow = std::make_unique<MainWindow>(nullptr);
    QVBoxLayout* calendarLayout {};
 
-   std::unique_ptr<DependencyShiftManager> dependencyShiftManager  = std::make_unique<DependencyShiftManager>(mainWindow->getCalendarLayout());
+   static QVector<QLabel*> workerWidgetVec;
+   static QVector<CalendarFieldWidget*> calendarFieldWidgetVec;
+
+   std::unique_ptr<ShiftModel> shiftModel                          = std::make_unique<ShiftModel>(workerWidgetVec);
+   std::unique_ptr<DependencyShiftManager> dependencyShiftManager  = std::make_unique<DependencyShiftManager>(mainWindow->getCalendarLayout(), shiftModel.get(), &calendarFieldWidgetVec);
    std::unique_ptr<DependencyWorkerManager> depedencyWorkerManager = std::make_unique<DependencyWorkerManager>(mainWindow->getWorkerLayout());
    PrintController printController;
 };
