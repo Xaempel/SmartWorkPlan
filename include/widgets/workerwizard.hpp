@@ -27,8 +27,6 @@
 ******************************************************************************/
 #pragma once
 
-#include "./frontend/ui_workerwizard.h"
-
 #include <QMessageBox>
 #include <QString>
 #include <QWizard>
@@ -39,7 +37,7 @@ namespace Ui {
 }
 QT_END_NAMESPACE
 
-class WorkerWizard : public QWizard{
+class WorkerWizard : public QWizard {
    Q_OBJECT
    public:
    WorkerWizard(QWidget* parent = nullptr);
@@ -47,5 +45,5 @@ class WorkerWizard : public QWizard{
    bool getDataFromWizard(QString& firstName, QString& lastName);
 
    private:
-   Ui::WorkerWizard *ui {nullptr};
+   Ui::WorkerWizard* ui {nullptr};
 };

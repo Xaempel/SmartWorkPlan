@@ -1,7 +1,10 @@
 #include "../include/widgets/shiftwizard.hpp"
 
+#include "../frontend/ui_shiftwizard.h"
+
 ShiftWizard::ShiftWizard(QWidget* parent, QStringList workerStringLists)
-    : QWizard(parent), ui(new Ui::ShiftWizard)
+    : QWizard(parent)
+    , ui(new Ui::ShiftWizard)
 {
    ui->setupUi(this);
    ui->WorkerComboBox->addItems(workerStringLists);

@@ -1,5 +1,7 @@
 #include "./include/widgets/workerwizard.hpp"
 
+#include "./frontend/ui_workerwizard.h"
+
 WorkerWizard::WorkerWizard(QWidget* parent)
     : QWizard(parent)
     , ui(new Ui::WorkerWizard)

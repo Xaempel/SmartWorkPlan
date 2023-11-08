@@ -27,11 +27,10 @@
 ******************************************************************************/
 #pragma once
 
-#include "../frontend/ui_shiftwizard.h"
-
 #include <QStringList>
 #include <QWizard>
 
+QT_BEGIN_NAMESPACE
 namespace Ui {
    class ShiftWizard;
 }
