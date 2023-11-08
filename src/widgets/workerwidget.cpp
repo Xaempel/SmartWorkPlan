@@ -1,19 +1,23 @@
 #include "./include/widgets/workerwidget.hpp"
 
+#include "./frontend/ui_workerwidget.h"
+
 WorkerWidget::WorkerWidget(QWidget* parent)
     : QFrame(parent)
+    , ui(new Ui::WorkerWidget)
 {
-   setupUi(this);
+   ui->setupUi(this);
 }
 
-WorkerWidget::WorkerWidget(QWidget* parent, QString Name, QString SurName)
+WorkerWidget::WorkerWidget(QWidget* parent, QString firstName, QString lastName)
     : QFrame(parent)
+    , ui(new Ui::WorkerWidget)
 {
-   setupUi(this);
-   setNameandSurName(Name, SurName);
+   ui->setupUi(this);
+   setNameandSurName(firstName, lastName);
 }
 
-void WorkerWidget::setNameandSurName(QString Name, QString SurName)
+void WorkerWidget::setNameandSurName(QString firstName, QString lastName)
 {
-   WorkerNameLabel->setText(Name + "  " + SurName);
+   ui->WorkerNameLabel->setText(firstName + "  " + lastName);
 }

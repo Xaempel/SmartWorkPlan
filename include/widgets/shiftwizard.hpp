@@ -32,7 +32,12 @@
 #include <QStringList>
 #include <QWizard>
 
-class ShiftWizard : public QWizard, private Ui::ShiftWizard {
+namespace Ui {
+   class ShiftWizard;
+}
+QT_END_NAMESPACE
+
+class ShiftWizard : public QWizard {
    Q_OBJECT
    public:
    explicit ShiftWizard(QWidget* parent = nullptr, QStringList workerStringLists = {});
@@ -46,4 +51,5 @@ class ShiftWizard : public QWizard, private Ui::ShiftWizard {
 
    private:
    bool userAutoPlacementChoice_ {false};
+   Ui::ShiftWizard* ui {nullptr};
 };

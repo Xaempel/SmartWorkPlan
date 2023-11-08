@@ -33,10 +33,19 @@
 #include <QString>
 #include <QWizard>
 
-class WorkerWizard : public QWizard, private Ui::WorkerWizard {
+QT_BEGIN_NAMESPACE
+namespace Ui {
+   class WorkerWizard;
+}
+QT_END_NAMESPACE
+
+class WorkerWizard : public QWizard{
    Q_OBJECT
    public:
    WorkerWizard(QWidget* parent = nullptr);
    ~WorkerWizard();
-   bool getDataFromWizard(QString& Name, QString& SurName);
+   bool getDataFromWizard(QString& firstName, QString& lastName);
+
+   private:
+   Ui::WorkerWizard *ui {nullptr};
 };

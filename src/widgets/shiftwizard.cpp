@@ -1,18 +1,18 @@
 #include "../include/widgets/shiftwizard.hpp"
 
 ShiftWizard::ShiftWizard(QWidget* parent, QStringList workerStringLists)
-    : QWizard(parent)
+    : QWizard(parent), ui(new Ui::ShiftWizard)
 {
-   setupUi(this);
-   WorkerComboBox->addItems(workerStringLists);
+   ui->setupUi(this);
+   ui->WorkerComboBox->addItems(workerStringLists);
 }
 
 ShiftWizard::~ShiftWizard() { }
 
 void ShiftWizard::getDataFromWizard(QString& nameSurname, int& selectedDayNumber)
 {
-   nameSurname       = WorkerComboBox->currentText();
-   selectedDayNumber = DaySpinBox->value();
+   nameSurname       = ui->WorkerComboBox->currentText();
+   selectedDayNumber = ui->DaySpinBox->value();
 }
 
 bool ShiftWizard::getAutoPlacementChoice() { return userAutoPlacementChoice_; }

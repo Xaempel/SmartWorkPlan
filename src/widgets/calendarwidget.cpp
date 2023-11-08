@@ -1,14 +1,16 @@
 #include "../include/widgets/calendarwidget.hpp"
 
+#include "../frontend/ui_calendarwidget.h"
+
 CalendarWidget::CalendarWidget(QWidget* parent)
-    : QFrame(parent)
+    : QFrame(parent), ui(new Ui::CalendarWidget)
 {
-   setupUi(this);
+   ui->setupUi(this);
 }
 
 CalendarWidget::~CalendarWidget() { }
 
-void CalendarWidget::getCalendarFieldWidgetLayoutPtr(QGridLayout*& LayoutPtr)
+void CalendarWidget::getCalendarFieldWidgetLayoutPtr(QGridLayout*& layouttoGetCalendarFieldWidgetLayout)
 {
-   LayoutPtr = CalendarWidgetLayout;
+   layouttoGetCalendarFieldWidgetLayout = ui->CalendarWidgetLayout;
 }

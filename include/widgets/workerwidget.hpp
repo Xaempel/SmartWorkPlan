@@ -28,13 +28,20 @@
 
 #pragma once
 
-#include "./frontend/ui_workerwidget.h"
-
 #include <QFrame>
 
-class WorkerWidget : public QFrame, private Ui::WorkerWidget {
+QT_BEGIN_NAMESPACE
+namespace Ui {
+   class WorkerWidget;
+}
+QT_END_NAMESPACE
+
+class WorkerWidget : public QFrame{
    public:
    explicit WorkerWidget(QWidget* parent = nullptr);
-   explicit WorkerWidget(QWidget* parent = nullptr, QString Name = "", QString SurName = "");
-   void setNameandSurName(QString Name, QString SurName);
+   explicit WorkerWidget(QWidget* parent = nullptr, QString firstName = "", QString lastName = "");
+   void setNameandSurName(QString firstName, QString lastName);
+
+   private:
+   Ui::WorkerWidget *ui {nullptr};
 };

@@ -27,14 +27,22 @@
 ******************************************************************************/
 #pragma once
 
-#include "../frontend/ui_calendarwidget.h"
-
 #include <QFrame>
 #include <QVector>
+#include <QGridLayout>
 
-class CalendarWidget : public QFrame, private Ui::CalendarWidget {
+QT_BEGIN_NAMESPACE
+namespace Ui {
+   class CalendarWidget;
+}
+QT_END_NAMESPACE
+
+class CalendarWidget : public QFrame{
    public:
-   explicit CalendarWidget(QWidget *parent = nullptr);
+   explicit CalendarWidget(QWidget* parent = nullptr);
    ~CalendarWidget();
-   void getCalendarFieldWidgetLayoutPtr(QGridLayout *&LayoutPtr);
+   void getCalendarFieldWidgetLayoutPtr(QGridLayout*& layouttoGetCalendarFieldWidgetLayout);
+
+   private:
+   Ui::CalendarWidget *ui {nullptr};
 };

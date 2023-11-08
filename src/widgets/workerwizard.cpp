@@ -2,27 +2,29 @@
 
 WorkerWizard::WorkerWizard(QWidget* parent)
     : QWizard(parent)
+    , ui(new Ui::WorkerWizard)
 {
-   setupUi(this);
+   ui->setupUi(this);
 }
+
 WorkerWizard::~WorkerWizard() { }
 
-bool WorkerWizard::getDataFromWizard(QString& Name, QString& SurName)
+bool WorkerWizard::getDataFromWizard(QString& firstName, QString& lastName)
 {
-   QString WName {WorkerNameLineEdit->text()};
-   QString WSurName {WorkerSurNameLineEdit->text()};
+   QString workerFirstName {ui->WorkerNameLineEdit->text()};
+   QString workerLastName {ui->WorkerSurNameLineEdit->text()};
 
-   if (WName.isEmpty() || WSurName.isEmpty()) {
+   if (workerFirstName.isEmpty() || workerLastName.isEmpty()) {
       QMessageBox::information(nullptr, "Input is incorrect", "The input is empty");
       return false;
    }
-   else if (WSurName.size() > 20 || WName.size() > 20) {
+   else if (workerLastName.size() > 20 || workerFirstName.size() > 20) {
       QMessageBox::information(nullptr, "Input is incorrect", "The input is too long");
       return false;
    }
    else {
-      Name    = WName;
-      SurName = WSurName;
+      firstName = workerFirstName;
+      lastName  = workerLastName;
       return true;
    }
 }
