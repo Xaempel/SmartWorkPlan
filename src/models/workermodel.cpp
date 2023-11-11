@@ -1,21 +1,21 @@
 #include "./include/models/workermodel.hpp"
 
-QList<QWidget*> WorkerModel::WorkerWidgetList {};
-int WorkerModel::WorkerNum {0};
+WorkerModel::WorkerModel(QList<QWidget*>* workerWidgetList)
+    : workerWidgetListPtr(workerWidgetList)
+{
+}
 
 void WorkerModel::addWorker(QVBoxLayout* LayoutToAddWorker, QWidget* WidgetoLayout)
 {
-   WorkerWidgetList.emplace_back(WidgetoLayout);
-   auto CurrentListsObject {WorkerWidgetList.at(WorkerNum)};
+   workerWidgetListPtr->emplace_back(WidgetoLayout);
+   auto CurrentListsObject {workerWidgetListPtr->at(workerWidgetListPtr->size() - 1)};
 
    CurrentListsObject->setFixedSize(200, 100);
    LayoutToAddWorker->addWidget(CurrentListsObject);
-   WorkerNum++;
 }
 
 void WorkerModel::deleteWorker(int NumberWorkerToRemoved)
 {
-   WorkerWidgetList.at(NumberWorkerToRemoved)->deleteLater();
-   WorkerWidgetList.removeAt(NumberWorkerToRemoved);
-   WorkerNum--;
+   workerWidgetListPtr->at(NumberWorkerToRemoved)->deleteLater();
+   workerWidgetListPtr->removeAt(NumberWorkerToRemoved);
 }

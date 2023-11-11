@@ -59,4 +59,5 @@ set(COMMON_SOURCES
 set(APP_SOURCES_TEST 
   ../test/test_datamodel.cc
   ../test/test_shiftmodel.cc
+  ../test/test_workermodel.cc
 )

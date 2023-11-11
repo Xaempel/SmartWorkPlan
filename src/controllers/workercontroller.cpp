@@ -16,7 +16,7 @@ void WorkerController::runAddWorker(QVBoxLayout* workerLayoutPtr)
    WorkerWizardObj->exec();
 
    if (WorkerWizardObj->getDataFromWizard(WorkerName, WorkerSurName) == true) {
-      WorkerModel WorkerModelObject {};
+      WorkerModel WorkerModelObject(&workerWidgetList);
       workerWidgetPtr = new WorkerWidget(nullptr, WorkerName, WorkerSurName);
       WorkerModelObject.addWorker(workerLayoutPtr, workerWidgetPtr);
       dataModelPtr->save(std::nullopt, workerDataSectionName, WorkerName + " " + WorkerSurName);
@@ -28,7 +28,7 @@ void WorkerController::runAddWorker(QVBoxLayout* workerLayoutPtr)
 
 void WorkerController::runDeleteWorker()
 {
-   WorkerModel WorkerModelObject {};
+   WorkerModel WorkerModelObject(&workerWidgetList);
    QVariantList dataList {};
 
    QStringList workerNameList {};
@@ -59,7 +59,7 @@ void WorkerController::runLoadWorker(QVBoxLayout* loadWorkerLayoutPtr)
       return;
    }
    else {
-      WorkerModel WorkerModel {};
+      WorkerModel WorkerModel(&workerWidgetList);
       dataModelPtr->load("data.json", workerDataSectionName, dataList);
 
       if (dataList.isEmpty()) {
@@ -81,3 +81,5 @@ void WorkerController::runLoadWorker(QVBoxLayout* loadWorkerLayoutPtr)
 }
 
 QString WorkerController::getDeletedWorkerName() { return nameDeletedWorker_; }
+
+QList<QWidget*> WorkerController::workerWidgetList {};

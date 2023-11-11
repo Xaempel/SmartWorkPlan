@@ -34,10 +34,10 @@
 
 class WorkerModel {
    public:
+   WorkerModel(QList<QWidget*>* workerWidgetList);
    void addWorker(QVBoxLayout* LayoutToAddWorker, QWidget* WidgetoLayout);
    void deleteWorker(int NumberWorkerToRemoved);
 
    private:
-   static QList<QWidget*> WorkerWidgetList;
-   static int WorkerNum;
+   QList<QWidget*>* workerWidgetListPtr {nullptr};
 };

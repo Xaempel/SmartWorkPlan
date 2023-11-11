@@ -52,6 +52,7 @@ class WorkerController : public QObject {
    private:
    WorkerWidget* workerWidgetPtr {nullptr};
    QString nameDeletedWorker_ {""};
+   static QList<QWidget*> workerWidgetList;
 
    DataModel* dataModelPtr {nullptr};
 
