@@ -1,19 +1,17 @@
 #include "../include/models/printmodel.hpp"
 
-// Overall, this file is one of the worst I've ever written.
-// Ps those weird rect that are made by paintWorker and overlapping each other,
-// it's not a bug, it's a feature
-
 void PrintModel::startPrint(QStringList workerNameLists)
 {
    QPrinter printer;
-   QPainter painter;
 
    printer.setPageSize(QPageSize(QPageSize::A4));
-   // if I'm printing vertically instead of horizontally, 
-   // it's possible that the error is caused by the printer settings and not the code, 
+   
+   // if I'm printing vertically instead of horizontally,
+   // it's possible that the error is caused by the printer settings and not the code,
    // it will check the settings and set the printing Orientations to landscape
    printer.setPageOrientation(QPageLayout::Landscape);
+
+   QPainter painter;
    painter.begin(&printer);
 
    paintStaticElements(painter, workerNameLists.size());
@@ -31,115 +29,170 @@ void PrintModel::paintStaticElements(QPainter& painter, int workerNumber)
 
    painter.setRenderHint(QPainter::Antialiasing);
 
-   painter.drawText(40, 60, 100, 100, 1, "MONTH:");
-   painter.drawText(200, 60, 135, 20, 1, "PH (M)");
-   painter.drawRect(150, 60, 135, 20);
+   const QPoint posofconstMonthLabel {40, 75};
+   const QPoint posofChoicedMonthLabel {200, 75};
+   const QRect rectofChoicedMonthFrame {150, 60, 135, 20};
 
-   painter.drawText(315, 60, 135, 20, 1, "YEAR:");
-   painter.drawText(380, 60, 60, 20, 1, "PH (Y)");
-   painter.drawRect(370, 60, 60, 20);
+   painter.drawText(posofconstMonthLabel, "MONTH:");
+   painter.drawText(posofChoicedMonthLabel, "PH (M)");
+   painter.drawRect(rectofChoicedMonthFrame);
 
-   painter.drawText(750, 70, 300, 40, 1, "activities PH (ACTIVITY TYPE)");
-   painter.drawRect(700, 60, 300, 40);
+   const QPoint posofconstYearLabel {315, 75};
 
-   painter.drawText(40, 80, 100, 100, 1, "Norm");
-   painter.drawText(150, 80, 100, 100, 1, "PH (WH)"); // WH == Working hour in a month
+   const QPoint posofChoicedYearLabel {380, 75};
+   const QRect rectofChoicedYearFrame {370, 60, 60, 20};
 
-   painter.drawText(170, 15, 500, 500, 1, "SCHEDULE OF ACTIVITIES at PH (a given company)");
-   painter.drawText(730, 15, 500, 500, 1, "Object: PH (Company Object)");
-   painter.drawLine(170, 35, 925, 35);
+   painter.drawText(posofconstYearLabel, "YEAR:");
+   painter.drawText(posofChoicedYearLabel, "PH (Y)");
+   painter.drawRect(rectofChoicedYearFrame);
 
-   painter.drawText(40, 120, 100, 100, 1, "SurName\nand Name");
-   painter.drawRect(40, 120, 120, 35);
-   painter.drawRect(160, 120, 20, 35);
+   const QPoint pointsofWorkActivityLabel {750, 85};
+   const QRect rectofWorkActivityFrame {700, 60, 300, 40};
 
-   int LoopNumber {1};
+   painter.drawText(pointsofWorkActivityLabel, "activities PH (ACTIVITY TYPE)");
+   painter.drawRect(rectofWorkActivityFrame);
 
-   int XLoopPoint {180};
+   const QPoint pointsofconstWorkNormLabel {40, 95};
+   const QPoint pointsofChoicedWorkNormLabel {150, 95};
 
-   while (LoopNumber <= 30) {
-      painter.drawRect(XLoopPoint, 120, 25, 35);
-      painter.drawText(XLoopPoint, 130, 25, 35, 1, QString::number(LoopNumber));
-      XLoopPoint += 25;
-      LoopNumber++;
+   painter.drawText(pointsofconstWorkNormLabel, "Norm");
+   painter.drawText(pointsofChoicedWorkNormLabel, "PH (WH)"); // WH == Working hour in a month
+
+   const QPoint pointsofActivivitiesatGivenCompanyLabel {170, 30};
+   const QPoint pointsofActivivitiesatGivenCompanyObjectLabel {730, 30};
+   const QLine rectofBeautifierLineforCompanyThings {170, 35, 925, 35};
+
+   painter.drawText(pointsofActivivitiesatGivenCompanyLabel, "SCHEDULE OF ACTIVITIES at PH (a given company)");
+   painter.drawText(pointsofActivivitiesatGivenCompanyObjectLabel, "Object: PH (Company Object)");
+   painter.drawLine(rectofBeautifierLineforCompanyThings);
+
+   const QPoint pointsofLastNameTitleLabel {40, 135};
+   const QPoint pointsofNameTitleLabel {40, 150};
+   const QRect rectofNameandLastNameFrame {160, 120, 20, 35};
+
+   painter.drawText(pointsofLastNameTitleLabel, "Last Name");
+   painter.drawText(pointsofNameTitleLabel, "and Name");
+   painter.drawRect(rectofNameandLastNameFrame);
+
+   const QRect rectofEmptyUpBox {40, 120, 120, 35}; // this box is a beautifier for worker name and last name title box
+   painter.drawRect(rectofEmptyUpBox);
+
+   int xPointforDayCounterBox {180};
+
+   int dayCounterloop {1};
+   const int monthDays {30}; // this is constant thing however in the future these thing will be a choice for user and be a dynamical
+
+   while (dayCounterloop <= monthDays) {
+      QPoint pointforDayCounterBoxLabel {xPointforDayCounterBox + 5, 143};
+      QRect rectforDayCounterBoxFrame {xPointforDayCounterBox, 120, 25, 35};
+
+      painter.drawRect(rectforDayCounterBoxFrame);
+      painter.drawText(pointforDayCounterBoxLabel, QString::number(dayCounterloop));
+      xPointforDayCounterBox += 25;
+      dayCounterloop++;
    }
 
-   painter.drawText(935, 130, 35, 35, 1, "Hr");
-   painter.drawRect(930, 120, 35, 35);
+   const QPoint pointsofWorkHourseBoxTitle {935, 144};
+   const QRect rectofWorkHourseBoxFrame {930, 120, 35, 35};
 
-   int YPointHrLongRect {155};
-   int YPointHrShortRect {190};
+   painter.drawText(pointsofWorkHourseBoxTitle, "Hr");
+   painter.drawRect(rectofWorkHourseBoxFrame);
 
-   painter.drawText(967, 130, 35, 35, 1, "Day");
-   painter.drawRect(965, 120, 35, 35);
+   const QPoint pointsofWorkDaysBoxTitle {967, 144};
+   const QRect rectofWorkDaysBoxTitle {965, 120, 35, 35};
 
-   int YPointDayLongRect {155};
-   int YPointDayShortRect {190};
+   painter.drawText(pointsofWorkDaysBoxTitle, "Day");
+   painter.drawRect(rectofWorkDaysBoxTitle);
 
-   int LoopVar {0};
-   while (LoopVar < workerNumber) {
-      painter.drawRect(930, YPointHrLongRect, 35, 35);
-      painter.drawRect(930, YPointHrShortRect, 35, 20);
-      YPointHrLongRect += 55;
-      YPointHrShortRect += 55;
+   int yPosofHrandDaylongRect {155};
+   int yPosofHrandDayshortRect {190};
 
-      painter.drawRect(965, YPointDayLongRect, 35, 35);
-      painter.drawRect(965, YPointDayShortRect, 35, 20);
+   int YpointsHrShortRect {190};
 
-      YPointDayLongRect += 55;
-      YPointDayShortRect += 55;
+   int YpointsDayShortRect {190};
 
-      LoopVar++;
+   int loopInfoBoxinWorkerScheduleCounter {0};
+   while (loopInfoBoxinWorkerScheduleCounter < workerNumber) {
+      QRect rectofHourslongBoxes {930, yPosofHrandDaylongRect, 35, 35};
+      QRect rectofDaylongBoxes {965, yPosofHrandDaylongRect, 35, 35};
+
+      QRect rectofHoursshortBoxes {930, yPosofHrandDayshortRect, 35, 20};
+      QRect rectofDayshortBoxes {965, yPosofHrandDayshortRect, 35, 20};
+
+      painter.drawRect(rectofHourslongBoxes);
+      painter.drawRect(rectofDaylongBoxes);
+
+      painter.drawRect(rectofHoursshortBoxes);
+      painter.drawRect(rectofDayshortBoxes);
+
+      yPosofHrandDayshortRect += 55;
+      yPosofHrandDaylongRect += 55;
+      loopInfoBoxinWorkerScheduleCounter++;
    }
 }
 
 void PrintModel::paintWorker(QPainter& painter, QStringList workerNameLists)
 {
-   int YPointWorker {155};
-
-   int YPointWorkerLongRect {155};
-   int YPointWorkerShortRect {190};
+   int yPointsWorkerNameandLastName {155};
+   int yPointsWorkerShortRect {190};
+   int yPointsWorkerLongRect {155};
 
    for (const QString& workerName : workerNameLists) {
       int spaceIndex    = workerName.indexOf(' ');
       QString firstName = workerName.left(spaceIndex);
       QString lastName  = workerName.mid(spaceIndex + 1);
 
-      painter.drawText(40, YPointWorker, 120, 55, 1, firstName + '\n' + lastName);
-      painter.drawRect(40, YPointWorker, 120, 55);
+      QPoint pointsofWorkerName {40, yPointsWorkerNameandLastName + 20};
+      QPoint pointsofWorkerLastName {40, yPointsWorkerNameandLastName + 40};
+      QRect rectofWorkerNameandlastNameFrame {40, yPointsWorkerNameandLastName, 120, 55};
 
-      painter.drawRect(160, YPointWorker, 20, 20);
-      painter.drawRect(160, YPointWorker + 18, 20, 20);
-      painter.drawRect(160, YPointWorker + 35, 20, 20);
+      painter.drawText(pointsofWorkerName, firstName);
+      painter.drawText(pointsofWorkerLastName,lastName);
+      painter.drawRect(rectofWorkerNameandlastNameFrame);
 
-      YPointWorker += 55;
+      const int xPosofWorkerNamelastNameEmptyBox {160};
+      painter.drawRect(xPosofWorkerNamelastNameEmptyBox, yPointsWorkerNameandLastName, 20, 20);
+      painter.drawRect(xPosofWorkerNamelastNameEmptyBox, yPointsWorkerNameandLastName + 18, 20, 20);
+      painter.drawRect(xPosofWorkerNamelastNameEmptyBox, yPointsWorkerNameandLastName + 35, 20, 20);
 
-      int XPointLongRect {180};
-      for (int i = 0; i < 30; i++) {
-         painter.drawRect(XPointLongRect, YPointWorkerLongRect, 25, 38);
-         XPointLongRect += 25;
+      yPointsWorkerNameandLastName += 55;
+
+      const int monthdays {30};
+
+      int xPointsLongRect {180};
+
+      for (int i = 0; i < monthdays; i++) {
+         QRect rectofLongWorkerShiftBox {xPointsLongRect, yPointsWorkerLongRect, 25, 38};
+         painter.drawRect(rectofLongWorkerShiftBox);
+         xPointsLongRect += 25;
       }
 
-      int XPointShortRect {180};
-      for (int i = 0; i < 30; i++) {
-         painter.drawRect(XPointShortRect, YPointWorkerShortRect, 25, 20);
-         XPointShortRect += 25;
+      int xPointsShortRect {180};
+
+      for (int i = 0; i < monthdays; i++) {
+         QRect rectofShortWorkerShiftBox {xPointsShortRect, yPointsWorkerShortRect, 25, 20};
+         painter.drawRect(rectofShortWorkerShiftBox);
+         xPointsShortRect += 25;
       }
 
-      YPointWorkerLongRect += 55;
-      YPointWorkerShortRect += 55;
+      yPointsWorkerLongRect += 55;
+      yPointsWorkerShortRect += 55;
    }
 
-   painter.drawRect(40, YPointWorker, 140, 130);
+   QRect rectofClearSquare {40, yPointsWorkerNameandLastName, 140, 130}; // This square is to maintain the symmetry of the work plan
+   painter.drawRect(rectofClearSquare);
 
-   painter.drawText(300, YPointWorker + 12, 100, 100, 1, "Made");
-   painter.drawRect(180, YPointWorker, 300, 130);
+   auto createDownInfoBoxes = [&yPointsWorkerNameandLastName, &painter](QString text, int xPosofBoxesText, int xPosofBoxesFrame, int numbertoSubtractforBoxSmaller) {
+      const QPoint pointsofInfoBoxTitle {xPosofBoxesText, yPointsWorkerNameandLastName + 25};
+      const QRect rectofInfoBox {xPosofBoxesFrame, yPointsWorkerNameandLastName, 300 - numbertoSubtractforBoxSmaller, 130};
 
-   painter.drawText(600, YPointWorker + 12, 100, 100, 1, "Checked");
-   painter.drawRect(480, YPointWorker, 300, 130);
+      painter.drawText(pointsofInfoBoxTitle, text);
+      painter.drawRect(rectofInfoBox);
+   };
 
-   painter.drawText(860, YPointWorker + 12, 100, 100, 1, "Approved");
-   painter.drawRect(780, YPointWorker, 220, 130);
-
-   painter.drawLine(180, YPointWorker + 30, 1000, YPointWorker + 30);
+   QLine underLineforInfoBoxTitles {180, yPointsWorkerNameandLastName + 30, 1000, yPointsWorkerNameandLastName + 30};
+   painter.drawLine(underLineforInfoBoxTitles);
+   createDownInfoBoxes("Made", 300, 180, 0);
+   createDownInfoBoxes("Checked", 600, 480, 0);
+   createDownInfoBoxes("Approved", 860, 780, 80);
 }
