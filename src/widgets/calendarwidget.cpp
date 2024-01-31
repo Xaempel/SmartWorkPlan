@@ -10,7 +10,6 @@ CalendarWidget::CalendarWidget(QWidget* parent)
 
 CalendarWidget::~CalendarWidget() { }
 
-void CalendarWidget::getCalendarFieldWidgetLayoutPtr(QGridLayout*& layouttoGetCalendarFieldWidgetLayout)
-{
-   layouttoGetCalendarFieldWidgetLayout = ui->CalendarWidgetLayout;
+void CalendarWidget::addWidgettoCalendar(QWidget *widget,int dayCounter){
+   ui->CalendarWidgetLayout->addWidget(widget,dayCounter / 7, dayCounter % 7);
 }

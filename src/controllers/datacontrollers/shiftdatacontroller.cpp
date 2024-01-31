@@ -17,16 +17,13 @@ ShiftDataController::ShiftDataController(IShiftModel* shiftModel, DataModel* dat
 void ShiftDataController::setCalendarWidgetinLayout(QVBoxLayout* LayoutPtr)
 {
    CalendarWidget* calendarWidget {new CalendarWidget(nullptr)};
-   QGridLayout* calendarFieldWidgetPtr {nullptr};
-
-   calendarWidget->getCalendarFieldWidgetLayoutPtr(calendarFieldWidgetPtr);
 
    int DayCounter {1};
    for (int i = 0; i < 30; i++) {
       calendarFieldWidgetVecPtr->emplace_back(new CalendarFieldWidget(nullptr, DayCounter));
       calendarFieldWidgetVecPtr->at(i)->setFixedSize(160, 160);
 
-      calendarFieldWidgetPtr->addWidget(calendarFieldWidgetVecPtr->at(i), i / 7, i % 7);
+      calendarWidget->addWidgettoCalendar(calendarFieldWidgetVecPtr->at(i),i);
       DayCounter++;
    }
 

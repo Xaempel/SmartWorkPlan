@@ -41,7 +41,7 @@ class CalendarWidget : public QFrame{
    public:
    explicit CalendarWidget(QWidget* parent = nullptr);
    ~CalendarWidget();
-   void getCalendarFieldWidgetLayoutPtr(QGridLayout*& layouttoGetCalendarFieldWidgetLayout);
+   void addWidgettoCalendar(QWidget *widget,int dayCounter);
 
    private:
    Ui::CalendarWidget *ui {nullptr};
