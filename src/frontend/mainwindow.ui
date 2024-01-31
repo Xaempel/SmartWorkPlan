@@ -11,7 +11,18 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>SmartWorkPlan</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">*
+{
+	background-color: rgb(119, 118, 123);
+	border-radius: 10px;
+}
+
+QMenuBar{
+	background-color: rgb(154, 153, 150);
+}</string>
   </property>
   <widget class="QWidget" name="CentralWidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -43,15 +54,15 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>382</width>
-         <height>531</height>
+         <width>386</width>
+         <height>535</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <layout class="QVBoxLayout" name="WorkerLayout">
+         <layout class="QVBoxLayout" name="WorkerLayout" stretch="">
           <property name="spacing">
-           <number>0</number>
+           <number>3</number>
           </property>
           <property name="bottomMargin">
            <number>0</number>

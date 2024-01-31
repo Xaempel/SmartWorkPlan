@@ -13,6 +13,14 @@
   <property name="windowTitle">
    <string>CalendarFieldWidget</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">*
+{
+	background-color: rgb(154, 153, 150);
+	color: rgb(94, 92, 100);
+	border-radius: 10px;
+}</string>
+  </property>
   <property name="frameShape">
    <enum>QFrame::Box</enum>
   </property>
@@ -22,8 +30,11 @@
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
     <widget class="QLabel" name="DateLabel">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
+      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
@@ -39,10 +50,19 @@
    <item>
     <widget class="QScrollArea" name="WorkerNameLabelScrollArea">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>225</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
      </property>
      <property name="frameShape">
       <enum>QFrame::NoFrame</enum>
@@ -55,8 +75,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>369</width>
-        <height>284</height>
+        <width>225</width>
+        <height>288</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
