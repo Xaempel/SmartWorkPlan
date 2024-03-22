@@ -20,21 +20,18 @@ Source for SmartWorkPlan is available on github
 
 ### README.md Reference
 
-* [License](#license)
-
-* [System Requirements](#system-requirements)
-
-* [Installation](#installation)
-
-* [Building and Running](#building-and-running)
-
-* [Tools and Dependencies](#tools-and-dependencies)
-
-* [Authors](#authors)
-
-* [Acknowledgements](#acknowledgements)
-
-* [Contact](#contact)
+- [SmartWorkPlan](#smartworkplan)
+  - [Description](#description)
+    - [Project Reference](#project-reference)
+    - [README.md Reference](#readmemd-reference)
+  - [License](#license)
+  - [System Requirements](#system-requirements)
+  - [Installation](#installation)
+  - [Building and Running](#building-and-running)
+  - [Tools and Dependencies](#tools-and-dependencies)
+  - [Authors](#authors)
+  - [Acknowledgements](#acknowledgements)
+  - [Contact](#contact)
 
 ## License
 
@@ -52,8 +49,12 @@ To run SmartWorkPlan, your system should meet the following requirements:
   - Qt Framework: Version 6 or later
   - CMake: Version 3.20 or later
   - Git: Version 2.41.0 or later 
-  - Clang-format: Version 16.0.5 or later
+
   - Catch2 Version 2.13.7 or later  
+  
+- Optional depedencies 
+  - Clang-format: Version 16.0.5 or later
+  - Doxygen: Version 1.9.6 or later
 
 [Return](#readmemd-reference)
 ## Installation
@@ -110,6 +111,9 @@ This project uses the following tools and dependencies:
 * [Catch2 Readme File on GitHub](https://github.com/catchorg/Catch2/blob/devel/README.md): Catch2 is a unit testing framework for C++.
   [Catch2 Source](https://github.com/catchorg/Catch2) 
 
+  [Doxygen](https://www.doxygen.nl/): Doxygen is tool for generate documentation 
+  [Doxygen Source](https://github.com/doxygen/doxygen)
+
   Catch2 library uses Boost Software-1.0 license more on project github page [Link for license](https://github.com/catchorg/Catch2/blob/devel/LICENSE.txt) 
   or in build/_deps/catch2-src/LICENSE.txt 
   (this directory will be available after building the project because cmake downloads catch2 from the internet) path or similar
@@ -134,6 +138,8 @@ thanks to the following people or organization
 -- [LLVM community](https://github.com/llvm/llvm-project) for llvm tools
 
 -- [Git community and linus torvalds](https://github.com/git/git) for creating Git and other good tools 
+
+-- [Doxygen Community](https://www.doxygen.nl/) for creating Doxygen
 
 and other people on contributing projects for used for this project you are all great :> 
 

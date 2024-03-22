@@ -36,17 +36,22 @@
 #include <QObject>
 #include <QVBoxLayout>
 
+/// @brief This class is responsible for managing employee 
 class WorkerController : public QObject {
    Q_OBJECT
    public:
    WorkerController(DataModel& dataModelObj);
 
    public slots:
+   /// @brief This method is responsible for loading employees into the layout from the argument
    void runLoadWorker(QVBoxLayout* loadWorkerLayoutPtr);
+   /// @brief This method is responsible for add worker
    void runAddWorker(QVBoxLayout* workerLayoutPtr);
+   /// @brief This method is responsible for delete worker
    void runDeleteWorker();
 
    protected:
+   /// @brief This method return deleted worker name this methods used for auto delete worker from shift 
    QString getDeletedWorkerName();
 
    private:

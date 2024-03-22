@@ -1,0 +1,132 @@
+#---------------------------------------------------------------------------
+# Project related configuration options
+#---------------------------------------------------------------------------
+
+
+DOXYFILE_ENCODING      = UTF-8
+PROJECT_NAME           = "SmartWorkPlan"
+PROJECT_NUMBER         = 0.7.1
+PROJECT_BRIEF          = SmartWorkPlan is intended to be an intelligent aid in creating a work plan for employees.
+                         Source for SmartWorkPlan is available on github
+
+
+# This is a temporary directory name for doxygen related documentation until I document all the classes
+OUTPUT_DIRECTORY       = docs/new_docs_class
+
+ALLOW_UNICODE_NAMES    = NO
+OUTPUT_LANGUAGE        = English
+BRIEF_MEMBER_DESC      = YES
+
+INHERIT_DOCS           = YES
+SEPARATE_MEMBER_PAGES  = NO
+TAB_SIZE               = 4
+SUBGROUPING            = YES
+
+#---------------------------------------------------------------------------
+# Build related configuration options
+#---------------------------------------------------------------------------
+
+
+EXTRACT_LOCAL_CLASSES  = YES
+
+SHOW_HEADERFILE        = YES
+SHOW_INCLUDE_FILES     = YES
+
+SORT_MEMBER_DOCS       = YES
+
+GENERATE_TODOLIST      = YES
+GENERATE_TESTLIST      = YES
+GENERATE_BUGLIST       = YES
+GENERATE_DEPRECATEDLIST= YES
+
+
+SHOW_USED_FILES        = YES
+SHOW_FILES             = YES
+SHOW_NAMESPACES        = YES
+
+#---------------------------------------------------------------------------
+# Configuration options related to warning and progress messages
+#---------------------------------------------------------------------------
+
+QUIET                  = NO
+WARNINGS               = YES
+
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES
+WARN_IF_INCOMPLETE_DOC = YES
+
+WARN_FORMAT            = "$file:$line: $text"
+WARN_LINE_FORMAT       = "at line $line of file $file"
+
+#---------------------------------------------------------------------------
+# Configuration options related to the input files
+#---------------------------------------------------------------------------
+
+RECURSIVE              = YES
+
+INPUT_ENCODING         = UTF-8
+
+FILE_PATTERNS          = *.c \
+                         *.cpp \
+                         *.hpp \
+                         *.markdown \
+                         *.py \
+
+EXCLUDE                = build test
+
+
+#---------------------------------------------------------------------------
+# Configuration options related to source browsing
+#---------------------------------------------------------------------------
+
+STRIP_CODE_COMMENTS    = YES
+
+REFERENCES_LINK_SOURCE = YES
+
+SOURCE_TOOLTIPS        = YES
+
+VERBATIM_HEADERS       = YES
+
+CLANG_ADD_INC_PATHS    = YES
+
+#---------------------------------------------------------------------------
+# Configuration options related to the alphabetical class index
+#---------------------------------------------------------------------------
+
+ALPHABETICAL_INDEX     = YES
+
+#---------------------------------------------------------------------------
+# Configuration options related to the HTML output
+#---------------------------------------------------------------------------
+
+GENERATE_HTML          = YES
+
+HTML_OUTPUT            = docs_site
+HTML_FILE_EXTENSION    = .html
+
+HTML_COLORSTYLE        = AUTO_LIGHT
+
+HTML_COLORSTYLE_HUE    = 120
+HTML_COLORSTYLE_SAT    = 150
+HTML_COLORSTYLE_GAMMA  = 240
+
+HTML_TIMESTAMP         = NO
+HTML_DYNAMIC_MENUS     = YES
+HTML_DYNAMIC_SECTIONS  = NO
+HTML_INDEX_NUM_ENTRIES = 100
+HTML_FORMULA_FORMAT    = png
+
+DOCSET_FEEDNAME        = "Doxygen generated docs"
+
+#---------------------------------------------------------------------------
+# Configuration options related to the LaTeX output
+#---------------------------------------------------------------------------
+
+GENERATE_LATEX         = NO
+
+#---------------------------------------------------------------------------
+# Configuration options related to external references
+#---------------------------------------------------------------------------
+
+EXTERNAL_GROUPS        = YES
+EXTERNAL_PAGES         = YES

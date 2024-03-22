@@ -31,13 +31,19 @@
 
 #include <QMainWindow>
 
+/// @brief MainWindow Class
 class MainWindow : public QMainWindow, private Ui::MainWindow {
    Q_OBJECT
    public:
    MainWindow(QWidget* parent = nullptr);
    ~MainWindow();
 
+   /// @brief Function for get calendar layout pointer  
+   /// @return Returned Calendar Layout Pointer
    QVBoxLayout* getCalendarLayout();
+
+   /// @brief Function for get worker layout pointer
+   /// @return Returned calendar layout pointer
    QVBoxLayout* getWorkerLayout();
 
    signals:

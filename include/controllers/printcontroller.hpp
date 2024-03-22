@@ -30,7 +30,9 @@
 #include "../models/datamodel.hpp"
 #include "../models/printmodel.hpp"
 
+/// @brief Class is responsible for  printing the work schedule
 class PrintController {
    public:
+   /// @brief  This methods run startPrint from PrintModel 
    void runStartPrint();
 };

@@ -40,12 +40,16 @@
 #include <QVector>
 #include <random>
 
+
+/// @brief This class is responsible for managing employee shifts
 class ShiftController : public QObject {
    using IShiftModel = InterFace::IShiftModel;
 
    public:
    explicit ShiftController(IShiftModel* shiftModel, DataModel* dataModel, QVector<CalendarFieldWidget*>* calendarFieldWidgetVec);
+   /// @brief  This method is responsible for add shift
    void runAddShift();
+   /// @brief This method is responsible for delete shift
    void runDeleteShift();
 
    private:

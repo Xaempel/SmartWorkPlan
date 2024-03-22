@@ -16,9 +16,13 @@ this file is start point on project docs
 ## How to start read docs
 
 very good start point is a [class sections](#class-sections) on you learn a used class for 
-this project my especially favorite a [Controllers sections](#controllers) this good for one reasons  controllers class is a tape for this project controllers connect a widgets and models
+this project.
 
 [Return](#documentation)
+
+### How to build documentations
+Recently, the project has been using doxygen to generate documentation, if you want to build documentation, run doxygen on the Doxyfile file, in the future there will be a special script that does this automatically and in addition, the documentation will be supplemented with other classes and the old documentation will be completely removed (the folder with the new documentation is new_docs_class if you want run it, open index.html in the browser)
+
 ### Tools Sections
 
 #### Git
@@ -52,11 +56,3 @@ this project my especially favorite a [Controllers sections](#controllers) this 
 [Shift Model](docs_class/docs_models/docs_shiftmodel.md)
 
 [Worker Model](docs_class/docs_models/docs_workermodel.md)
-
-#### Controllers
-
-[Print Controller](docs_class/docs_controller/docs_printcontroller.md)
-
-[Shift Controller](docs_class/docs_controller/docs_shiftcontroller.md)
-
-[Worker Controller](docs_class/docs_controller/docs_workercontroller.md)
