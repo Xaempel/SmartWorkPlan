@@ -46,6 +46,7 @@ set(APP_SOURCES
     ../src/controllers/printcontroller.cpp
     ../src/controllers/shiftcontroller.cpp
 
+    ../src/models/datamodel.cpp
     ../src/models/workermodel.cpp
     ../src/models/printmodel.cpp
     ../src/models/shiftmodel.cpp

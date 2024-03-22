@@ -36,13 +36,13 @@ void ShiftDataController::runLoadShift(QVBoxLayout* LayoutPtr)
    dataModelPtr->load("data.json", shiftDataSectionName, dataList);
 
    QStringList workerNameList {};
-   workerNameList = HelpfulDatamodelThing::convertVariantToRequiredType<QString>(dataList);
+   workerNameList = ToolsforDataManipulation::convertVariantToRequiredType<QString>(dataList);
 
    dataList.clear();
    dataModelPtr->load("data.json", shiftDataSectionDate, dataList);
 
    QList<int> dayList {};
-   dayList = HelpfulDatamodelThing::convertVariantToRequiredType<int>(dataList);
+   dayList = ToolsforDataManipulation::convertVariantToRequiredType<int>(dataList);
 
    QVBoxLayout* workerShiftLayoutPtr;
 

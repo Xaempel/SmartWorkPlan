@@ -9,7 +9,7 @@ void PrintController::runStartPrint()
    dataModel.load("data.json", "worker section", dataList);
 
    QStringList workerNameList;
-   workerNameList = HelpfulDatamodelThing::convertVariantToRequiredType<QString>(dataList);
+   workerNameList = ToolsforDataManipulation::convertVariantToRequiredType<QString>(dataList);
 
    printModel.startPrint(workerNameList);
 }

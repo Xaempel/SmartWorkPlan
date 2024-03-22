@@ -102,7 +102,7 @@ void ShiftController::addAutomaticPlaceShift()
 {
    QVariantList list {};
    dataModelPtr->load("data.json", workerDataSectionName, list);
-   QStringList listofWorker = HelpfulDatamodelThing::convertVariantToRequiredType<QString>(list);
+   QStringList listofWorker = ToolsforDataManipulation::convertVariantToRequiredType<QString>(list);
 
    const int daysofMonth {30};
 

@@ -35,7 +35,7 @@ void WorkerController::runDeleteWorker()
 
    dataModelPtr->load("data.json", workerDataSectionName, dataList);
 
-   workerNameList = HelpfulDatamodelThing::convertVariantToRequiredType<QString>(dataList);
+   workerNameList = ToolsforDataManipulation::convertVariantToRequiredType<QString>(dataList);
 
    WorkersRemovalDialog* DialogObject {new WorkersRemovalDialog(nullptr, workerNameList)};
    DialogObject->exec();
@@ -67,7 +67,7 @@ void WorkerController::runLoadWorker(QVBoxLayout* loadWorkerLayoutPtr)
       }
       else {
          QStringList workerNameList {};
-         workerNameList = HelpfulDatamodelThing::convertVariantToRequiredType<QString>(dataList);
+         workerNameList = ToolsforDataManipulation::convertVariantToRequiredType<QString>(dataList);
          int loopCounter {0};
          for (const auto& loopIterator : workerNameList) {
             QString workerNameSurName = workerNameList.at(loopCounter);
