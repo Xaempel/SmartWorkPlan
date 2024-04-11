@@ -36,10 +36,14 @@ namespace Ui {
 }
 QT_END_NAMESPACE
 
+/// @brief This class is a calendar field
 class CalendarFieldWidget : public QFrame {
    public:
    explicit CalendarFieldWidget(QWidget* parent = nullptr, int DayCounter = 0);
    ~CalendarFieldWidget();
+
+   /// @brief This method  assign this pointer from argument to the layout in the widget 
+   /// @param Ptr add layout addres to variable 
    void getPointertoWorkerShiftPlace(QVBoxLayout*& Ptr);
 
    private:

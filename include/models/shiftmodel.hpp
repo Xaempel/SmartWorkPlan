@@ -34,10 +34,15 @@
 #include <QVBoxLayout>
 #include <QWidget>
 
+/// @brief This class is responsible for shift system
 class ShiftModel : public InterFace::IShiftModel {
    public:
    ShiftModel(QVector<QLabel*>& workerWidgetVector);
+   
+   /// @brief This method is a derived method from the IShitData class and is used to add employees to the shift
    void addShift(QVBoxLayout* layouttoAddShift, QString workerName) override;
+
+   /// @brief This method is a derived method from the IShitData class and is used to delete employees from the shift
    void deleteShift(int shiftNumbertoDelete) override;
 
    private:

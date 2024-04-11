@@ -37,11 +37,15 @@ namespace Ui {
 }
 QT_END_NAMESPACE
 
+
+/// @brief This class is a wizard to responsibility create worker 
 class WorkerWizard : public QWizard {
    Q_OBJECT
    public:
    WorkerWizard(QWidget* parent = nullptr);
    ~WorkerWizard();
+
+   /// @brief This method saves the wizard data in the variable from the argument
    bool getDataFromWizard(QString& firstName, QString& lastName);
 
    private:

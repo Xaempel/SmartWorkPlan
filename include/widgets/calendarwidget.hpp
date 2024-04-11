@@ -37,10 +37,13 @@ namespace Ui {
 }
 QT_END_NAMESPACE
 
+/// @brief this class is a calendar widget
 class CalendarWidget : public QFrame{
    public:
    explicit CalendarWidget(QWidget* parent = nullptr);
    ~CalendarWidget();
+
+   /// @brief The function add widget to calendar 
    void addWidgettoCalendar(QWidget *widget,int dayCounter);
 
    private:

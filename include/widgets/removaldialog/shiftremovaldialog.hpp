@@ -31,10 +31,14 @@
 
 #include <QDialog>
 
+/// @brief This class is a shift removal dialog
 class ShiftRemovalDialog : public QDialog, private Ui::ShiftRemovalDialog {
    Q_OBJECT
    public:
    ShiftRemovalDialog(QWidget* parent = nullptr, QVector<QPair<QString, int>> shiftDataVec = {});
+
+   /// @brief This methods save data from removal dialog to variables from argument
+   /// @param shiftData Data for saved data to delete from removal dialog  
    void getDataFromWizard(int& shiftData);
 
    private:

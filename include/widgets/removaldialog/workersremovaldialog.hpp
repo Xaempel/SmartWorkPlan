@@ -32,11 +32,16 @@
 #include <QDialog>
 #include <QStringList>
 
+
+/// @brief The class is a removal dialog of workers 
 class WorkersRemovalDialog : public QDialog, private Ui::WorkersRemovalDialog {
    Q_OBJECT
    public:
    WorkersRemovalDialog(QWidget* parent = nullptr, QStringList WorkerNameSurNameLists = {});
    ~WorkersRemovalDialog();
+
+   /// @brief  This method saves the Worker Number selected by the user to the variable from the argument.
+   /// @return Return value for check whether data is put to WorkerNumber
    bool getDeletedWorkerNumber(int& WorkerNumber);
 
    private:
@@ -44,5 +49,7 @@ class WorkersRemovalDialog : public QDialog, private Ui::WorkersRemovalDialog {
    bool AcceptedDialog {false};
 
    private slots:
+
+   /// @brief This method updates the variable in the Worker removal Dialog class that is responsible for the number of the removed employee
    void UpdateNumberDeletedWorker();
 };

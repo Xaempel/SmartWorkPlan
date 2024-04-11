@@ -11,7 +11,7 @@ PROJECT_BRIEF          = SmartWorkPlan is intended to be an intelligent aid in c
 
 
 # This is a temporary directory name for doxygen related documentation until I document all the classes
-OUTPUT_DIRECTORY       = docs/new_docs_class
+OUTPUT_DIRECTORY       = docs/docs_class
 
 ALLOW_UNICODE_NAMES    = NO
 OUTPUT_LANGUAGE        = English

@@ -32,10 +32,15 @@
 #include <QList>
 #include <QWidget>
 
+/// @brief this class is responsible for worker system
 class WorkerModel {
    public:
    WorkerModel(QList<QWidget*>* workerWidgetList);
+
+   /// @brief This method is responsible for a add worker
    void addWorker(QVBoxLayout* LayoutToAddWorker, QWidget* WidgetoLayout);
+
+   /// @brief This method is responsible for delete worker 
    void deleteWorker(int NumberWorkerToRemoved);
 
    private:

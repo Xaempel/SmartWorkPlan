@@ -36,12 +36,18 @@ namespace Ui {
 }
 QT_END_NAMESPACE
 
+
+/// @brief This class is a wizard to responsibility create shift 
 class ShiftWizard : public QWizard {
    Q_OBJECT
    public:
    explicit ShiftWizard(QWidget* parent = nullptr, QStringList workerStringLists = {});
    ~ShiftWizard();
+
+   /// @brief This methods save data from wizard to variables from argument 
    void getDataFromWizard(QString& nameSurname, int& selectedDayNumber);
+
+   /// @brief The function returns the user's decision for auto placement shifts for employees
    bool getAutoPlacementChoice();
 
    private slots:

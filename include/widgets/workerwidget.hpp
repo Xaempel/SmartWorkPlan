@@ -36,10 +36,14 @@ namespace Ui {
 }
 QT_END_NAMESPACE
 
+
+/// @brief This class is a worker widget 
 class WorkerWidget : public QFrame{
    public:
    explicit WorkerWidget(QWidget* parent = nullptr);
    explicit WorkerWidget(QWidget* parent = nullptr, QString firstName = "", QString lastName = "");
+
+   /// @brief This methods sets Name and SurName for worker widget 
    void setNameandSurName(QString firstName, QString lastName);
 
    private:

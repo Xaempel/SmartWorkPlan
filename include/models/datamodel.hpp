@@ -38,8 +38,12 @@
 #include <optional>
 #include <type_traits>
 
+/// @brief This class is responsible for data management
 class DataModel {
    public:
+   /// @brief This function have a responsible for saving data to file
+   /// @param nameFiletosave file to save data  
+   /// @param ...dataPack data pack for save 
    template <typename... DataPack>
    bool save(std::optional<QString> nameFiletosave, QString dataSectionName, DataPack... dataPack)
    {
@@ -71,7 +75,10 @@ class DataModel {
       return true;
    }
 
+   /// @brief This function get data from file and emplace data to QVariantList  
    void load(const QString fileName, const QString dataSectionName, QVariantList& vectorforLoadData);
+   
+   /// @brief This function removes data from the file based on index
    void deleteDatafromFile(QString fileName, QString dataSectionName, int indexOfData);
 
    private:
@@ -80,6 +87,7 @@ class DataModel {
 
 namespace ToolsforDataManipulation {
 
+   /// @brief This function help convert QVariantList to list in given type T
    template <typename T>
    QList<T> convertVariantToRequiredType(const QVariantList& listsForConversion)
    {

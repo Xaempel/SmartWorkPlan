@@ -33,11 +33,16 @@
 #include <QPrinter>
 #include <QStringList>
 
+/// @brief This class is responsible for print system
 class PrintModel : public QObject {
    public:
+   /// @brief Printing a worker schedule
    void startPrint(QStringList workerNameLists);
 
    private:
+   /// @brief This function print static elements in worker schedule 
    void paintStaticElements(QPainter& painter, int workerNumber);
+
+   /// @brief This function draws workers on worker schedule
    void paintWorker(QPainter& painter, QStringList workerNameLists);
 };
