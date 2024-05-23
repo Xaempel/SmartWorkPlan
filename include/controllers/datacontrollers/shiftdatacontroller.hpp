@@ -53,6 +53,7 @@ namespace DataControllers {
       IShiftModel* shiftModelPtr {nullptr};
       DataModel* dataModelPtr {nullptr};
       QVector<CalendarFieldWidget*>* calendarFieldWidgetVecPtr {nullptr};
+      QList<QWidget*> workersShiftsWidget {};
    };
 
 }

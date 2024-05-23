@@ -2,10 +2,8 @@
 
 using namespace DataControllers;
 
+const QString workerShiftsSaveFile {"WorkersShifts.json"};
 const QString workerDataSectionName {"worker section"};
-
-const QString shiftDataSectionName {"shift section name"};
-const QString shiftDataSectionDate {"shift section date"};
 
 ShiftDataController::ShiftDataController(IShiftModel* shiftModel, DataModel* dataModel, QVector<CalendarFieldWidget*>* calendarFieldWidgetVec)
     : shiftModelPtr(shiftModel)
@@ -23,7 +21,7 @@ void ShiftDataController::setCalendarWidgetinLayout(QVBoxLayout* LayoutPtr)
       calendarFieldWidgetVecPtr->emplace_back(new CalendarFieldWidget(nullptr, DayCounter));
       calendarFieldWidgetVecPtr->at(i)->setFixedSize(160, 160);
 
-      calendarWidget->addWidgettoCalendar(calendarFieldWidgetVecPtr->at(i),i);
+      calendarWidget->addWidgettoCalendar(calendarFieldWidgetVecPtr->at(i), i);
       DayCounter++;
    }
 
@@ -32,25 +30,20 @@ void ShiftDataController::setCalendarWidgetinLayout(QVBoxLayout* LayoutPtr)
 
 void ShiftDataController::runLoadShift(QVBoxLayout* LayoutPtr)
 {
-   QVariantList dataList {};
-   dataModelPtr->load("data.json", shiftDataSectionName, dataList);
+   QVariantList workerList;
+   dataModelPtr->load("data.json", workerDataSectionName, workerList);
 
-   QStringList workerNameList {};
-   workerNameList = ToolsforDataManipulation::convertVariantToRequiredType<QString>(dataList);
+   for (auto i : workerList) {
+      QVariantList dataList;
+      dataModelPtr->load(workerShiftsSaveFile, i.toString(), dataList);
 
-   dataList.clear();
-   dataModelPtr->load("data.json", shiftDataSectionDate, dataList);
+      // add widget to layout spaces
+      QVBoxLayout* workerShiftLayoutPtr {nullptr};
+      for (auto j : dataList) {
+         calendarFieldWidgetVecPtr->at(j.toInt())->getPointertoWorkerShiftPlace(workerShiftLayoutPtr);
+         shiftModelPtr->addShift(workerShiftLayoutPtr, i.toString());
+      }
 
-   QList<int> dayList {};
-   dayList = ToolsforDataManipulation::convertVariantToRequiredType<int>(dataList);
-
-   QVBoxLayout* workerShiftLayoutPtr;
-
-   for (int i = 0; i < dataList.size(); i++) {
-      QString currentWorkerShiftName = workerNameList.at(i);
-      int currentShiftDate           = dayList.at(i);
-
-      calendarFieldWidgetVecPtr->at(currentShiftDate)->getPointertoWorkerShiftPlace(workerShiftLayoutPtr);
-      shiftModelPtr->addShift(workerShiftLayoutPtr, currentWorkerShiftName);
+      
    }
 }

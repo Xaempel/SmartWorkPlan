@@ -60,7 +60,7 @@ QMenuBar{
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <layout class="QVBoxLayout" name="WorkerLayout" stretch="">
+         <layout class="QVBoxLayout" name="WorkerLayout">
           <property name="spacing">
            <number>3</number>
           </property>
@@ -99,7 +99,6 @@ QMenuBar{
      <string>Shift</string>
     </property>
     <addaction name="ActionAddShift"/>
-    <addaction name="ActionDeleteShift"/>
    </widget>
    <widget class="QMenu" name="MenuPrint">
     <property name="title">

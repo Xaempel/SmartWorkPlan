@@ -81,6 +81,10 @@ class DataModel {
    /// @brief This function removes data from the file based on index
    void deleteDatafromFile(QString fileName, QString dataSectionName, int indexOfData);
 
+   /// @brief This function removes shifts from file 
+   /// @todo This function will be move in special file
+   void deleteShiftsFromFile(QString dataSectionName,QString contentForDelete); 
+
    private:
    std::unique_ptr<QFile> filetoSave {};
 };

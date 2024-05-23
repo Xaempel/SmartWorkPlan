@@ -40,8 +40,6 @@ class DependencyShiftManager : public QObject {
    explicit DependencyShiftManager(QVBoxLayout* calendarLayout, InterFace::IShiftModel* ishiftModel, QVector<CalendarFieldWidget*>*);
    public slots:
    void callAddShift();
-   void callDeleteShift();
-   void handleWorkerDeleted(QString workerName);
 
    private:
    void refreshPointer();

@@ -5,7 +5,6 @@ MainWindow::MainWindow(QWidget* parent)
 {
    setupUi(this);
    QObject::connect(ActionAddShift, &QAction::triggered, this, &MainWindow::emitAddShift);
-   QObject::connect(ActionDeleteShift, &QAction::triggered, this, &MainWindow::emitDeleteShift);
 
    QObject::connect(ActionAddWorker, &QAction::triggered, this, &MainWindow::emitAddWorker);
    QObject::connect(ActionDeleteWorker, &QAction::triggered, this, &MainWindow::emitDeleteWorker);

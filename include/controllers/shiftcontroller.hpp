@@ -31,7 +31,6 @@
 #include "../models/modelsinteface/ishiftmodel.hpp"
 #include "../widgets/calendarfieldwidget.hpp"
 #include "../widgets/calendarwidget.hpp"
-#include "../widgets/removaldialog/shiftremovaldialog.hpp"
 #include "../widgets/shiftwizard.hpp"
 
 #include <QGridLayout>
@@ -49,8 +48,6 @@ class ShiftController : public QObject {
    explicit ShiftController(IShiftModel* shiftModel, DataModel* dataModel, QVector<CalendarFieldWidget*>* calendarFieldWidgetVec);
    /// @brief  This method is responsible for add shift
    void runAddShift();
-   /// @brief This method is responsible for delete shift
-   void runDeleteShift();
 
    private:
    void addSinglePlaceShift(ShiftWizard* shiftWizard);

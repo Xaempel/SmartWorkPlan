@@ -7,7 +7,6 @@ set(APP_HEADERS
     ../include/models/modelsinteface/ishiftmodel.hpp
 
     ../include/widgets/removaldialog/workersremovaldialog.hpp
-    ../include/widgets/removaldialog/shiftremovaldialog.hpp
 
     ../include/widgets/calendarfieldwidget.hpp
     ../include/widgets/calendarwidget.hpp
@@ -33,7 +32,6 @@ set(APP_SOURCES
     ../src/depmanagerhelpers/dependencyworkermanager.cpp
 
     ../src/widgets/removaldialog/workersremovaldialog.cpp
-    ../src/widgets/removaldialog/shiftremovaldialog.cpp
 
     ../src/widgets/calendarfieldwidget.cpp
     ../src/widgets/calendarwidget.cpp
