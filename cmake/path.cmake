@@ -1,29 +1,21 @@
+include(cmake/paths_to_cmake/header_files_paths/h_widgets_paths.cmake)
+include(cmake/paths_to_cmake/header_files_paths/h_controllers_paths.cmake)
+include(cmake/paths_to_cmake/header_files_paths/h_models_paths.cmake)
+
 set(APP_HEADERS
     ../include/mainwindow.hpp  
     ../include/dependencymanager.hpp
     ../include/depmanagerhelpers/dependencyshiftmanager.hpp  
     ../include/depmanagerhelpers/dependencyworkermanager.hpp
 
-    ../include/models/modelsinteface/ishiftmodel.hpp
-
-    ../include/widgets/removaldialog/workersremovaldialog.hpp
-
-    ../include/widgets/calendarfieldwidget.hpp
-    ../include/widgets/calendarwidget.hpp
-    ../include/widgets/workerwidget.hpp
-    ../include/widgets/workerwizard.hpp
-    ../include/widgets/shiftwizard.hpp
-
-    ../include/controllers/datacontrollers/shiftdatacontroller.hpp
-    ../include/controllers/workercontroller.hpp
-    ../include/controllers/printcontroller.hpp
-    ../include/controllers/shiftcontroller.hpp
-
-    ../include/models/datamodel.hpp
-    ../include/models/workermodel.hpp
-    ../include/models/printmodel.hpp
-    ../include/models/shiftmodel.hpp
+    ${H_WIDGETS_PATHS}
+    ${H_CONTROLLERS_PATHS}
+    ${H_MODELS_PATHS}
 )
+
+include(cmake/paths_to_cmake/source_files_paths/s_widgets_paths.cmake)
+include(cmake/paths_to_cmake/source_files_paths/s_controllers_paths.cmake)
+include(cmake/paths_to_cmake/source_files_paths/s_models_paths.cmake)
 
 set(APP_SOURCES
     ../src/mainwindow.cpp
@@ -31,23 +23,9 @@ set(APP_SOURCES
     ../src/depmanagerhelpers/dependencyshiftmanager.cpp
     ../src/depmanagerhelpers/dependencyworkermanager.cpp
 
-    ../src/widgets/removaldialog/workersremovaldialog.cpp
-
-    ../src/widgets/calendarfieldwidget.cpp
-    ../src/widgets/calendarwidget.cpp
-    ../src/widgets/workerwidget.cpp
-    ../src/widgets/workerwizard.cpp
-    ../src/widgets/shiftwizard.cpp
-
-    ../src/controllers/datacontrollers/shiftdatacontroller.cpp
-    ../src/controllers/workercontroller.cpp
-    ../src/controllers/printcontroller.cpp
-    ../src/controllers/shiftcontroller.cpp
-
-    ../src/models/datamodel.cpp
-    ../src/models/workermodel.cpp
-    ../src/models/printmodel.cpp
-    ../src/models/shiftmodel.cpp
+    ${S_WIDGETS_PATHS}
+    ${S_CONTROLLERS_PATHS}
+    ${S_MODELS_PATHS}
 )
 
 set(COMMON_SOURCES
