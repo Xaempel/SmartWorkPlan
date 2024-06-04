@@ -1,11 +1,11 @@
 #include "../include/models/printmodel.hpp"
 
-void PrintModel::startPrint(QStringList workerNameLists)
+void PrintModel::startPrint(QStringList workerNameLists, QList<QPair<QStringList, QString>*> workersShiftsDate)
 {
    QPrinter printer;
 
    printer.setPageSize(QPageSize(QPageSize::A4));
-   
+
    // if I'm printing vertically instead of horizontally,
    // it's possible that the error is caused by the printer settings and not the code,
    // it will check the settings and set the printing Orientations to landscape
@@ -15,7 +15,7 @@ void PrintModel::startPrint(QStringList workerNameLists)
    painter.begin(&printer);
 
    paintStaticElements(painter, workerNameLists.size());
-   paintWorker(painter, workerNameLists);
+   paintWorker(painter, workerNameLists, workersShiftsDate);
 
    painter.end();
 }
@@ -131,7 +131,7 @@ void PrintModel::paintStaticElements(QPainter& painter, int workerNumber)
    }
 }
 
-void PrintModel::paintWorker(QPainter& painter, QStringList workerNameLists)
+void PrintModel::paintWorker(QPainter& painter, QStringList workerNameLists, QList<QPair<QStringList, QString>*> workersShiftsDate)
 {
    int yPointsWorkerNameandLastName {155};
    int yPointsWorkerShortRect {190};
@@ -147,7 +147,7 @@ void PrintModel::paintWorker(QPainter& painter, QStringList workerNameLists)
       QRect rectofWorkerNameandlastNameFrame {40, yPointsWorkerNameandLastName, 120, 55};
 
       painter.drawText(pointsofWorkerName, firstName);
-      painter.drawText(pointsofWorkerLastName,lastName);
+      painter.drawText(pointsofWorkerLastName, lastName);
       painter.drawRect(rectofWorkerNameandlastNameFrame);
 
       const int xPosofWorkerNamelastNameEmptyBox {160};
@@ -195,4 +195,27 @@ void PrintModel::paintWorker(QPainter& painter, QStringList workerNameLists)
    createDownInfoBoxes("Made", 300, 180, 0);
    createDownInfoBoxes("Checked", 600, 480, 0);
    createDownInfoBoxes("Approved", 860, 780, 80);
+
+   const int xPointMove {25};
+   const int yPointMove {55};
+   const int xPointValueReset {185};
+   int xPoint {185};
+   int yPoint {180};
+
+   for (auto i : workersShiftsDate) {
+      auto currentShiftsList {i->first};
+
+      for (auto j : currentShiftsList) {
+         xPoint = xPointValueReset;
+
+         // set good xPoint basic on j.toInt size
+         for (int day = 0; day < j.toInt(); day++) {
+            xPoint += xPointMove;
+         }
+
+         painter.drawText(xPoint, yPoint, "X");
+      }
+
+      yPoint += yPointMove;
+   }
 }

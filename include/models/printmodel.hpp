@@ -37,12 +37,12 @@
 class PrintModel : public QObject {
    public:
    /// @brief Printing a worker schedule
-   void startPrint(QStringList workerNameLists);
+   void startPrint(QStringList workerNameLists,QList<QPair<QStringList,QString> *> workersShiftsDate);
 
    private:
    /// @brief This function print static elements in worker schedule 
    void paintStaticElements(QPainter& painter, int workerNumber);
 
    /// @brief This function draws workers on worker schedule
-   void paintWorker(QPainter& painter, QStringList workerNameLists);
+   void paintWorker(QPainter& painter, QStringList workerNameLists,QList<QPair<QStringList,QString> *> workersShiftsDate);
 };
