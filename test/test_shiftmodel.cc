@@ -33,24 +33,11 @@
 #include "../include/models/shiftmodel.hpp"
 
 #include <catch2/catch.hpp>
-#include <memory>
 
-struct ShiftModelTestData {
+TEST_CASE("ShiftModel::addShift", "[ShiftModel]")
+{
    QVBoxLayout layoutforTest {};
-   QVector<QLabel*> workerWidgetVec {};
-   std::unique_ptr<ShiftModel> shiftModel = std::make_unique<ShiftModel>(workerWidgetVec);
-};
-
-TEST_CASE_METHOD(ShiftModelTestData, "ShiftModel::addShift", "[ShiftModel]")
-{
-   shiftModel->addShift(&layoutforTest, "Test worker name in addShift test");
+   ShiftModel shiftModel {};
+   shiftModel.addShift(&layoutforTest, "Test worker name in addShift test");
    REQUIRE(layoutforTest.count() == 1);
-   shiftModel->deleteShift(0);
-}
-
-TEST_CASE_METHOD(ShiftModelTestData, "ShiftModel::deleteShift", "[ShiftModel]")
-{
-   shiftModel->addShift(&layoutforTest, "Test worker name in deleteShift test");
-   shiftModel->deleteShift(0);
-   REQUIRE(workerWidgetVec.size() == 0);
 }

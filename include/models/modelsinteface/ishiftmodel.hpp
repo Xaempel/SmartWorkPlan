@@ -37,7 +37,6 @@ namespace InterFace {
       public:
       virtual ~IShiftModel() { }
       virtual void addShift(QVBoxLayout* layouttoAddShift, QString workerName) = 0;
-      virtual void deleteShift(int shiftNumbertoDelete)                        = 0;
    };
 
 }
