@@ -40,10 +40,8 @@ void ShiftDataController::runLoadShift(QVBoxLayout* LayoutPtr)
       // add widget to layout spaces
       QVBoxLayout* workerShiftLayoutPtr {nullptr};
       for (auto j : dataList) {
-         calendarFieldWidgetVecPtr->at(j.toInt())->getPointertoWorkerShiftPlace(workerShiftLayoutPtr);
-         shiftModelPtr->addShift(workerShiftLayoutPtr, i.toString());
+         auto shiftWidget = shiftModelPtr->addShift(i.toString());
+         calendarFieldWidgetVecPtr->at(j.toInt())->addShiftWidget(shiftWidget, i.toString());
       }
-
-      
    }
 }

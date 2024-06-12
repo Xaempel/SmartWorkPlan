@@ -38,6 +38,6 @@ TEST_CASE("ShiftModel::addShift", "[ShiftModel]")
 {
    QVBoxLayout layoutforTest {};
    ShiftModel shiftModel {};
-   shiftModel.addShift(&layoutforTest, "Test worker name in addShift test");
-   REQUIRE(layoutforTest.count() == 1);
+   auto shiftWidget = shiftModel.addShift("Test worker name in addShift test");
+   REQUIRE(shiftWidget != nullptr);
 }

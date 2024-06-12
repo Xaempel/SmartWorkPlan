@@ -8,6 +8,7 @@ DependencyManager::DependencyManager()
    QObject::connect(&mainWindow, &MainWindow::emitDeleteWorker, depedencyWorkerManager.get(), &DependencyWorkerManager::callDeleteWorker);
 
    QObject::connect(&mainWindow, &MainWindow::emitPrintWorkPlan, this, &DependencyManager::callPrintWorkPlan);
+   QObject::connect(depedencyWorkerManager.get(), &DependencyWorkerManager::emittedWorkerDeleted, dependencyShiftManager.get(), &DependencyShiftManager::handleDeleteWorker);
 }
 
 void DependencyManager::showMainWindow() { mainWindow.showMaximized(); }

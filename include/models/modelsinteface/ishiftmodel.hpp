@@ -36,7 +36,7 @@ namespace InterFace {
    class IShiftModel {
       public:
       virtual ~IShiftModel() { }
-      virtual void addShift(QVBoxLayout* layouttoAddShift, QString workerName) = 0;
+      virtual QLabel* addShift(QString workerName) = 0;
    };
 
 }

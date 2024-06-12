@@ -15,6 +15,18 @@ void DependencyShiftManager::callAddShift()
    refreshPointer();
 }
 
+void DependencyShiftManager::handleDeleteWorker(QString nameofDeletedWorker)
+{
+   for (auto i : calendarFieldWidgets) {
+      for (auto j : i->getShiftDataList()) {
+         if (j.second == nameofDeletedWorker) {
+            j.first->deleteLater();
+         }
+      }
+   }
+   dataModel->deleteSection("WorkersShifts.json", nameofDeletedWorker);
+}
+
 void DependencyShiftManager::refreshPointer()
 {
    dataModel           = nullptr;

@@ -39,5 +39,5 @@ class ShiftModel : public InterFace::IShiftModel {
    public:
 
    /// @brief This method is a derived method from the IShitData class and is used to add employees to the shift
-   void addShift(QVBoxLayout* layouttoAddShift, QString workerName) override;
+   QLabel* addShift(QString workerName) override;
 };

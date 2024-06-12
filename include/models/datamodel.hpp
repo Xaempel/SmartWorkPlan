@@ -85,6 +85,9 @@ class DataModel {
    /// @todo This function will be move in special file
    void deleteShiftsFromFile(QString dataSectionName,QString contentForDelete); 
 
+   /// @brief a method delete section by section name variable
+   void deleteSection(QString fileNametoDeleteSection,QString sectionName);
+
    private:
    std::unique_ptr<QFile> filetoSave {};
 };

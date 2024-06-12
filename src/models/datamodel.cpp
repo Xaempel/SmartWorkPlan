@@ -62,7 +62,7 @@ void DataModel::deleteDatafromFile(QString fileName, QString dataSectionName, in
    filetoSave->close();
 }
 
-void DataModel::deleteShiftsFromFile(QString dataSectionName,QString contentForDelete)
+void DataModel::deleteShiftsFromFile(QString dataSectionName, QString contentForDelete)
 {
    const QString fileName {"WorkersShifts.json"};
 
@@ -86,8 +86,8 @@ void DataModel::deleteShiftsFromFile(QString dataSectionName,QString contentForD
    QJsonArray array = jsonObject[dataSectionName].toArray();
 
    int index = 0;
-   for(int i = 0; i < array.size(); i++ ){
-      if(array.at(i).toInt() == contentForDelete.toInt()){
+   for (int i = 0; i < array.size(); i++) {
+      if (array.at(i).toInt() == contentForDelete.toInt()) {
          index = i;
       }
    }
@@ -101,4 +101,30 @@ void DataModel::deleteShiftsFromFile(QString dataSectionName,QString contentForD
    filetoSave->seek(0);
    filetoSave->write(jsonDocument.toJson());
    filetoSave->close();
+}
+
+void DataModel::deleteSection(QString fileNametoDeleteSection, QString sectionName)
+{
+   if (!QFile::exists(fileNametoDeleteSection)) {
+      throw std::runtime_error("there is no file with the given argument DataModel::deleteSection");
+   }
+
+   QFile filetoDeleteSection(fileNametoDeleteSection);
+
+   if (!filetoDeleteSection.open(QIODevice::ReadWrite | QIODevice::Text)) {
+      throw std::runtime_error("file " + fileNametoDeleteSection.toStdString() + " is not open");
+   }
+
+   QByteArray byteFileContent {filetoDeleteSection.readAll()};
+   QJsonDocument document {QJsonDocument::fromJson(byteFileContent)};
+   QJsonObject jsonObject {document.object()};
+
+   jsonObject.remove(sectionName);
+
+   document.setObject(jsonObject);
+
+   filetoDeleteSection.resize(0);
+   filetoDeleteSection.seek(0);
+   filetoDeleteSection.write(document.toJson());
+   filetoDeleteSection.close();
 }

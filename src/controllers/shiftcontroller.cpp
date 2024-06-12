@@ -51,8 +51,9 @@ void ShiftController::addSinglePlaceShift(ShiftWizard* shiftWizard)
 
    shiftWizard->getDataFromWizard(workerNameSurName, dayNumber);
    dayNumber--;
-   calendarFieldWidgetVecPtr->at(dayNumber)->getPointertoWorkerShiftPlace(workerShiftLayoutPtr);
-   shiftModelPtr->addShift(workerShiftLayoutPtr, workerNameSurName);
+
+   auto shiftWidget = shiftModelPtr->addShift(workerNameSurName);
+   calendarFieldWidgetVecPtr->at(dayNumber)->addShiftWidget(shiftWidget,workerNameSurName);
 
    dataModelPtr->save(workerShiftsSaveFile, workerNameSurName, dayNumber);
 }
@@ -92,9 +93,8 @@ void ShiftController::addAutomaticPlaceShift()
       }
 
       QVBoxLayout* workerLayoutPtr {new QVBoxLayout};
-
-      calendarFieldWidgetVecPtr->at(i)->getPointertoWorkerShiftPlace(workerLayoutPtr);
-      shiftModelPtr->addShift(workerLayoutPtr, listofWorker.at(seed));
+      auto shiftWidget = shiftModelPtr->addShift(listofWorker.at(seed));
+      calendarFieldWidgetVecPtr->at(i)->addShiftWidget(shiftWidget,listofWorker.at(seed));
       lastChoiceName = listofWorker.at(seed);
 
       dataModelPtr->save(workerShiftsSaveFile, listofWorker.at(seed), i);

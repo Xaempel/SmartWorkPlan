@@ -28,6 +28,7 @@
 #pragma once
 
 #include <QFrame>
+#include <QLabel>
 #include <QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
@@ -38,14 +39,18 @@ QT_END_NAMESPACE
 
 /// @brief This class is a calendar field
 class CalendarFieldWidget : public QFrame {
+   using ShiftsData = QList<QPair<QLabel*, QString>>;
+
    public:
    explicit CalendarFieldWidget(QWidget* parent = nullptr, int DayCounter = 0);
    ~CalendarFieldWidget();
 
-   /// @brief This method  assign this pointer from argument to the layout in the widget 
-   /// @param Ptr add layout addres to variable 
-   void getPointertoWorkerShiftPlace(QVBoxLayout*& Ptr);
+   /// @brief a method add shift widget to layout in the class CalendarFieldWidget
+   void addShiftWidget(QLabel* shiftWidget, QString name);
+   ShiftsData getShiftDataList();
 
    private:
    Ui::CalendarFieldWidget* ui {nullptr};
+
+   ShiftsData shiftsData;
 };

@@ -129,3 +129,16 @@ TEST_CASE_METHOD(DataModelTestData, "DataModel::deleteDatafromFile", "[DataModel
    REQUIRE(listHaveLoadValue != listHaveSaveValue);
    usefulFunctionsforTests::clearTrash();
 }
+
+TEST_CASE("DataModel::deleteSection", "[DataModel]")
+{
+   DataModel dataModel;
+   QVariantList listHaveSaveValue {125, 6126, 12516, "john"};
+   QVariantList listHaveLoadValue {};
+   dataModel.save(std::nullopt, "test section", 125, 6126, 12516, "john");
+   dataModel.deleteSection("data.json", "test section");
+   dataModel.load("data.json", "test section", listHaveLoadValue);
+
+   REQUIRE(listHaveLoadValue.size() == 0);
+   usefulFunctionsforTests::clearTrash();
+}
