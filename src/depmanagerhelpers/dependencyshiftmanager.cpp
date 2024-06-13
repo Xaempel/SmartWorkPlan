@@ -15,6 +15,11 @@ void DependencyShiftManager::callAddShift()
    refreshPointer();
 }
 
+void DependencyShiftManager::callDeleteShift()
+{
+   shiftController->runDeleteShift();
+}
+
 void DependencyShiftManager::handleDeleteWorker(QString nameofDeletedWorker)
 {
    for (auto i : calendarFieldWidgets) {

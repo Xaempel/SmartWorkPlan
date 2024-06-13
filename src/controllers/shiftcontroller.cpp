@@ -1,11 +1,10 @@
 #include "../include/controllers/shiftcontroller.hpp"
 
+#include "../include/widgets/removaldialog/shiftremovaldialog.hpp"
+
 const QString workerShiftsSaveFile {"WorkersShifts.json"};
 
 const QString workerDataSectionName {"worker section"};
-
-const QString shiftDataSectionName {"shift section name"};
-const QString shiftDataSectionDate {"shift section date"};
 
 ShiftController::ShiftController(IShiftModel* shiftModel, DataModel* dataModel, QVector<CalendarFieldWidget*>* calendarFieldWidgetVec)
     : shiftModelPtr(shiftModel)
@@ -43,6 +42,50 @@ void ShiftController::runAddShift()
    }
 }
 
+void ShiftController::runDeleteShift()
+{
+   QVariantList dataList {};
+   dataModelPtr->load("data.json", workerDataSectionName, dataList);
+
+   QStringList workerName = ToolsforDataManipulation::convertVariantToRequiredType<QString>(dataList);
+
+   QStringList shifts {};
+   for (QString i : workerName) {
+      dataModelPtr->load(workerShiftsSaveFile, i, dataList);
+      for (auto j : dataList) {
+         shifts.append(j.toString() + " " + i);
+      }
+   }
+
+   ShiftRemovalDialog removalDialog(nullptr, shifts);
+   removalDialog.exec();
+
+   auto selecedShiftData = removalDialog.getSelectedShiftsData();
+
+   QString deletedWorkerName {selecedShiftData.second};
+   int deletedWorkerDay {selecedShiftData.first};
+
+   auto workerNameinCalendarWidget = calendarFieldWidgetVecPtr->at(deletedWorkerDay)->getShiftDataList();
+
+   for (auto i : workerNameinCalendarWidget) {
+      if (i.second == deletedWorkerName) {
+         i.first->deleteLater();
+         break;
+      }
+   }
+
+   dataModelPtr->load(workerShiftsSaveFile, deletedWorkerName, dataList);
+   QStringList deletedWorkerShifts = ToolsforDataManipulation::convertVariantToRequiredType<QString>(dataList);
+
+   int indexofDeletedDay {0};
+   for (QString i : deletedWorkerShifts) {
+      if (i.toInt() == deletedWorkerDay) {
+         dataModelPtr->deleteDatafromFile(workerShiftsSaveFile, deletedWorkerName, indexofDeletedDay);
+      }
+      indexofDeletedDay++;
+   }
+}
+
 void ShiftController::addSinglePlaceShift(ShiftWizard* shiftWizard)
 {
    QVBoxLayout* workerShiftLayoutPtr {nullptr};
@@ -53,7 +96,7 @@ void ShiftController::addSinglePlaceShift(ShiftWizard* shiftWizard)
    dayNumber--;
 
    auto shiftWidget = shiftModelPtr->addShift(workerNameSurName);
-   calendarFieldWidgetVecPtr->at(dayNumber)->addShiftWidget(shiftWidget,workerNameSurName);
+   calendarFieldWidgetVecPtr->at(dayNumber)->addShiftWidget(shiftWidget, workerNameSurName);
 
    dataModelPtr->save(workerShiftsSaveFile, workerNameSurName, dayNumber);
 }
@@ -94,7 +137,7 @@ void ShiftController::addAutomaticPlaceShift()
 
       QVBoxLayout* workerLayoutPtr {new QVBoxLayout};
       auto shiftWidget = shiftModelPtr->addShift(listofWorker.at(seed));
-      calendarFieldWidgetVecPtr->at(i)->addShiftWidget(shiftWidget,listofWorker.at(seed));
+      calendarFieldWidgetVecPtr->at(i)->addShiftWidget(shiftWidget, listofWorker.at(seed));
       lastChoiceName = listofWorker.at(seed);
 
       dataModelPtr->save(workerShiftsSaveFile, listofWorker.at(seed), i);

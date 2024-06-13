@@ -27,29 +27,27 @@
 ******************************************************************************/
 #pragma once
 
-#include "../controllers/datacontrollers/shiftdatacontroller.hpp"
-#include "../controllers/shiftcontroller.hpp"
-#include "../models/datamodel.hpp"
-#include "../models/modelsinteface/ishiftmodel.hpp"
+#include <QDialog>
 
-class DependencyShiftManager : public QObject {
-   using ShiftDataController = DataControllers::ShiftDataController;
+QT_BEGIN_NAMESPACE
+namespace Ui {
+   class ShiftRemovalDialog;
+};
+QT_END_NAMESPACE
 
-   Q_OBJECT
+/// @brief A removal widget class to delete shift's widget
+class ShiftRemovalDialog : public QDialog {
    public:
-   explicit DependencyShiftManager(QVBoxLayout* calendarLayout, InterFace::IShiftModel* ishiftModel);
-   public slots:
-   void callAddShift();
-   void callDeleteShift();
-   void handleDeleteWorker(QString  nameofDeletedWorker);
+   ShiftRemovalDialog(QWidget* parent = nullptr,QStringList shifts = {});
+
+   QPair<int,QString> getSelectedShiftsData();
+
+   private slots:
+   void buttonofAcceptWasClicked();
 
    private:
-   void refreshPointer();
+   Ui::ShiftRemovalDialog* ui {nullptr};
 
-   InterFace::IShiftModel* ishiftModelPtr {nullptr};
-   QVector<CalendarFieldWidget*> calendarFieldWidgets {};
-
-   std::unique_ptr<DataModel> dataModel = std::make_unique<DataModel>();
-   std::unique_ptr<ShiftDataController> shiftDataController {nullptr};
-   std::unique_ptr<ShiftController> shiftController {nullptr};
+   int selectedShiftDay_ {};
+   QString selectedWorkerName_ {};
 };

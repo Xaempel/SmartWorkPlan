@@ -1,5 +1,6 @@
 set(S_WIDGETS_PATHS
     ../src/widgets/removaldialog/workersremovaldialog.cpp
+    ../src/widgets/removaldialog/shiftremovaldialog.cpp
 
     ../src/widgets/calendarfieldwidget.cpp
     ../src/widgets/calendarwidget.cpp

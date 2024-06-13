@@ -3,6 +3,7 @@
 DependencyManager::DependencyManager()
 {
    QObject::connect(&mainWindow, &MainWindow::emitAddShift, dependencyShiftManager.get(), &DependencyShiftManager::callAddShift);
+QObject::connect(&mainWindow, &MainWindow::emitDeleteShift, dependencyShiftManager.get(), &DependencyShiftManager::callDeleteShift);
 
    QObject::connect(&mainWindow, &MainWindow::emitAddWorker, depedencyWorkerManager.get(), &DependencyWorkerManager::callAddWorker);
    QObject::connect(&mainWindow, &MainWindow::emitDeleteWorker, depedencyWorkerManager.get(), &DependencyWorkerManager::callDeleteWorker);
