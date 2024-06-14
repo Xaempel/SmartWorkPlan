@@ -7,13 +7,14 @@ this file present a commit conventions for project
 
 ## Reference
 
-[Commit Structure](#commit-structure)
-[Commit Flags](#commit-flags)
+1. [Commit Structure](#commit-structure)
+
+2. [Commit Flags](#commit-flags)
 
 ## Commit structure 
 [Return](#reference)
 
-    <Flags for commits>
+    <Flags for commits>: Optional header
     -- Commits content
 
 this standard accepts the use of different flags in one commit if needed example at the bottom
@@ -64,3 +65,5 @@ commit flags are responsible for present the content of the commit e.g. you have
 
     <Other>
     This flag is used when something is not included in the flags or change is a special event e.x change in clang-format file
+
+[Return](../ReadMe.md)
