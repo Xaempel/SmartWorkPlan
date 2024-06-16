@@ -30,7 +30,7 @@
 **                                                                           **
 ******************************************************************************/
 
-#include "../include/models/shiftmodel.hpp"
+#include "include/models/ShiftModel.hpp"
 
 #include <catch2/catch.hpp>
 

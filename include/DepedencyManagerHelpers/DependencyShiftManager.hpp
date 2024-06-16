@@ -25,16 +25,31 @@
 **  https://www.qt.io/.                                                       **
 **                                                                            **
 ******************************************************************************/
+#pragma once
 
-#include "../include/DependencyManager.hpp"
+#include "../controllers/DataControllers/ShiftDataController.hpp"
+#include "include/controllers/ShiftController.hpp"
+#include "include/models/DataModel.hpp"
+#include "include/models/ModelsInteface/IShiftModel.hpp"
 
-#include <QApplication>
+class DependencyShiftManager : public QObject {
+   using ShiftDataController = DataControllers::ShiftDataController;
 
-int main(int argc, char** argv)
-{
-   QApplication app(argc, argv);
-   DependencyManager dependencyManager;
-   dependencyManager.showMainWindow();
+   Q_OBJECT
+   public:
+   explicit DependencyShiftManager(QVBoxLayout* calendarLayout, InterFace::IShiftModel* ishiftModel);
+   public slots:
+   void callAddShift();
+   void callDeleteShift();
+   void handleDeleteWorker(QString  nameofDeletedWorker);
 
-   return app.exec();
-}
+   private:
+   void refreshPointer();
+
+   InterFace::IShiftModel* ishiftModelPtr {nullptr};
+   QVector<CalendarFieldWidget*> calendarFieldWidgets {};
+
+   std::unique_ptr<DataModel> dataModel = std::make_unique<DataModel>();
+   std::unique_ptr<ShiftDataController> shiftDataController {nullptr};
+   std::unique_ptr<ShiftController> shiftController {nullptr};
+};

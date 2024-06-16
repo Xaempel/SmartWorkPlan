@@ -25,16 +25,14 @@
 **  https://www.qt.io/.                                                       **
 **                                                                            **
 ******************************************************************************/
+#pragma once
 
-#include "../include/DependencyManager.hpp"
+#include "include/models/DataModel.hpp"
+#include "include/models/PrintModel.hpp"
 
-#include <QApplication>
-
-int main(int argc, char** argv)
-{
-   QApplication app(argc, argv);
-   DependencyManager dependencyManager;
-   dependencyManager.showMainWindow();
-
-   return app.exec();
-}
+/// @brief Class is responsible for  printing the work schedule
+class PrintController {
+   public:
+   /// @brief  This methods run startPrint from PrintModel 
+   void runStartPrint();
+};

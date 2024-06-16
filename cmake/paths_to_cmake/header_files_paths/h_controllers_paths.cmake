@@ -1,6 +1,6 @@
 set( H_CONTROLLERS_PATHS   
-    ../include/controllers/datacontrollers/shiftdatacontroller.hpp
-    ../include/controllers/workercontroller.hpp
-    ../include/controllers/printcontroller.hpp
-    ../include/controllers/shiftcontroller.hpp
+    include/controllers/DataControllers/ShiftDataController.hpp
+    include/controllers/WorkerController.hpp
+    include/controllers/PrintController.hpp
+    include/controllers/ShiftController.hpp
 )

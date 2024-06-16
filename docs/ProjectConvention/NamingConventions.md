@@ -15,6 +15,8 @@
     - small.hpp
     - OtherBigNameFile.hpp
 
+* This rule is not use for *.ui files in frontend folder. *.ui file use always small letters
+
 ### Folders Naming Conventions
 
 - **Docs folders:** Use PascalCase for folder names, similar to Docs files.

@@ -25,16 +25,39 @@
 **  https://www.qt.io/.                                                       **
 **                                                                            **
 ******************************************************************************/
+#pragma once
 
-#include "../include/DependencyManager.hpp"
+#include "include/models/DataModel.hpp"
+#include "include/models/ModelsInteface/IShiftModel.hpp"
+#include "include/widgets/CalendarFieldWidget.hpp"
+#include "include/widgets/CalendarWidget.hpp"
+#include "include/widgets/ShiftWizard.hpp"
 
-#include <QApplication>
+#include <QGridLayout>
+#include <QObject>
+#include <QVBoxLayout>
+#include <QVector>
+#include <random>
 
-int main(int argc, char** argv)
-{
-   QApplication app(argc, argv);
-   DependencyManager dependencyManager;
-   dependencyManager.showMainWindow();
+/// @brief This class is responsible for managing employee shifts
+class ShiftController : public QObject {
+   using IShiftModel = InterFace::IShiftModel;
 
-   return app.exec();
-}
+   public:
+   explicit ShiftController(IShiftModel* shiftModel, DataModel* dataModel, QVector<CalendarFieldWidget*>* calendarFieldWidgetVec);
+   
+   /// @brief  This method is responsible for add shift
+   void runAddShift();
+
+   /// @brief  a method is responsible to delete shift
+   void runDeleteShift();
+
+   private:
+   void addSinglePlaceShift(ShiftWizard* shiftWizard);
+   void addAutomaticPlaceShift();
+
+   QVector<CalendarFieldWidget*>* calendarFieldWidgetVecPtr;
+
+   IShiftModel* shiftModelPtr {nullptr};
+   DataModel* dataModelPtr {nullptr};
+};

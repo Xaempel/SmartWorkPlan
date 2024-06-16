@@ -25,16 +25,41 @@
 **  https://www.qt.io/.                                                       **
 **                                                                            **
 ******************************************************************************/
+#pragma once
 
-#include "../include/DependencyManager.hpp"
+#include "include/models/DataModel.hpp"
+#include "include/models/WorkerModel.hpp"
+#include "include/widgets/RemovalDialogs/WorkersRemovalDialog.hpp"
+#include "include/widgets/WorkerWidget.hpp"
+#include "include/widgets/WorkerWizard.hpp"
 
-#include <QApplication>
+#include <QObject>
+#include <QVBoxLayout>
 
-int main(int argc, char** argv)
-{
-   QApplication app(argc, argv);
-   DependencyManager dependencyManager;
-   dependencyManager.showMainWindow();
+/// @brief This class is responsible for managing employee
+class WorkerController : public QObject {
+   Q_OBJECT
+   public:
+   WorkerController(DataModel& dataModelObj);
 
-   return app.exec();
-}
+   public slots:
+   /// @brief This method is responsible for loading employees into the layout from the argument
+   void runLoadWorker(QVBoxLayout* loadWorkerLayoutPtr);
+   /// @brief This method is responsible for add worker
+   void runAddWorker(QVBoxLayout* workerLayoutPtr);
+   /// @brief This method is responsible for delete worker
+   void runDeleteWorker();
+
+   protected:
+   /// @brief This method return deleted worker name this methods used for auto delete worker from shift
+   QString getDeletedWorkerName();
+
+   private:
+   WorkerWidget* workerWidgetPtr {nullptr};
+   QString nameDeletedWorker_ {""};
+   static QList<QWidget*> workerWidgetList;
+
+   DataModel* dataModelPtr {nullptr};
+
+   friend class DependencyWorkerManager;
+};

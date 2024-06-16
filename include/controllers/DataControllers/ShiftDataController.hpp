@@ -25,16 +25,35 @@
 **  https://www.qt.io/.                                                       **
 **                                                                            **
 ******************************************************************************/
+#pragma once
 
-#include "../include/DependencyManager.hpp"
+#include "include/models/DataModel.hpp"
+#include "include/models/ModelsInteface/IShiftModel.hpp"
+#include "include/widgets/CalendarFieldWidget.hpp"
+#include "include/widgets/CalendarWidget.hpp"
 
-#include <QApplication>
+#include <QVBoxLayout>
 
-int main(int argc, char** argv)
-{
-   QApplication app(argc, argv);
-   DependencyManager dependencyManager;
-   dependencyManager.showMainWindow();
+namespace DataControllers {
 
-   return app.exec();
+   class ShiftDataController {
+      using IShiftModel = InterFace::IShiftModel;
+
+      public:
+      explicit ShiftDataController(IShiftModel* shiftModel, DataModel* dataModel, QVector<CalendarFieldWidget*>* calendarFieldWidgetVec);
+      /// @brief This methods responsibility of put calendar widget in layout from argument
+      /// @param LayoutPtr layout to put CalendarWidget
+      void setCalendarWidgetinLayout(QVBoxLayout* LayoutPtr);
+      
+      /// @brief This method is responsible for loading previous worker shift into the layout from the argument
+      /// @param LayoutPtr 
+      void runLoadShift(QVBoxLayout* LayoutPtr);
+
+      private:
+      IShiftModel* shiftModelPtr {nullptr};
+      DataModel* dataModelPtr {nullptr};
+      QVector<CalendarFieldWidget*>* calendarFieldWidgetVecPtr {nullptr};
+      QList<QWidget*> workersShiftsWidget {};
+   };
+
 }

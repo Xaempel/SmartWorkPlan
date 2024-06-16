@@ -1,10 +1,10 @@
 set(H_WIDGETS_PATHS
-    ../include/widgets/removaldialog/workersremovaldialog.hpp
-    ../include/widgets/removaldialog/shiftremovaldialog.hpp
+    include/widgets/RemovalDialogs/WorkersRemovalDialog.hpp
+    include/widgets/RemovalDialogs/ShiftRemovalDialog.hpp
 
-    ../include/widgets/calendarfieldwidget.hpp
-    ../include/widgets/calendarwidget.hpp
-    ../include/widgets/workerwidget.hpp
-    ../include/widgets/workerwizard.hpp
-    ../include/widgets/shiftwizard.hpp
+    include/widgets/CalendarFieldWidget.hpp
+    include/widgets/CalendarWidget.hpp
+    include/widgets/WorkerWidget.hpp
+    include/widgets/WorkerWizard.hpp
+    include/widgets/ShiftWizard.hpp
 )

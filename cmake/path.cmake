@@ -3,10 +3,10 @@ include(cmake/paths_to_cmake/header_files_paths/h_controllers_paths.cmake)
 include(cmake/paths_to_cmake/header_files_paths/h_models_paths.cmake)
 
 set(APP_HEADERS
-    ../include/mainwindow.hpp  
-    ../include/dependencymanager.hpp
-    ../include/depmanagerhelpers/dependencyshiftmanager.hpp  
-    ../include/depmanagerhelpers/dependencyworkermanager.hpp
+    include/MainWindow.hpp  
+    include/DependencyManager.hpp
+    include/DepedencyManagerHelpers/DependencyShiftManager.hpp
+    include/DepedencyManagerHelpers/DependencyWorkerManager.hpp
 
     ${H_WIDGETS_PATHS}
     ${H_CONTROLLERS_PATHS}
@@ -18,10 +18,10 @@ include(cmake/paths_to_cmake/source_files_paths/s_controllers_paths.cmake)
 include(cmake/paths_to_cmake/source_files_paths/s_models_paths.cmake)
 
 set(APP_SOURCES
-    ../src/mainwindow.cpp
-    ../src/dependencymanager.cpp
-    ../src/depmanagerhelpers/dependencyshiftmanager.cpp
-    ../src/depmanagerhelpers/dependencyworkermanager.cpp
+    src/MainWindow.cpp
+    src/DependencyManager.cpp
+    src/DepedencyManagerHelpers/DependencyShiftManager.cpp
+    src/DepedencyManagerHelpers/DependencyWorkerManager.cpp
 
     ${S_WIDGETS_PATHS}
     ${S_CONTROLLERS_PATHS}

@@ -30,7 +30,7 @@
 **                                                                           **
 ******************************************************************************/
 
-#include "../include/models/workermodel.hpp"
+#include "../include/models/WorkerModel.hpp"
 
 #include <catch2/catch.hpp>
 

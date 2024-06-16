@@ -30,7 +30,7 @@
 **                                                                           **
 ******************************************************************************/
 
-#include "../include/models/datamodel.hpp"
+#include "include/models/DataModel.hpp"
 
 #include <QString>
 #include <catch2/catch.hpp>

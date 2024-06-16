@@ -26,15 +26,18 @@
 **                                                                            **
 ******************************************************************************/
 
-#include "../include/DependencyManager.hpp"
+#pragma once
 
-#include <QApplication>
+#include "ModelsInteface/IShiftModel.hpp"
 
-int main(int argc, char** argv)
-{
-   QApplication app(argc, argv);
-   DependencyManager dependencyManager;
-   dependencyManager.showMainWindow();
+#include <QLabel>
+#include <QVBoxLayout>
+#include <QWidget>
 
-   return app.exec();
-}
+/// @brief This class is responsible for shift system
+class ShiftModel : public InterFace::IShiftModel {
+   public:
+
+   /// @brief This method is a derived method from the IShitData class and is used to add employees to the shift
+   QLabel* addShift(QString workerName) override;
+};

@@ -25,16 +25,32 @@
 **  https://www.qt.io/.                                                       **
 **                                                                            **
 ******************************************************************************/
+#pragma once
 
-#include "../include/DependencyManager.hpp"
+#include "controllers/PrintController.hpp"
+#include "DepedencyManagerHelpers/DependencyWorkerManager.hpp"
+#include "DepedencyManagerHelpers/DependencyShiftManager.hpp"
+#include "MainWindow.hpp"
+#include "models/ShiftModel.hpp"
 
-#include <QApplication>
+#include <memory>
 
-int main(int argc, char** argv)
-{
-   QApplication app(argc, argv);
-   DependencyManager dependencyManager;
-   dependencyManager.showMainWindow();
+class DependencyManager : public QObject {
+   Q_OBJECT
+   public:
+   DependencyManager();
+   void showMainWindow();
 
-   return app.exec();
-}
+   private slots:
+
+   void callPrintWorkPlan();
+
+   private:
+   MainWindow mainWindow {};
+   QVBoxLayout* calendarLayout {};
+
+   ShiftModel shiftModel {};
+   std::unique_ptr<DependencyShiftManager> dependencyShiftManager  = std::make_unique<DependencyShiftManager>(mainWindow.getCalendarLayout(), &shiftModel);
+   std::unique_ptr<DependencyWorkerManager> depedencyWorkerManager = std::make_unique<DependencyWorkerManager>(mainWindow.getWorkerLayout());
+   PrintController printController;
+};

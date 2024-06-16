@@ -25,16 +25,24 @@
 **  https://www.qt.io/.                                                       **
 **                                                                            **
 ******************************************************************************/
+#pragma once
 
-#include "../include/DependencyManager.hpp"
+#include "include/controllers/WorkerController.hpp"
+#include "include/models/DataModel.hpp"
 
-#include <QApplication>
+class DependencyWorkerManager : public QObject {
+   Q_OBJECT
+   public:
+   DependencyWorkerManager(QVBoxLayout* workerLayout);
+   public slots:
+   void callAddWorker();
+   void callDeleteWorker();
 
-int main(int argc, char** argv)
-{
-   QApplication app(argc, argv);
-   DependencyManager dependencyManager;
-   dependencyManager.showMainWindow();
+   signals:
+   void emittedWorkerDeleted(QString workerName);
 
-   return app.exec();
-}
+   private:
+   DataModel dataModel;
+   std::unique_ptr<WorkerController> workerController = std::make_unique<WorkerController>(dataModel);
+   QVBoxLayout* workerLayoutPtr {nullptr};
+};
