@@ -49,8 +49,7 @@ class DependencyManager : public QObject {
    MainWindow mainWindow {};
    QVBoxLayout* calendarLayout {};
 
-   ShiftModel shiftModel {};
-   std::unique_ptr<DependencyShiftManager> dependencyShiftManager  = std::make_unique<DependencyShiftManager>(mainWindow.getCalendarLayout(), &shiftModel);
+   std::unique_ptr<DependencyShiftManager> dependencyShiftManager  = std::make_unique<DependencyShiftManager>(mainWindow.getCalendarLayout());
    std::unique_ptr<DependencyWorkerManager> depedencyWorkerManager = std::make_unique<DependencyWorkerManager>(mainWindow.getWorkerLayout());
    PrintController printController;
 };

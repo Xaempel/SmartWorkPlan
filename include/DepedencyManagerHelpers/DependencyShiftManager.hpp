@@ -30,14 +30,13 @@
 #include "../controllers/DataControllers/ShiftDataController.hpp"
 #include "include/controllers/ShiftController.hpp"
 #include "include/models/DataModel.hpp"
-#include "include/models/ModelsInteface/IShiftModel.hpp"
 
 class DependencyShiftManager : public QObject {
    using ShiftDataController = DataControllers::ShiftDataController;
 
    Q_OBJECT
    public:
-   explicit DependencyShiftManager(QVBoxLayout* calendarLayout, InterFace::IShiftModel* ishiftModel);
+   explicit DependencyShiftManager(QVBoxLayout* calendarLayout);
    public slots:
    void callAddShift();
    void callDeleteShift();
@@ -46,7 +45,6 @@ class DependencyShiftManager : public QObject {
    private:
    void refreshPointer();
 
-   InterFace::IShiftModel* ishiftModelPtr {nullptr};
    QVector<CalendarFieldWidget*> calendarFieldWidgets {};
 
    std::unique_ptr<DataModel> dataModel = std::make_unique<DataModel>();

@@ -28,7 +28,7 @@
 #pragma once
 
 #include "include/models/DataModel.hpp"
-#include "include/models/ModelsInteface/IShiftModel.hpp"
+#include "include/models/ShiftModel.hpp"
 #include "include/widgets/CalendarFieldWidget.hpp"
 #include "include/widgets/CalendarWidget.hpp"
 
@@ -37,10 +37,9 @@
 namespace DataControllers {
 
    class ShiftDataController {
-      using IShiftModel = InterFace::IShiftModel;
-
       public:
-      explicit ShiftDataController(IShiftModel* shiftModel, DataModel* dataModel, QVector<CalendarFieldWidget*>* calendarFieldWidgetVec);
+      explicit ShiftDataController(QVector<CalendarFieldWidget*>* calendarFieldWidgetVec);
+      
       /// @brief This methods responsibility of put calendar widget in layout from argument
       /// @param LayoutPtr layout to put CalendarWidget
       void setCalendarWidgetinLayout(QVBoxLayout* LayoutPtr);
@@ -50,8 +49,8 @@ namespace DataControllers {
       void runLoadShift(QVBoxLayout* LayoutPtr);
 
       private:
-      IShiftModel* shiftModelPtr {nullptr};
-      DataModel* dataModelPtr {nullptr};
+      ShiftModel shiftModel {};
+      DataModel dataModel {};
       QVector<CalendarFieldWidget*>* calendarFieldWidgetVecPtr {nullptr};
       QList<QWidget*> workersShiftsWidget {};
    };

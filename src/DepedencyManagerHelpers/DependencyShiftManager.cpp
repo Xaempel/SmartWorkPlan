@@ -1,10 +1,9 @@
 #include "../include/DepedencyManagerHelpers/DependencyShiftManager.hpp"
 
-DependencyShiftManager::DependencyShiftManager(QVBoxLayout* calendarLayout, InterFace::IShiftModel* ishiftModel)
-    : ishiftModelPtr(ishiftModel)
+DependencyShiftManager::DependencyShiftManager(QVBoxLayout* calendarLayout)
 {
-   shiftDataController = std::make_unique<ShiftDataController>(ishiftModelPtr, dataModel.get(), &calendarFieldWidgets);
-   shiftController     = std::make_unique<ShiftController>(ishiftModelPtr, dataModel.get(), &calendarFieldWidgets);
+   shiftDataController = std::make_unique<ShiftDataController>(&calendarFieldWidgets);
+   shiftController     = std::make_unique<ShiftController>(&calendarFieldWidgets);
    shiftDataController->setCalendarWidgetinLayout(calendarLayout);
    shiftDataController->runLoadShift(calendarLayout);
 }
@@ -38,6 +37,6 @@ void DependencyShiftManager::refreshPointer()
    shiftController     = nullptr;
    shiftDataController = nullptr;
    dataModel           = std::make_unique<DataModel>();
-   shiftDataController = std::make_unique<ShiftDataController>(ishiftModelPtr, dataModel.get(), &calendarFieldWidgets);
-   shiftController     = std::make_unique<ShiftController>(ishiftModelPtr, dataModel.get(), &calendarFieldWidgets);
+   shiftDataController = std::make_unique<ShiftDataController>(&calendarFieldWidgets);
+   shiftController     = std::make_unique<ShiftController>(&calendarFieldWidgets);
 }

@@ -28,7 +28,7 @@
 #pragma once
 
 #include "include/models/DataModel.hpp"
-#include "include/models/ModelsInteface/IShiftModel.hpp"
+#include "include/models/ShiftModel.hpp"
 #include "include/widgets/CalendarFieldWidget.hpp"
 #include "include/widgets/CalendarWidget.hpp"
 #include "include/widgets/ShiftWizard.hpp"
@@ -41,10 +41,8 @@
 
 /// @brief This class is responsible for managing employee shifts
 class ShiftController : public QObject {
-   using IShiftModel = InterFace::IShiftModel;
-
    public:
-   explicit ShiftController(IShiftModel* shiftModel, DataModel* dataModel, QVector<CalendarFieldWidget*>* calendarFieldWidgetVec);
+   explicit ShiftController(QVector<CalendarFieldWidget*>* calendarFieldWidgetVec);
    
    /// @brief  This method is responsible for add shift
    void runAddShift();
@@ -58,6 +56,6 @@ class ShiftController : public QObject {
 
    QVector<CalendarFieldWidget*>* calendarFieldWidgetVecPtr;
 
-   IShiftModel* shiftModelPtr {nullptr};
-   DataModel* dataModelPtr {nullptr};
+   ShiftModel shiftModel {};
+   DataModel dataModel {};
 };

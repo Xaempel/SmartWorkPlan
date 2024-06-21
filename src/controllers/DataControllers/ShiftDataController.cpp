@@ -5,10 +5,8 @@ using namespace DataControllers;
 const QString workerShiftsSaveFile {"WorkersShifts.json"};
 const QString workerDataSectionName {"worker section"};
 
-ShiftDataController::ShiftDataController(IShiftModel* shiftModel, DataModel* dataModel, QVector<CalendarFieldWidget*>* calendarFieldWidgetVec)
-    : shiftModelPtr(shiftModel)
-    , dataModelPtr(dataModel)
-    , calendarFieldWidgetVecPtr(calendarFieldWidgetVec)
+ShiftDataController::ShiftDataController(QVector<CalendarFieldWidget*>* calendarFieldWidgetVec)
+    : calendarFieldWidgetVecPtr(calendarFieldWidgetVec)
 {
 }
 
@@ -31,16 +29,16 @@ void ShiftDataController::setCalendarWidgetinLayout(QVBoxLayout* LayoutPtr)
 void ShiftDataController::runLoadShift(QVBoxLayout* LayoutPtr)
 {
    QVariantList workerList;
-   dataModelPtr->load("data.json", workerDataSectionName, workerList);
+   dataModel.load("data.json", workerDataSectionName, workerList);
 
    for (auto i : workerList) {
       QVariantList dataList;
-      dataModelPtr->load(workerShiftsSaveFile, i.toString(), dataList);
+      dataModel.load(workerShiftsSaveFile, i.toString(), dataList);
 
       // add widget to layout spaces
       QVBoxLayout* workerShiftLayoutPtr {nullptr};
       for (auto j : dataList) {
-         auto shiftWidget = shiftModelPtr->addShift(i.toString());
+         auto shiftWidget = shiftModel.addShift(i.toString());
          calendarFieldWidgetVecPtr->at(j.toInt())->addShiftWidget(shiftWidget, i.toString());
       }
    }
