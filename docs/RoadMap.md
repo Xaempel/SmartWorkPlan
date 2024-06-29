@@ -6,12 +6,19 @@ This roadmap outlines planned features and development status for project.
 [Return to main docs file](ReadMe.md)
 
 ## Table of Contents
-- [Upcoming Features](#upcoming-features)
-- [Legend for RoadMap](#legend-for-roadmap)
+- [RoadMap](#roadmap)
+  - [Overview](#overview)
+  - [Table of Contents](#table-of-contents)
+  - [Upcoming Features](#upcoming-features)
+    - [Shift function](#shift-function)
+    - [Worker function](#worker-function)
+    - [Printing function](#printing-function)
+    - [Other Tasks](#other-tasks)
+  - [Legend for RoadMap](#legend-for-roadmap)
 
 ## Upcoming Features
 
-### Shift Feature
+### Shift function
 
 | Goal                       | Description                                            | Status |
 | -------------------------- | ------------------------------------------------------ | ------ |
@@ -22,13 +29,20 @@ This roadmap outlines planned features and development status for project.
 | Create a function that automatically assigns employees to shifts | The feature should automatically assign employees to shifts. the function must prevent employees from repeating themselves every day; the function should also randomly select employees based on a randomly generated seed | ✅ |
 | Add the ability to select a month for the shift calendar | After selection, it should dynamically adjust the number of days for the chosen month | ❌ |
 
-### Worker Feature
+### Worker function
 
 | Goal                   | Description                                            | Status |
 | ---------------------- | ------------------------------------------------------ | ------ |
 | Implement Worker Addition | Develop a system for adding workers to the layout and storing their information in a file | ✅ |
 | Implement Worker Deletion | Create a system for removing workers from the main window layout and deleting their information from the file | ✅ |
 | Create a widget for modifying worker information (e.g., name, surname, and work hours) | The widget should be triggered by clicking on a specific worker in the employee section | ❌ |
+
+
+### Printing function 
+| Goal                   | Description                                            | Status |
+| ---------------------- | ------------------------------------------------------ | ------ |
+| Add Basic print's sketch | Basic look and structure of schedule print e.g. shift's box, worker name space etc. | ✅ | 
+| Auto mark shift's box | auto marks when worker have shift in this day | ✅ |
 
 ### Other Tasks
 

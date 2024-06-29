@@ -1,25 +1,20 @@
-# Current Software Version: 0.7.1
+# Current Software Version: 0.9.0
 
-**Date of Release Version:** 13/09/2023
+**Date of Release Version:** 29/06/24
 
 ## What's New for This Version:
 
 ### Main Feature:
 
-- **Added Basic System:**
-  - Shift System:
-    - Added Shift Creation
-    - Added Shift Deletion
-  - Worker System:
-    - Added Worker Addition
-    - Added Worker Deletion
-  - Basic Function for Printing Schedule (This feature is still in a very early stage of development)
+- **Added auto mark of shift's box**
+  - the function's works based on worker shift's days 
+- **Added sketch of widget custome style**
+  - This widget is shift's creator 
 
 ### Refactoring and Patches to Fix Minor Bugs:
 
-- **Refactor Data Manager System:**
-  - Added Implementation for a Better Data Manager Class
-  - Deleted Old Data Manager System
+- **Added new data save way:**
+  - This way is in Controller class. Data Model is not changed
 
 ### Critical Bug Fix:
 
