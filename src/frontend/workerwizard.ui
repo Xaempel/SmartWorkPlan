@@ -13,6 +13,21 @@
   <property name="windowTitle">
    <string>WorkerWizard</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">*
+{
+ background-color:  #70706e;
+ color: #d1cdcd;
+}
+
+QPushButton {
+    background-color: gray;
+    border: 2px solid darkgray;
+    border-radius: 5px;
+	color: #d1cdcd;
+}
+</string>
+  </property>
   <widget class="QWizardPage" name="WizardMainPage">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">

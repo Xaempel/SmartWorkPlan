@@ -13,6 +13,27 @@
   <property name="windowTitle">
    <string>Shift Removal Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">*
+{
+ background-color:  #70706e;
+ color: #d1cdcd;
+}
+
+QPushButton {
+    background-color: gray;
+    border: 2px solid darkgray;
+    border-radius: 5px;
+	color: #d1cdcd;
+}
+
+QComboBox {
+    background-color: gray;
+    border: 2px solid gray;
+    border-radius: 5px;
+}
+</string>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="2" column="1">
     <widget class="QPushButton" name="CancellButton">
