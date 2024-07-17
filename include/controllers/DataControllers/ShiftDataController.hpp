@@ -41,12 +41,11 @@ namespace DataControllers {
       explicit ShiftDataController(QVector<CalendarFieldWidget*>* calendarFieldWidgetVec);
       
       /// @brief This methods responsibility of put calendar widget in layout from argument
-      /// @param LayoutPtr layout to put CalendarWidget
-      void setCalendarWidgetinLayout(QVBoxLayout* LayoutPtr);
+      /// @param layouttoCalednarWidget layout to put CalendarWidget
+      void setCalendarWidgetinLayout(QVBoxLayout* layouttoCalednarWidget);
       
-      /// @brief This method is responsible for loading previous worker shift into the layout from the argument
-      /// @param LayoutPtr 
-      void runLoadShift(QVBoxLayout* LayoutPtr);
+      /// @brief This method is responsible for loading previous worker shift into the layout from the argument 
+      void runLoadShift();
 
       private:
       ShiftModel shiftModel {};

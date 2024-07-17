@@ -5,7 +5,7 @@ DependencyShiftManager::DependencyShiftManager(QVBoxLayout* calendarLayout)
    shiftDataController = std::make_unique<ShiftDataController>(&calendarFieldWidgets);
    shiftController     = std::make_unique<ShiftController>(&calendarFieldWidgets);
    shiftDataController->setCalendarWidgetinLayout(calendarLayout);
-   shiftDataController->runLoadShift(calendarLayout);
+   shiftDataController->runLoadShift();
 }
 
 void DependencyShiftManager::callAddShift()

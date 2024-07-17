@@ -10,7 +10,7 @@ ShiftDataController::ShiftDataController(QVector<CalendarFieldWidget*>* calendar
 {
 }
 
-void ShiftDataController::setCalendarWidgetinLayout(QVBoxLayout* LayoutPtr)
+void ShiftDataController::setCalendarWidgetinLayout(QVBoxLayout* layouttoCalednarWidget)
 {
    CalendarWidget* calendarWidget {new CalendarWidget(nullptr)};
 
@@ -23,10 +23,10 @@ void ShiftDataController::setCalendarWidgetinLayout(QVBoxLayout* LayoutPtr)
       DayCounter++;
    }
 
-   LayoutPtr->addWidget(calendarWidget);
+   layouttoCalednarWidget->addWidget(calendarWidget);
 }
 
-void ShiftDataController::runLoadShift(QVBoxLayout* LayoutPtr)
+void ShiftDataController::runLoadShift()
 {
    QVariantList workerList;
    dataModel.load("data.json", workerDataSectionName, workerList);
@@ -35,8 +35,6 @@ void ShiftDataController::runLoadShift(QVBoxLayout* LayoutPtr)
       QVariantList dataList;
       dataModel.load(workerShiftsSaveFile, i.toString(), dataList);
 
-      // add widget to layout spaces
-      QVBoxLayout* workerShiftLayoutPtr {nullptr};
       for (auto j : dataList) {
          auto shiftWidget = shiftModel.addShift(i.toString());
          calendarFieldWidgetVecPtr->at(j.toInt())->addShiftWidget(shiftWidget, i.toString());
