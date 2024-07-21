@@ -1,5 +1,6 @@
 #include "include/controllers/WorkerController.hpp"
 
+// #include <QMessageBox>
 const QString workerDataSectionName {"worker section"};
 
 WorkerController::WorkerController(DataModel& dataModelObj)
@@ -40,14 +41,19 @@ void WorkerController::runDeleteWorker()
    WorkersRemovalDialog* DialogObject {new WorkersRemovalDialog(nullptr, workerNameList)};
    DialogObject->exec();
 
-   int selectedWorkerNumberToDeleted {0};
-   if (DialogObject->getDeletedWorkerNumber(selectedWorkerNumberToDeleted) == true) {
-      nameDeletedWorker_ = workerNameList.at(selectedWorkerNumberToDeleted);
-      WorkerModelObject.deleteWorker(selectedWorkerNumberToDeleted);
-      dataModelPtr->deleteDatafromFile("data.json", workerDataSectionName, selectedWorkerNumberToDeleted);
+   if (workerNameList.size() != 0) {
+      int selectedWorkerNumberToDeleted {0};
+      if (DialogObject->getDeletedWorkerNumber(selectedWorkerNumberToDeleted) == true) {
+         nameDeletedWorker_ = workerNameList.at(selectedWorkerNumberToDeleted);
+         WorkerModelObject.deleteWorker(selectedWorkerNumberToDeleted);
+         dataModelPtr->deleteDatafromFile("data.json", workerDataSectionName, selectedWorkerNumberToDeleted);
+      }
+      else {
+         return;
+      }
    }
    else {
-      return;
+      QMessageBox::warning(nullptr,"Any Workers to delete not exist","You don't have any workers to delete");
    }
 }
 

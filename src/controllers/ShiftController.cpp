@@ -3,6 +3,8 @@
 #include "include/controllers/ShiftControllersHelpers/ShiftPlaceAlgorithms.hpp"
 #include "include/widgets/RemovalDialogs/ShiftRemovalDialog.hpp"
 
+#include <QMessageBox>
+
 const QString workerShiftsSaveFile {"WorkersShifts.json"};
 const QString workerDataSectionName {"worker section"};
 
@@ -58,29 +60,33 @@ void ShiftController::runDeleteShift()
 
    ShiftRemovalDialog removalDialog(nullptr, shifts);
    removalDialog.exec();
-
    auto selecedShiftData = removalDialog.getSelectedShiftsData();
 
-   QString deletedWorkerName {selecedShiftData.second};
-   int deletedWorkerDay {selecedShiftData.first};
-
-   auto workerNameinCalendarWidget = calendarFieldWidgetVecPtr->at(deletedWorkerDay)->getShiftDataList();
-
-   for (auto i : workerNameinCalendarWidget) {
-      if (i.second == deletedWorkerName) {
-         i.first->deleteLater();
-         break;
-      }
+   if (selecedShiftData == QPair(-1, "")) {
+      QMessageBox::warning(nullptr, "Any shifts not exist", "You don't have shifts to delete");
    }
+   else {
+      QString deletedWorkerName {selecedShiftData.second};
+      int deletedWorkerDay {selecedShiftData.first};
 
-   dataModel.load(workerShiftsSaveFile, deletedWorkerName, dataList);
-   QStringList deletedWorkerShifts = ToolsforDataManipulation::convertVariantToRequiredType<QString>(dataList);
+      auto workerNameinCalendarWidget = calendarFieldWidgetVecPtr->at(deletedWorkerDay)->getShiftDataList();
 
-   int indexofDeletedDay {0};
-   for (QString i : deletedWorkerShifts) {
-      if (i.toInt() == deletedWorkerDay) {
-         dataModel.deleteDatafromFile(workerShiftsSaveFile, deletedWorkerName, indexofDeletedDay);
+      for (auto i : workerNameinCalendarWidget) {
+         if (i.second == deletedWorkerName) {
+            i.first->deleteLater();
+            break;
+         }
       }
-      indexofDeletedDay++;
+
+      dataModel.load(workerShiftsSaveFile, deletedWorkerName, dataList);
+      QStringList deletedWorkerShifts = ToolsforDataManipulation::convertVariantToRequiredType<QString>(dataList);
+
+      int indexofDeletedDay {0};
+      for (QString i : deletedWorkerShifts) {
+         if (i.toInt() == deletedWorkerDay) {
+            dataModel.deleteDatafromFile(workerShiftsSaveFile, deletedWorkerName, indexofDeletedDay);
+         }
+         indexofDeletedDay++;
+      }
    }
 }
