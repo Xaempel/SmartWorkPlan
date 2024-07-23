@@ -69,13 +69,15 @@ void ShiftController::runDeleteShift()
       QString deletedWorkerName {selecedShiftData.second};
       int deletedWorkerDay {selecedShiftData.first};
 
-      auto workerNameinCalendarWidget = calendarFieldWidgetVecPtr->at(deletedWorkerDay)->getShiftDataList();
+      auto shiftsFromCalendarFieldWidget = calendarFieldWidgetVecPtr->at(deletedWorkerDay)->getShiftDataList();
 
-      for (auto i : workerNameinCalendarWidget) {
+      int loopCounter {0};
+      for (auto i : shiftsFromCalendarFieldWidget) {
          if (i.second == deletedWorkerName) {
-            i.first->deleteLater();
+            calendarFieldWidgetVecPtr->at(deletedWorkerDay)->deleteShiftfromCalendarFieldWidget(loopCounter);
             break;
          }
+         loopCounter++;
       }
 
       dataModel.load(workerShiftsSaveFile, deletedWorkerName, dataList);

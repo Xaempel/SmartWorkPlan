@@ -24,3 +24,9 @@ ShiftsData CalendarFieldWidget::getShiftDataList()
 {
    return shiftsData;
 }
+
+void CalendarFieldWidget::deleteShiftfromCalendarFieldWidget(int indexofShift)
+{
+   shiftsData.at(indexofShift).first->deleteLater();
+   shiftsData.removeAt(indexofShift);
+}

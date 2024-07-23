@@ -47,7 +47,11 @@ class CalendarFieldWidget : public QFrame {
 
    /// @brief a method add shift widget to layout in the class CalendarFieldWidget
    void addShiftWidget(QLabel* shiftWidget, QString name);
-   ShiftsData getShiftDataList();
+
+   /// @brief Function return shift list from CalendarFieldWidget
+   [[nodiscard("Function return a shift list from CalendarFieldWidget")]] ShiftsData getShiftDataList();
+
+   void deleteShiftfromCalendarFieldWidget(int indexofShift);
 
    private:
    Ui::CalendarFieldWidget* ui {nullptr};
