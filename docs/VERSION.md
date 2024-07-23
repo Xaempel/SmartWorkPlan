@@ -1,24 +1,22 @@
-# Current Software Version: 0.9.0
+# Current Software Version: 0.10.3
 
-**Date of Release Version:** 29/06/24
+**Date of Release Version:** 23/07/24
 
 ## What's New for This Version:
 
 ### Main Feature:
 
-- **Added auto mark of shift's box**
-  - the function's works based on worker shift's days 
-- **Added sketch of widget custome style**
-  - This widget is shift's creator 
+- **Added license informations widget**
+  - This widget have license  informations about project's license and project dependencies and project's dependencies license  
 
 ### Refactoring and Patches to Fix Minor Bugs:
 
-- **Added new data save way:**
-  - This way is in Controller class. Data Model is not changed
+- This Release Does Not have Refactoring change and nothins minor bugs not fixed
 
 ### Critical Bug Fix:
 
-- This Release Does Not Fix Any Critical Bugs
+- The bug affects the Shift Removal dialog and Worker Removal dialog, it allowed acceptance dialogs without changes 
+- A bug with an outdated pointer to shift data when workers was auto delete  
 
 ## How Project Versioning Takes Place:
 

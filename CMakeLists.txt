@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(SmartWorkPlan VERSION 0.1 LANGUAGES CXX)
+project(SmartWorkPlan VERSION 0.10.3 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
