@@ -54,8 +54,8 @@ QMenuBar{
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>386</width>
-         <height>537</height>
+         <width>383</width>
+         <height>536</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -84,7 +84,7 @@ QMenuBar{
      <x>0</x>
      <y>0</y>
      <width>789</width>
-     <height>28</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="MenuWorker">
@@ -107,9 +107,16 @@ QMenuBar{
     </property>
     <addaction name="ActionPrintWorkPlan"/>
    </widget>
+   <widget class="QMenu" name="MenuSettings">
+    <property name="title">
+     <string>Settings</string>
+    </property>
+    <addaction name="ActionLicenseInformations"/>
+   </widget>
    <addaction name="MenuWorker"/>
    <addaction name="MenuShift"/>
    <addaction name="MenuPrint"/>
+   <addaction name="MenuSettings"/>
   </widget>
   <widget class="QStatusBar" name="StatusBar"/>
   <action name="ActionAddWorker">
@@ -147,15 +154,33 @@ QMenuBar{
     <string>Delete</string>
    </property>
   </action>
+  <action name="ActionLicenseInformations">
+   <property name="text">
+    <string>License Informations</string>
+   </property>
+  </action>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>ActionLicenseInformations</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>showLicenseInformations()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>394</x>
+     <y>299</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>394</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
  <slots>
   <signal>emitAddShift()</signal>
-  <slot>CallAddWorker()</slot>
-  <slot>CallDeleteWorker()</slot>
-  <slot>CallAddShift()</slot>
-  <slot>CallDeleteShift()</slot>
-  <slot>CallPrintWorkPlan()</slot>
+  <slot>showLicenseInformations()</slot>
  </slots>
 </ui>

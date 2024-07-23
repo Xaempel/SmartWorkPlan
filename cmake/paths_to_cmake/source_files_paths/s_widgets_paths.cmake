@@ -1,4 +1,6 @@
 set(S_WIDGETS_PATHS
+    src/widgets/LicenseInformationWidget.cpp
+
     src/widgets/RemovalDialogs/WorkersRemovalDialog.cpp
     src/widgets/RemovalDialogs/ShiftRemovalDialog.cpp
 

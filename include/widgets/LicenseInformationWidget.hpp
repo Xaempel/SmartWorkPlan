@@ -1,6 +1,6 @@
 /******************************************************************************
 **                                                                            **
-**  Copyright (C) [2023] [Xaempel]                                            **
+**  Copyright (C) [2024] [Xaempel]                                            **
 **                                                                            **
 **  This file is part of [SmartWorkPlan].                                     **
 **  [SmartWorkPlan] is free software: you can redistribute it and/or          **
@@ -27,34 +27,18 @@
 ******************************************************************************/
 #pragma once
 
-#include "./frontend/ui_mainwindow.h"
+#include <QDialog>
 
-#include <QMainWindow>
+QT_BEGIN_NAMESPACE
+namespace Ui {
+   class LicenseInformationsWidget;
+};
+QT_END_NAMESPACE
 
-/// @brief MainWindow Class
-class MainWindow : public QMainWindow, private Ui::MainWindow {
-   Q_OBJECT
+class LicenseInformationsWidget : public QDialog {
    public:
-   MainWindow(QWidget* parent = nullptr);
-   ~MainWindow();
+   LicenseInformationsWidget(QWidget* parent = nullptr);
 
-   /// @brief Function for get calendar layout pointer  
-   /// @return Returned Calendar Layout Pointer
-   QVBoxLayout* getCalendarLayout();
-
-   /// @brief Function for get worker layout pointer
-   /// @return Returned calendar layout pointer
-   QVBoxLayout* getWorkerLayout();
-
-   private slots:
-   void showLicenseInformations();
-
-   signals:
-   void emitAddShift();
-   void emitDeleteShift();
-
-   void emitAddWorker();
-   void emitDeleteWorker();
-
-   void emitPrintWorkPlan();
+   private:
+   Ui::LicenseInformationsWidget* ui {nullptr};
 };

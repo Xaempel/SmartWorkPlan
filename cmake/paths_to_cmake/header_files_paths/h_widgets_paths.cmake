@@ -1,4 +1,6 @@
 set(H_WIDGETS_PATHS
+    include/widgets/LicenseInformationWidget.hpp
+
     include/widgets/RemovalDialogs/WorkersRemovalDialog.hpp
     include/widgets/RemovalDialogs/ShiftRemovalDialog.hpp
 

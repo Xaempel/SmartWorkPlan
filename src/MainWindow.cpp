@@ -1,5 +1,7 @@
 #include "./include/MainWindow.hpp"
 
+#include "../include/widgets/LicenseInformationWidget.hpp"
+
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
 {
@@ -17,3 +19,9 @@ MainWindow::~MainWindow() { }
 
 QVBoxLayout* MainWindow::getCalendarLayout() { return CalendarLayout; }
 QVBoxLayout* MainWindow::getWorkerLayout() { return WorkerLayout; }
+
+void MainWindow::showLicenseInformations()
+{
+   LicenseInformationsWidget licenseInformationsWidget;
+   licenseInformationsWidget.exec();
+}
